@@ -1,0 +1,3 @@
+================collective.ifttt
+================
+User documentation
