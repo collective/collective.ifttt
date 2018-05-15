@@ -6,7 +6,7 @@
 collective.ifttt
 ================
 
-Tell me what your product does
+This addon is developed to make use of IFTTT webhook with Plone
 
 Features
 --------
@@ -18,13 +18,13 @@ Examples
 --------
 
 This add-on can be seen in action at the following sites:
-- Is there a page on the internet where everybody can see the features?
+- Coming Soon
 
 
 Documentation
 -------------
 
-Full documentation for end users can be found in the "docs" folder, and is also available online at http://docs.plone.org/foo/bar
+Full documentation for end users can be found in the "docs" folder, and is also available online at http://collectiveifttt.readthedocs.io/en/latest/
 
 
 Translations
@@ -56,7 +56,7 @@ Contribute
 
 - Issue Tracker: https://github.com/collective/collective.ifttt/issues
 - Source Code: https://github.com/collective/collective.ifttt
-- Documentation: https://docs.plone.org/foo/bar
+- Documentation: http://collectiveifttt.readthedocs.io/en/latest/
 
 
 Support
