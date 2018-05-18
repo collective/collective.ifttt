@@ -4,6 +4,10 @@
 
 .. image:: https://travis-ci.org/collective/collective.ifttt.svg?branch=master
     :target: https://travis-ci.org/collective/collective.ifttt
+.. image:: https://coveralls.io/repos/github/collective/collective.ifttt/badge.svg
+    :target: https://coveralls.io/github/collective/collective.ifttt
+
+
 ================
 collective.ifttt
 ================
