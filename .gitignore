@@ -35,3 +35,6 @@ report.html
 !.travis.yml
 !src/collective
 .Python
+.idea*
+Pipfile
+.DS_Store
