@@ -1,0 +1,1 @@
+Search.setIndex({docnames:["index"],envversion:52,filenames:["index.rst"],objects:{},objnames:{},objtypes:{},terms:{And:0,applet:0,document:0,get:0,index:0,modul:[],page:0,plai:0,plone:0,search:0,show:0,sourc:0,start:0,user:[]},titles:["Welcome to collective.ifttt!"],titleterms:{collect:0,document:[],ifttt:0,indic:0,tabl:0,welcom:0}})
