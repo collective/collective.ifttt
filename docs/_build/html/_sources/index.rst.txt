@@ -6,18 +6,16 @@
 Welcome to collective.ifttt!
 ============================================
 
+Welcome to collective.ifttt's documentation.
+
+Start with :ref:`tutorial <tutorial-label>` to get an overview of Plone ifttt applets.
+
 .. toctree::
    :maxdepth: 3
    :caption: Contents:
 
-    intro
-    tutorial
-    tutorial/Enable RSS feed on Plone
-
-Welcome to collective.ifttt's documentation. And get started to play with Plone's ifttt applets.
-
-
-
+   tutorial
+   tutorial/Enable_RSS_feed_on_Plone
 
 
 
@@ -26,5 +24,4 @@ Indices and tables
 
 * :ref:`genindex`
 * :ref:`search`
-* :ref:`Show Source`
 
