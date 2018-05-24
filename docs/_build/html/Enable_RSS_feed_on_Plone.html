@@ -32,6 +32,69 @@
             
   <div class="section" id="enable-rss-feed-on-plone-site">
 <h1>Enable RSS Feed On Plone Site<a class="headerlink" href="#enable-rss-feed-on-plone-site" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Plone can generate RSS feeds from folderish content types (folder / collection).
+If you want to aggregate content from all the site to RSS feed, you first create a collection content item and then enable RSS feed on this collection content item.</p>
+<p>Below are the steps to enable RSS Feed on Plone Site.
+You can choose what content types ends up to the RSS stream.
+Also, the aggregator is language aware so that it works correctly on multilingual sites.</p>
+<p><em>Prerequisite</em> :  Content manipulation permission is required for user.</p>
+</div>
+<div class="section" id="creating-the-collection">
+<h2>Creating the collection<a class="headerlink" href="#creating-the-collection" title="Permalink to this headline">¶</a></h2>
+<p><em>Step 1</em></p>
+<p>Go to Site root</p>
+<img alt="_images/Step1.png" src="_images/Step1.png" />
+<p><em>Step 2</em></p>
+<p>Add new collection</p>
+<img alt="_images/Step2.png" src="_images/Step2.png" />
+<p><em>Step 3</em></p>
+<p>Title “Your site name - RSS feed” Or any other suitable name</p>
+<img alt="_images/Step3.png" src="_images/Step3.png" />
+<p><em>Step 4</em></p>
+<p>On Category tab, set Language to neutral(if your site is multi-lingual) otherwise leave as it is.</p>
+<img alt="_images/Step4.png" src="_images/Step4.png" />
+<p><em>Step 5</em></p>
+<p>On Settings tab, choose Exclude from navigation</p>
+<img alt="_images/Step5.png" src="_images/Step5.png" />
+<p><em>Step 6</em></p>
+<p>Save</p>
+<p><em>Step 7</em></p>
+<p>Go to site root / Contents tab</p>
+<img alt="_images/Step7.png" src="_images/Step7.png" />
+<p><em>Step 8</em></p>
+<p>Check your RSS content collection</p>
+<img alt="_images/Step8.png" src="_images/Step8.png" />
+<p><em>Step 9</em></p>
+<p>Choose Rename button</p>
+<img alt="_images/Step9.png" src="_images/Step9.png" />
+<p><em>Step 10</em></p>
+<p>Change <cite>Short Name or item id</cite> to <code class="docutils literal notranslate"><span class="pre">site-feed</span></code></p>
+<img alt="_images/Step10.png" src="_images/Step10.png" />
+</div>
+<div class="section" id="collecting-content-for-the-rss-feed">
+<h2>Collecting content for the RSS feed<a class="headerlink" href="#collecting-content-for-the-rss-feed" title="Permalink to this headline">¶</a></h2>
+<p><em>Step 1</em></p>
+<p>Go to your collection content item</p>
+<img alt="_images/Step11.png" src="_images/Step11.png" />
+<p><em>Step 2</em></p>
+<p>Select Edit for your collection</p>
+<img alt="_images/Step21.png" src="_images/Step21.png" />
+<p><em>Step 3</em></p>
+<p>Choose content types criteria (Choose <code class="docutils literal notranslate"><span class="pre">Title</span></code> , to publish all content)</p>
+<img alt="_images/Step31.png" src="_images/Step31.png" />
+<p><em>Step 4</em></p>
+<p>Choose sorting criteris (Choose <code class="docutils literal notranslate"><span class="pre">Creation</span> <span class="pre">date</span></code> with reverse , to publish all content)</p>
+<img alt="_images/Step41.png" src="_images/Step41.png" />
+<p><em>Step 5</em></p>
+<p>Save</p>
+<p><strong>You can now preview the content of RSS feed on View tab.</strong></p>
+<p><em>Step 6</em></p>
+<p>Publish collection after the content seems to be right, using the workflow menu on the collection content item.</p>
+<img alt="_images/Step6.png" src="_images/Step6.png" />
+<p><strong>You can now test RSS feed by copy-pasting RSS URL from the site action to your RSS Reader, like Google Reader.</strong></p>
+</div>
 </div>
 
 
@@ -39,7 +102,17 @@
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper"><div class="relations">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Enable RSS Feed On Plone Site</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#creating-the-collection">Creating the collection</a></li>
+<li><a class="reference internal" href="#collecting-content-for-the-rss-feed">Collecting content for the RSS feed</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
