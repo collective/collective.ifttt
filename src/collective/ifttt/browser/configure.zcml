@@ -18,4 +18,13 @@
       directory="static"
       />
 
+  <browser:page
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="collectiveifttt-controlpanel"
+      class=".controlpanel.IftttControlPanelView"
+      permission="cmf.ManagePortal"
+      />
+
 </configure>
+
+
