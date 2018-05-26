@@ -42,7 +42,11 @@ On Category tab, set Language to neutral(if your site is multi-lingual) otherwis
 
 *Step 5*
 
-On Settings tab, choose Exclude from navigation
+On Settings tab
+
+ 1. Choose Exclude from navigation
+
+ 2. Change `Short Name or item id` to ``site-feed``
 
 .. image:: _static/images/Enable_Rss_Feed/create_collection/Step5.png
 
@@ -50,68 +54,46 @@ On Settings tab, choose Exclude from navigation
 
 Save
 
-*Step 7*
-
-Go to site root / Contents tab
-
-.. image:: _static/images/Enable_Rss_Feed/create_collection/Step7.png
-
-*Step 8*
-
-Check your RSS content collection
-
-.. image:: _static/images/Enable_Rss_Feed/create_collection/Step8.png
-
-*Step 9*
-
-Choose Rename button
-
-.. image:: _static/images/Enable_Rss_Feed/create_collection/Step9.png
-
-*Step 10*
-
-Change `Short Name or item id` to ``site-feed``
-
-.. image:: _static/images/Enable_Rss_Feed/create_collection/Step10.png
 
 Collecting content for the RSS feed
 -----------------------------------
 
 *Step 1*
 
-Go to your collection content item
+For your collection content item, click on the small pencil icon (all the way at the right).
 
 .. image:: _static/images/Enable_Rss_Feed/collect_content/Step1.png
 
 *Step 2*
 
-Select Edit for your collection
-
-.. image:: _static/images/Enable_Rss_Feed/collect_content/Step2.png
-
-*Step 3*
-
-Choose content types criteria (Choose ``Title`` , to publish all content)
-
-.. image:: _static/images/Enable_Rss_Feed/collect_content/Step3.png
-
-*Step 4*
-
-Choose sorting criteris (Choose ``Creation date`` with reverse , to publish all content)
+Choose sorting criteria (Choose ``Effective date`` with reverse , to publish all content) and `Save`.
 
 .. image:: _static/images/Enable_Rss_Feed/collect_content/Step4.png
 
-*Step 5*
-
-Save
-
-**You can now preview the content of RSS feed on View tab.**
-
-*Step 6*
+*Step 3*
 
 Publish collection after the content seems to be right, using the workflow menu on the collection content item.
 
 .. image:: _static/images/Enable_Rss_Feed/collect_content/Step6.png
 
 **You can now test RSS feed by copy-pasting RSS URL from the site action to your RSS Reader, like Google Reader.**
+
+*Step 4*
+
+Go to Site Setup(need especial permission) and select Syndication under General tab.
+
+*Step 5*
+
+Select following-
+
+ 1. `Allowed`
+ 2. `Enabled by default`
+ 3. `Search RSS enabled`
+ 4. `Show feed link`
+
+
+**You can now preview the content of RSS feed on View tab.**
+
+*Step 4*
+
 
