@@ -19,9 +19,17 @@ Enabling RSS Feed
 
 *Step 1*
 
-Go to Site Setup and select Syndication under General tab.
+Go to Site Setup
+
+.. image:: _static/images/Enable_Rss_Feed/Enable_RSS/Step1.png
 
 *Step 2*
+
+Select Syndication under General tab.
+
+.. image:: _static/images/Enable_Rss_Feed/Enable_RSS/Step2.png
+
+*Step 3*
 
 Select following and save:
 
@@ -29,6 +37,9 @@ Select following and save:
  2. `Enabled by default`
  3. `Search RSS enabled`
  4. `Show feed link`
+ 5. Save
+
+.. image:: _static/images/Enable_Rss_Feed/Enable_RSS/Step3.png
 
 Creating the collection
 ------------------------
@@ -37,43 +48,21 @@ Creating the collection
 
 Go to Site root
 
-.. image:: _static/images/Enable_Rss_Feed/create_collection/Step1.png
+.. image:: _static/images/Enable_Rss_Feed/creating_collection/Step1.png
 
 *Step 2*
 
 Add new collection
 
-.. image:: _static/images/Enable_Rss_Feed/create_collection/Step2.png
+.. image:: _static/images/Enable_Rss_Feed/creating_collection/Step2.png
 
 *Step 3*
 
 Update ``Title`` to "Your site name - RSS feed" Or any other suitable name
 
-.. image:: _static/images/Enable_Rss_Feed/create_collection/Step3.png
+.. image:: _static/images/Enable_Rss_Feed/creating_collection/Step3.png
 
 *Step 4*
-
-On Settings tab
-
- 1. Choose ``Exclude from navigation`` (to make it disappear from navigation tree)
-
- 2. Change ``Short Name or item id`` to "site-feed" or any other suitable name
-
- 3. Save
-
-.. image:: _static/images/Enable_Rss_Feed/create_collection/Step4.png
-
-
-Collecting content for the RSS feed
------------------------------------
-
-*Step 1*
-
-For your collection content item, click on the small pencil icon (all the way at the right).
-
-.. image:: _static/images/Enable_Rss_Feed/collect_content/Step1.png
-
-*Step 2*
 
 Following settings should be tweaked based on user requirement, however to publish all content do following:
 
@@ -83,26 +72,40 @@ Following settings should be tweaked based on user requirement, however to publi
 
 3. Save
 
-.. image:: _static/images/Enable_Rss_Feed/collect_content/Step2.png
+.. image:: _static/images/Enable_Rss_Feed/creating_collection/Step4.png
 
-*Step 3*
+*Step 5*
+
+On Settings tab
+
+ 1. Choose ``Exclude from navigation`` (to make it disappear from navigation tree)
+
+ 2. Change ``Short Name or item id`` to "site-feed" or any other suitable name
+
+ 3. Save
+
+.. image:: _static/images/Enable_Rss_Feed/creating_collection/Step5.png
+
+
+
+*Step 6*
 
 Publish collection after the content seems to be right, using the workflow menu on the collection content item.
 
-.. image:: _static/images/Enable_Rss_Feed/collect_content/Step3.png
+.. image:: _static/images/Enable_Rss_Feed/creating_collection/Step6.png
 
-*Step 4*
+*Step 7*
 
 You can now preview the content of RSS feed on View tab.
 
-.. image:: _static/images/Enable_Rss_Feed/collect_content/Step4.png
-
+.. image:: _static/images/Enable_Rss_Feed/creating_collection/Step7.png
 
 **Now your RSS feed is ready which can be tested by copy-pasting RSS URL from the site action \
 to your RSS Reader, like feeder.co or Mozilla Reader**
 
-Like in my case the URL to the RSS feed is- ``http://localhost:8080/Plone/site-rss/RSS`` \
+Like in my case the URL to the RSS feed is- ``http://localhost:8080/Plone/site-feed/RSS`` \
 which is something like ``/path/to/collection/RSS``
 
+.. image:: _static/images/Enable_Rss_Feed/creating_collection/Step8.png
 
 
