@@ -41,8 +41,8 @@ Select following and save:
 
 .. image:: _static/images/Enable_Rss_Feed/Enable_RSS/Step3.png
 
-Creating the collection
-------------------------
+Creating the collection for RSS
+-------------------------------
 
 *Step 1*
 
