@@ -73,11 +73,12 @@ and people will get an error clicking on that URL)
 
 On Settings tab
 
- 1. Choose ``Exclude from navigation`` (to make it disappear from navigation tree)
+1. Choose ``Exclude from navigation`` (to make it disappear from navigation tree)
 
- 2. Change ``Short Name`` to "site-feed" or any other suitable name
+2. Change ``Short Name`` to "site-feed" or any other suitable name, if required.
+(By default, your collection `Title` will be your `short-name`)
 
- 3. Save
+3. Save
 
 .. image:: _static/images/Enable_Rss_Feed/creating_collection/Step5.png
 
