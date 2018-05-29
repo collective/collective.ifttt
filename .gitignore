@@ -38,3 +38,4 @@ report.html
 .idea*
 Pipfile
 .DS_Store
+docs/_build/
