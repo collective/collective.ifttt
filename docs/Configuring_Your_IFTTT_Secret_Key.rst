@@ -6,8 +6,13 @@ Introduction to IFTTT
 
 `ifttt.com <https://ifttt.com/discover>`_ . If This Then That, also known as IFTTT (pronounced /ɪft/),
 is a free web-based service to create chains of simple conditional statements,
-called applets. An applet is triggered by changes that occur within other web services such as
-Gmail, Facebook, Telegram, Instagram, or Pinterest.
+called applets.
+An applet consists of triggers and actions. They can be triggered by changes that occur within other
+web services such as Gmail, Facebook, Telegram, Instagram, or Pinterest.
+
+collective.ifttt is an addon which enables any Plone site
+to play in the IFTTT ecosystem by allowing you to create IFTTT triggers,
+and to do that you need to configure the site with your secret key.
 
 Creating an IFTTT Key and Storing It In Plone Site
 --------------------------------------------------
