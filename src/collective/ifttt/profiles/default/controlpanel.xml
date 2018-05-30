@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel" meta_type="IFTTT Control Panel Tool"
+  i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+  <configlet
+      title="Ifttt Settings"
+      action_id="collectiveifttt-controlpanel"
+      appId="collectiveifttt-controlpanel"
+      category="Products"
+      condition_expr=""
+      icon_expr=""
+      url_expr="string:${portal_url}/@@collectiveifttt-controlpanel"
+      visible="True"
+      i18n:translate="title">
+    <permission>Manage portal</permission>
+  </configlet>
+</object>

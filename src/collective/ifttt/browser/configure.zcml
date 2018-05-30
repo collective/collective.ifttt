@@ -6,6 +6,11 @@
 
   <!-- Set overrides folder for Just-a-Bunch-Of-Templates product -->
   <include package="z3c.jbot" file="meta.zcml" />
+
+  <!--<includeDependencies package="." />-->
+
+  <include file="upgrades.zcml" />
+
   <browser:jbot
       directory="overrides"
       layer="collective.ifttt.interfaces.ICollectiveIftttLayer"
@@ -18,4 +23,13 @@
       directory="static"
       />
 
+  <browser:page
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      name="collectiveifttt-controlpanel"
+      class=".controlpanel.IftttControlPanelView"
+      permission="cmf.ManagePortal"
+      />
+
 </configure>
+
+

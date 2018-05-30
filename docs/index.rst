@@ -13,7 +13,7 @@ Welcome to collective.ifttt's documentation.
    :caption: Contents:
 
    Enable_RSS_feed_on_Plone
-
+   Configuring_Your_IFTTT_Secret_Key
 
 
 Indices and tables
