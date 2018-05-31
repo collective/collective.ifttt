@@ -1,24 +1,10 @@
-Configuring Your IFTTT Channel
-=================================
-
-Introduction to IFTTT
----------------------
-
-`ifttt.com <https://ifttt.com/discover>`_ . If This Then That, also known as IFTTT (pronounced /ɪft/),
-is a free web-based service to create chains of simple conditional statements,
-called applets.
-An applet consists of triggers and actions. They can be triggered by changes that occur within other
-web services such as Gmail, Facebook, Telegram, Instagram, or Pinterest.
-
-collective.ifttt is an addon which enables any Plone site
-to play in the IFTTT ecosystem by allowing you to create IFTTT triggers,
-and to do that you need to configure the site with your secret key.
-
-Creating an IFTTT Key and Storing It In Plone Site
---------------------------------------------------
+Create an IFTTT Key and Store It In Plone Site
+==================================================
 
 IFTTT supports push notification support.
-Which can be leveraged the get instant notifications from Plone site.
+Which can be leveraged to get instant notifications from Plone site.
+And to do that you need to configure the Plone site with your Ifttt's secret key.
+
 Follow below steps to get your IFTTT secret key and saving it in Plone site.
 
 Obtain IFTTT Secret Key
@@ -40,7 +26,7 @@ Follow step given below:
 .. image:: _static/images/configure_ifttt_channel/secret_key/obtain_key.png
 
 Save Ifttt's Secret Key in Plone Site
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Go to Site Setup
 
