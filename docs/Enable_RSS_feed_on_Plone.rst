@@ -35,7 +35,7 @@ Select following and save:
 
  1. `Allowed`
  2. `Search RSS enabled`
- 3. `Show settings button`
+ 3. `Show settings button` (which will enable `Syndicaiton` tab on collections's edit UI)
  4. `Show feed link`
  5. Save
 
@@ -60,7 +60,7 @@ Add new collection
 
 Configuration explained below will publish all available content, however it can be tweaked based on user requirements.
 
-1. Update ``Title`` to "Your site name - RSS feed" Or any other suitable name.
+1. Update ``Title`` to "Plone Site - RSS feed" Or any other suitable name.
 
 2. For ``Select Criteria``, choose `Review State as Published` (Otherwise unpublished items will show in your feed
 and people will get an error clicking on that URL)
@@ -73,26 +73,23 @@ and people will get an error clicking on that URL)
 
 On Settings tab
 
-1. Choose ``Exclude from navigation`` (to make it disappear from navigation tree)
+1. Check ``Exclude from navigation`` (to make it disappear from navigation tree)
 
-2. Change ``Short Name`` to "site-feed" or any other suitable name, if required.
-(By default, your collection `Title` will be your `short-name`)
+2. Save
 
-3. Save
-
-.. image:: _static/images/Enable_Rss_Feed/creating_collection/Step5.png
+.. image:: _static/images/Enable_Rss_Feed/creating_collection/settings_tab.png
 
 
 *Step 5*
 
-Publish collection after the content seems to be right, using the workflow menu on the collection content item.
+Publish collection after the content seems to be right, using the ``state`` menu on the collection content item.
 
-.. image:: _static/images/Enable_Rss_Feed/creating_collection/Step6.png
+.. image:: _static/images/Enable_Rss_Feed/creating_collection/publish_collection.png
 
 **Now your RSS feed is ready which can be tested by copy-pasting RSS URL from the site action \
 to your RSS Reader, like feeder.co or Mozilla Reader**
 
-Like in my case the URL to the RSS feed is- ``http://localhost:8080/Plone/site-feed/RSS`` \
+Like in my case the URL to the RSS feed is- ``http://localhost:8080/Plone/plone-site-rss-feed/RSS`` \
 which is something like ``/path_to_parent_collection/collection_short-name/RSS``
 
 .. image:: _static/images/Enable_Rss_Feed/creating_collection/Step8.png
