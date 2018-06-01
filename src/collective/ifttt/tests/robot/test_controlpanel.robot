@@ -37,8 +37,6 @@ Test Teardown  Close all browsers
 
 ${SELENIUM2LIBRARY_RUN_ON_FAILURE}  Capture page screenshot
 ${SCREENSHOTS}  false
-#  Run keyword if  '${SCREENSHOTS}' == 'true'
-#  ...  Capture page screenshot  ${CURDIR}/foo.png
 
 
 *** Test Cases ***
