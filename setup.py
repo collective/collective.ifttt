@@ -4,6 +4,7 @@
 from setuptools import find_packages
 from setuptools import setup
 
+
 long_description = '\n\n'.join([
     open('README.rst').read(),
     open('CONTRIBUTORS.rst').read(),
@@ -54,6 +55,7 @@ setup(
             'plone.app.contenttypes',
             'plone.app.robotframework[debug]',
             'robotframework-selenium2screenshots[Pillow]',
+            'plone.app.upgrade',
         ],
     },
     entry_points="""
