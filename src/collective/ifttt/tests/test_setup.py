@@ -4,6 +4,8 @@ from collective.ifttt.testing import COLLECTIVE_IFTTT_INTEGRATION_TESTING  # noq
 from plone import api
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
+from Products.CMFPlone.interfaces import INonInstallable
+from zope.component import getAllUtilitiesRegisteredFor
 
 import unittest
 
@@ -57,6 +59,14 @@ class TestUninstall(unittest.TestCase):
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.installer.uninstallProducts(['collective.ifttt'])
         setRoles(self.portal, TEST_USER_ID, roles_before)
+
+    def test_hidden_uninstall_profile(self):
+        """Test if uninstall profile is listed as hidden"""
+        ignore_profiles = []
+        utils = getAllUtilitiesRegisteredFor(INonInstallable)
+        for util in utils:
+            ignore_profiles.extend(util.getNonInstallableProfiles())
+        self.assertIn(u'collective.ifttt:uninstall', ignore_profiles)
 
     def test_product_uninstalled(self):
         """Test if collective.ifttt is cleanly uninstalled."""
