@@ -9,8 +9,6 @@
 
   <!--<includeDependencies package="." />-->
 
-  <include file="upgrades.zcml" />
-
   <browser:jbot
       directory="overrides"
       layer="collective.ifttt.interfaces.ICollectiveIftttLayer"
