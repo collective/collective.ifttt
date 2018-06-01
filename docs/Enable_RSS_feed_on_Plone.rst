@@ -11,6 +11,8 @@ You can choose what content types with any required fields such as- `labels, dat
 ends up to the RSS stream.
 Also, the collection is language aware so that it works correctly on multilingual sites.
 
+RSS feeds from Plone can be used on IFTTT without doing anything special. (No secret key, no IFTTT trigger needed.)
+
 Below are a few example steps to enable RSS Feed on Plone Site, however you can tweak the configuration
 to meet user requirement and make different kinds of RSS feed given the flexibility of collection.
 

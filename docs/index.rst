@@ -32,13 +32,17 @@ Below are a few user stories of IFTTT with Plone site.
  - If new user signed up for an event, then add him to the slack channel.
  - If new applet gets published for Plone, then send me a notification about it.
 
+
 Contents
 --------
+
+With the following content you will learn how to create IFTTT applet for Plone Site.
+However, RSS feeds from Plone can be used on IFTTT without doing anything special. (No secret key, no IFTTT trigger needed.)
 
 .. toctree::
    :maxdepth: 3
 
-   Configuring_Your_IFTTT_Secret_Key
    Enable_RSS_feed_on_Plone
+   Configuring_Your_IFTTT_Secret_Key
 
 
