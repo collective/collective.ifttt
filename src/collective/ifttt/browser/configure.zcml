@@ -27,7 +27,7 @@
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       name="collectiveifttt-controlpanel"
       class=".controlpanel.IftttControlPanelView"
-      permission="cmf.ManagePortal"
+      permission="collective.ifttt.manageSettings"
       />
 
 </configure>

@@ -21,7 +21,7 @@
 #
 # ============================================================================
 
-*** Settings *****************************************************************
+*** Settings ***
 
 Resource  plone/app/robotframework/selenium.robot
 Resource  plone/app/robotframework/keywords.robot
@@ -32,7 +32,7 @@ Test Setup  Open test browser
 Test Teardown  Close all browsers
 
 
-*** Test Cases ***************************************************************
+*** Test Cases ***
 
 Scenario: As a member I want to be able to log into the website
   [Documentation]  Example of a BDD-style (Behavior-driven development) test.
@@ -41,7 +41,7 @@ Scenario: As a member I want to be able to log into the website
    Then I am logged in
 
 
-*** Keywords *****************************************************************
+*** Keywords ***
 
 # --- Given ------------------------------------------------------------------
 

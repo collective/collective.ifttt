@@ -11,6 +11,6 @@
       url_expr="string:${portal_url}/@@collectiveifttt-controlpanel"
       visible="True"
       i18n:translate="title">
-    <permission>Manage portal</permission>
+    <permission>Plone Site Setup: IFTTT</permission>
   </configlet>
 </object>
