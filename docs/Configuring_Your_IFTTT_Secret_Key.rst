@@ -36,7 +36,7 @@ Save Ifttt's Secret Key in Plone Site
 
 .. image:: _static/images/configure_ifttt_channel/secret_key/select_ifttt_settings.png
 
-3. Copy this key to Plone’s IFTTT Settings.
+3. Copy this key to Plone’s IFTTT Settings and click Save.
 
 .. image:: _static/images/configure_ifttt_channel/secret_key/store_key.png
 
