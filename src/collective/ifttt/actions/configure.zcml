@@ -10,7 +10,7 @@
 
     <!-- add required adapters-->
 
-    <adapter factory=".ifttt.iftttActionExecutor" />
+    <adapter factory=".ifttt.IftttActionExecutor" />
 
     <!-- configure view -->
 
