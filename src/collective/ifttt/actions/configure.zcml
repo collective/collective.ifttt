@@ -10,7 +10,7 @@
 
     <!-- add required adapters-->
 
-    <adapter factory=".ifttt.IftttActionExecutor" />
+    <adapter factory=".ifttt.IftttTriggerActionExecutor" />
 
     <!-- configure view -->
 
@@ -24,7 +24,7 @@
     <!-- configure edit view-->
 
     <browser:page
-      for="collective.ifttt.actions.ifttt.IIftttAction"
+      for="collective.ifttt.actions.ifttt.IIftttTriggerAction"
       name="edit"
       class=".ifttt.IftttEditFormView"
       permission="plone.app.contentrules.ManageContentRules"
@@ -34,14 +34,14 @@
 
     <plone:ruleAction
         name="plone.actions.Ifttt"
-        title="Ifttt"
-        description="Trigger Ifttt as an actions"
+        title="Ifttt Trigger Action"
+        description="Trigger IFTTT webhook with content title and chosen payload"
         for="*"
         event="*"
         addview="plone.actions.Ifttt"
         editview="edit"
-        schema=".ifttt.IIftttAction"
-        factory=".ifttt.IftttAction"
+        schema=".ifttt.IIftttTriggerAction"
+        factory=".ifttt.IftttTriggerAction"
         />
 
 </configure>
