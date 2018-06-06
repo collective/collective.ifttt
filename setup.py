@@ -11,11 +11,11 @@ long_description = '\n\n'.join([
     open('CHANGES.rst').read(),
 ])
 
-
 setup(
     name='collective.ifttt',
     version='1.0a1',
-    description="This addon is developed to make use of IFTTT webhook with Plone",
+    description=
+    "This addon is developed to make use of IFTTT webhook with Plone",
     long_description=long_description,
     # Get more from https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
@@ -54,6 +54,8 @@ setup(
             'plone.testing>=5.0.0',
             'plone.app.contenttypes',
             'plone.app.robotframework[debug]',
+            'robotframework-selenium2screenshots[Pillow]',
+            'plone.app.upgrade',
         ],
     },
     entry_points="""

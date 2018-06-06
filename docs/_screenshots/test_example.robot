@@ -1,0 +1,1 @@
+../../src/collective/ifttt/tests/robot/test_example.robot

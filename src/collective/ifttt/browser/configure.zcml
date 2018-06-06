@@ -9,8 +9,6 @@
 
   <!--<includeDependencies package="." />-->
 
-  <include file="upgrades.zcml" />
-
   <browser:jbot
       directory="overrides"
       layer="collective.ifttt.interfaces.ICollectiveIftttLayer"
@@ -27,7 +25,7 @@
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       name="collectiveifttt-controlpanel"
       class=".controlpanel.IftttControlPanelView"
-      permission="cmf.ManagePortal"
+      permission="collective.ifttt.manageSettings"
       />
 
 </configure>

@@ -16,7 +16,6 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-
 # -- Project information -----------------------------------------------------
 
 project = u'collective.ifttt'
@@ -28,7 +27,6 @@ version = u''
 # The full version, including alpha/beta/rc tags
 release = u''
 
-
 # -- General configuration ---------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
@@ -38,8 +36,7 @@ release = u''
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
-]
+extensions = []
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -63,11 +60,10 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path .
-exclude_patterns = [u'_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = [u'_screenshots', u'_build', 'Thumbs.db', '.DS_Store']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
-
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -97,12 +93,10 @@ html_static_path = ['_static']
 #
 # html_sidebars = {}
 
-
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'collectiveiftttdoc'
-
 
 # -- Options for LaTeX output ------------------------------------------------
 
@@ -128,20 +122,20 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'collectiveifttt.tex', u'collective.ifttt Documentation',
-     u'Shriyanshagro', 'manual'),
+    (
+        master_doc, 'collectiveifttt.tex', u'collective.ifttt Documentation',
+        u'Shriyanshagro', 'manual'
+    ),
 ]
-
 
 # -- Options for manual page output ------------------------------------------
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, 'collectiveifttt', u'collective.ifttt Documentation',
-     [author], 1)
-]
-
+man_pages = [(
+    master_doc, 'collectiveifttt', u'collective.ifttt Documentation',
+    [author], 1
+)]
 
 # -- Options for Texinfo output ----------------------------------------------
 
@@ -149,7 +143,9 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'collectiveifttt', u'collective.ifttt Documentation',
-     author, 'collectiveifttt', 'One line description of project.',
-     'Miscellaneous'),
+    (
+        master_doc, 'collectiveifttt', u'collective.ifttt Documentation',
+        author, 'collectiveifttt', 'One line description of project.',
+        'Miscellaneous'
+    ),
 ]

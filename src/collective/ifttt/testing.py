@@ -12,7 +12,7 @@ import collective.ifttt
 
 class CollectiveIftttLayer(PloneSandboxLayer):
 
-    defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
+    defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE, )
 
     def setUpZope(self, app, configurationContext):
         # Load any other ZCML that is required for your tests.
@@ -22,22 +22,23 @@ class CollectiveIftttLayer(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'collective.ifttt:default')
+        # noinspection PyProtectedMember
+        portal.portal_setup._profile_upgrade_versions[
+            'collective.ifttt:default'
+        ] = (u'1000', )  # fake current profile version to allow upgrades
 
 
 COLLECTIVE_IFTTT_FIXTURE = CollectiveIftttLayer()
 
-
 COLLECTIVE_IFTTT_INTEGRATION_TESTING = IntegrationTesting(
-    bases=(COLLECTIVE_IFTTT_FIXTURE,),
+    bases=(COLLECTIVE_IFTTT_FIXTURE, ),
     name='CollectiveIftttLayer:IntegrationTesting',
 )
 
-
 COLLECTIVE_IFTTT_FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(COLLECTIVE_IFTTT_FIXTURE,),
+    bases=(COLLECTIVE_IFTTT_FIXTURE, ),
     name='CollectiveIftttLayer:FunctionalTesting',
 )
-
 
 COLLECTIVE_IFTTT_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(

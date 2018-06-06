@@ -2,15 +2,13 @@
   xmlns="http://namespaces.zope.org/zope"
   xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
 
-  <!-- -*- extra stuff goes here -*- -->
-  <!--<genericsetup:upgradeStep
+  <genericsetup:upgradeStep
     source="*"
-    destination="1001"
+    destination="1002"
     title="Reload GS profiles"
     description=""
     profile="collective.ifttt:default"
     handler=".upgrades.reload_gs_profile"
-    />-->
-
+    />
 
 </configure>

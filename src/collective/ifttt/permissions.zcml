@@ -4,8 +4,11 @@
   i18n_domain="plone">
 
   <configure zcml:condition="installed AccessControl.security">
-  <!-- -*- extra stuff goes here -*- -->
 
+    <permission
+      id="collective.ifttt.manageSettings"
+      title="Plone Site Setup: IFTTT"
+      />
 
   </configure>
 
