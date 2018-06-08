@@ -1,117 +1,112 @@
-Enable RSS Feed On Plone Site
-==============================
+Enabling RSS Feeds On Plone Sites
+=================================
 
 Introduction
 -------------
 
-Plone can generate RSS feeds from folderish content types (folder / collection).
+Plone can generate RSS feeds from folderish content types like folders and collections.
+First you must enable syndication on your site so that RSS feeds will be generated. Then you can go to
+the collection or folder you want to use as a feed and adjust its syndication settings.
+
 If you want to aggregate a particular set of content to an RSS feed,
-you first create a collection content item and then enable RSS feed on this collection content item.
-You can choose what content types with any required fields such as- `labels, dates, location or language`
-ends up to the RSS stream.
-Also, the collection is language aware so that it works correctly on multilingual sites.
+you can create a collection content item for that purpose.
+You can choose what `content types` to aggregate and filter by fields such as `labels, dates, location or language`.
+Collections are language aware so this works correctly on multilingual sites.
 
-RSS feeds from Plone can be used on IFTTT without doing anything special. (No secret key, no IFTTT trigger needed.)
+Once you have an RSS feed you can use it on IFTTT without doing anything special. (No secret key, no IFTTT trigger needed.)
 
-Below are a few example steps to enable RSS Feed on Plone Site, however you can tweak the configuration
-to meet user requirement and make different kinds of RSS feed given the flexibility of collection.
+Below are the steps to create an example RSS Feed on a Plone site. You can tweak the configuration
+to meet your requirements and make different kinds of RSS feeds given the flexibility of collections.
 
-Enabling RSS Feed
------------------
+Enabling Syndication
+--------------------
 
 *Step 1*
 
-Go to Site Setup
+Go to Site Setup.
 
 .. image:: _static/images/Enable_Rss_Feed/Enable_RSS/Step1.png
 
 *Step 2*
 
-Select Syndication under General tab.
+Select Syndication under General.
 
 .. image:: _static/images/Enable_Rss_Feed/Enable_RSS/Step2.png
 
 *Step 3*
 
-Select following and save:
+Select the following and save:
 
  1. `Allowed`
- 2. `Search RSS enabled`
- 3. `Show settings button` (which will enable `Syndicaiton` tab on collections's edit UI)
- 4. `Show feed link`
- 5. Save
+ 2. `Search RSS enabled` (if you want to be able to use search results as feeds)
+ 3. `Show settings button` (this will enable the `Syndication` tab on the edit bar of folders and collections)
+ 4. `Show feed link` (this allows you to show an RSS link on the folder or collection)
+ 5. `Save`
+
+You may optionally include author information and adjust the maximum number of feed items.
 
 .. image:: _static/images/Enable_Rss_Feed/Enable_RSS/Step3.png
 
-Creating the collection for RSS
--------------------------------
+Creating a Collection to Use as an RSS Feed
+-------------------------------------------
 
 *Step 1*
 
-Go to Site root
+Go to the site root. (This is a special type of object, so the Syndication tab will not show on the edit bar here, 
+like it will on all other folders.)
 
 .. image:: _static/images/Enable_Rss_Feed/creating_collection/Step1.png
 
 *Step 2*
 
-Add new collection
+Add a new collection.
 
 .. image:: _static/images/Enable_Rss_Feed/creating_collection/Step2.png
 
 *Step 3*
 
-Configuration explained below will publish all available content, however it can be tweaked based on user requirements.
+Configure your collection. The configuration explained below will aggregate all available published content.
+This can be tweaked to suit your own requirements.
 
-1. Update ``Title`` to "Plone Site - RSS feed" Or any other suitable name.
-
-2. For ``Select Criteria``, choose `Review State as Published` (Otherwise unpublished items will show in your feed
-and people will get an error clicking on that URL)
-
-3. For ``Sort On`` choose `Effective date` in reversed order
+ 1. Update ``Title`` to "Plone Site - RSS feed" or any other suitable name.
+ 2. For ``Select Criteria``, choose `Review State as Published`. (Otherwise unpublished items will show in your feed and people will get an error when they click on that URL.)
+ 3. For ``Sort On`` choose `Effective date` and check ``Reversed Order``.
 
 .. image:: _static/images/Enable_Rss_Feed/creating_collection/Step4.png
 
 *Step 4*
 
-On Settings tab
+On the Settings tab check ``Exclude from navigation`` if you want to make it disappear from the navigation tree.
 
-1. Check ``Exclude from navigation`` (to make it disappear from navigation tree)
-
-2. Save
+Save your new collection.
 
 .. image:: _static/images/Enable_Rss_Feed/creating_collection/settings_tab.png
 
-
 *Step 5*
 
-Publish collection after the content seems to be right, using the ``state`` menu on the collection content item.
+If the collection's content seems to be right, publish it using the ``State`` menu on the edit bar.
 
 .. image:: _static/images/Enable_Rss_Feed/creating_collection/publish_collection.png
 
-**Now your RSS feed is ready which can be tested by copy-pasting RSS URL from the site action \
-to your RSS Reader, like feeder.co or Mozilla Reader**
+Viewing Your RSS Feed
+---------------------
 
-Like in my case the URL to the RSS feed is- ``http://localhost:8080/Plone/plone-site-rss-feed/RSS`` \
-which is something like ``/path_to_parent_collection/collection_short-name/RSS``
+*Step 1*
+
+Your RSS feed can be viewed by appending ``/RSS`` to your collection's (or folder's) URL - 
+something like ``/path_to_collection/RSS``. 
+For our example the URL to the RSS feed is ``http://localhost:8080/Plone/plone-site-rss-feed/RSS`` \
 
 .. image:: _static/images/Enable_Rss_Feed/creating_collection/Step8.png
 
-*Step 6*
+*Step 2*
 
-To show feed icons on Folders, you can enable it in syndication tab as shown below.
-`However, many sites do not want to show those feed icons`
-
-.. image:: _static/images/Enable_Rss_Feed/creating_collection/syndication_tab.png
+To show a link to the RSS feed on a collection or folder, enable it on the edit bar's Syndication tab as shown below.
+This is an optional step - many sites choose not to show these feed links because it might confuse their users.
 
 .. image:: _static/images/Enable_Rss_Feed/creating_collection/Enable_feed_icon.png
 
-This is how feed icon on folders look like -
-
-.. image:: _static/images/Enable_Rss_Feed/creating_collection/feed_icon_on_folder.png
-
-To publish feed of a particular folder use RSS URL associated to that folder, which is something like -
-``/path_to_parent_folder/folder_short-name/RSS``
-
-Like for given folder(`Events`), it will be ``http://localhost:8080/Plone/events/RSS``
+**Now your RSS feed is ready to be used in an IFTTT applet. You can test it by copy-pasting the RSS URL
+into an RSS Reader, like feeder.co or Mozilla Reader.**
 
 
