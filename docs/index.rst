@@ -4,40 +4,42 @@ Welcome to collective.ifttt!
 Introduction
 ---------------------
 
-`ifttt.com <https://ifttt.com/discover>`_ . If This Then That, also known as IFTTT (pronounced /ɪft/),
+`ifttt.com <https://ifttt.com/discover>`_ - If This Then That, also known as IFTTT (pronounced /ɪft/) -
 is a free web-based service to create chains of simple conditional statements,
-called applets. These applets are responsible
-to perform a configured action which got triggered by other web services such as
-Plone Site, Facebook, Pinterest, Youtube, Spotify etc.
+called applets. These applets can
+perform a configured action in response to a trigger. Triggers and actions are web services provided by
+platforms such as Facebook, Pinterest, Youtube, Spotify - and now, Plone sites.
 
-Below are a few use stories of IFTTT applets for better understanding:
+Below are a few examples of IFTTT applets for better understanding:
 
- - If liked video on Youtube, then save the video details in Evernote
- - If profile picture gets changed on Facebook, then update same profile picture in Twitter
- - If tagged in a photo on Facebook, then save it your phone gallery
- - If receive a new email about a new Twitter follower in your Gmail inbox,
+ - If a video is liked on Youtube, then save the video details in Evernote
+ - If a profile picture gets changed on Facebook, then update the same profile picture on Twitter
+ - If I'm tagged in a photo on Facebook, then save it to my phone gallery
+ - If I receive an email about a new Twitter follower in my Gmail inbox,
    then tweet the new follower a welcome message
- - Email me about Top Apps gone FREE in the Apple App Store.
- - If NASA post a new astronomy picture of the day, then add it to my screensaver gallery.
- - Automatically unmute your Android phone when you get back home.
- - Add Spotify song from liked YouTube Video.
+ - If NASA posts a new astronomy picture of the day, then add it to my screensaver gallery.
+ - Email me about Top Apps that have become FREE in the Apple App Store.
+ - Automatically unmute my Android phone when I get back home.
+ - Add a Spotify song from a liked YouTube Video.
 
 **collective.ifttt** is an addon which enables any Plone site to play in the
 IFTTT ecosystem by allowing you to create IFTTT applets.
 
-Below are a few user stories of IFTTT with Plone site.
+Below are a few examples of using IFTTT with Plone sites.
 
- - If published news on Plone Site, then tweet about it or post it on slack.
- - If published new event on Plone Site, then tweet about it
- - If new user signed up for an event, then add him to the slack channel.
- - If new applet gets published for Plone, then send me a notification about it.
+ - If a news item is published, then tweet about it or post it on Facebook.
+ - If an event is published, then add it to my calendar.
+ - If new users sign up for an event, then add them to a Slack channel.
+ - If content changes, then record who edited it in a Google spreadsheet.
 
 
 Contents
 --------
 
-With the following content you will learn how to create IFTTT applet for Plone Site.
-However, RSS feeds from Plone can be used on IFTTT without doing anything special. (No secret key, no IFTTT trigger needed.)
+This documentation will teach you how to use collective.ifttt to create IFTTT applets for Plone sites.
+We'll start with setting up a Plone RSS feed, which can be used on IFTTT without doing anything special. 
+In the sections after that you will learn how to set up your IFTTT secret key and create IFTTT triggers,
+so you can create more customized applets.
 
 .. toctree::
    :maxdepth: 3
