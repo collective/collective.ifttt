@@ -13,17 +13,17 @@
 collective.ifttt
 ================
 
-collective.ifttt is an addon which enables any Plone site to play in the IFTTT (pronounced /ɪft/) ecosystem by allowing you to create IFTTT applets.
+collective.ifttt is a Plone addon which enables any Plone site to play in the IFTTT (pronounced /ɪft/) ecosystem by allowing you to create IFTTT applets at `ifttt.com <http://ifttt.com>`_.
 
 Examples
 --------
 
-Below are a few user stories of IFTTT with Plone site.
+Below are a few examples of using IFTTT with Plone sites.
 
- - If published news on Plone Site, then tweet about it or post it on slack.
- - If published new event on Plone Site, then tweet about it
- - If new user signed up for an event, then add him to the slack channel.
- - If new applet gets published for Plone, then send me a notification about it.
+ - If a news item is published, then tweet about it or post it on Facebook.
+ - If an event is published, then add it to my calendar.
+ - If new users sign up for an event, then add them to a Slack channel.
+ - If content changes, then record who edited it in a Google spreadsheet.
 
 Documentation
 -------------
