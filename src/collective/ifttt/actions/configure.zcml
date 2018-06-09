@@ -12,7 +12,7 @@
 
     <adapter factory=".ifttt.IftttTriggerActionExecutor" />
 
-    <!-- configure view -->
+    <!-- configure add view -->
 
     <browser:page
       for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
