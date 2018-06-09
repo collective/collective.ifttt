@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from concurrent.futures import ThreadPoolExecutor
 from OFS.SimpleItem import SimpleItem
 from plone import api
 from plone.app.contentrules import PloneMessageFactory as _
@@ -10,6 +9,7 @@ from plone.contentrules.rule.interfaces import IExecutable
 from plone.contentrules.rule.interfaces import IRuleElementData
 from zope import schema
 from zope.component import adapter
+from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.interface import Interface
 from zope.schema.vocabulary import SimpleTerm
@@ -36,15 +36,11 @@ class IIftttTriggerAction(Interface):
     """
         Definition of the configuration available for a  Ifttt action
     """
-    Title = schema.TextLine(
-        title=_(u'Title'),
-        description=_(u'Title/Subject for action'),
-        required=True,
-    )
-
-    URL = schema.URI(
-        title=_(u'URL'),
-        description=_(u'For files/images to view'),
+    ifttt_event_name = schema.TextLine(
+        title=_(u'Ifttt applet name'),
+        description=_(
+            u'Give the name of Ifttt applet which you want to trigger'
+        ),
         required=True,
     )
 
@@ -65,8 +61,7 @@ class IftttTriggerAction(SimpleItem):
         The implementation of the action defined before
     """
 
-    Title = u''
-    URL = u''
+    ifttt_event_name = u''
     payload_option = u''
 
     element = 'plone.actions.Ifttt'
@@ -74,10 +69,10 @@ class IftttTriggerAction(SimpleItem):
     @property
     def summary(self):
         return _(
-            u'${Title} ${payload_option}',
+            u'Trigger IFTTT action ${ifttt_event_name} with context title,'
+            u'url and ${payload_option}',
             mapping=dict(
-                Title=self.Title,
-                URL=self.URL,
+                ifttt_event_name=self.ifttt_event_name,
                 payload_option=self.payload_option,
             ),
         )
@@ -91,35 +86,61 @@ class IftttTriggerActionExecutor(object):
     """
     timeout = 120
 
-    def __init__(self, element, context, event):
+    # element is defined with Ifttt Trigger form
+    # context is defined as site content for which content rule is triggered
+    def __init__(self, context, element, event):
         self.element = element
         self.context = context
         self.event = event
 
     def __call__(self, *args, **kwargs):
-        Title = self.element.Title
-        URL = self.element.URL
+        ifttt_event_name = self.element.ifttt_event_name
         payload_option = self.element.payload_option
-        # TODO explore context and event; element is defined with Ifttt Trigger form
-        # TODO define ifttt_url with secret key
-        ifttt_name = self.event.title
-        secret_key = self.event.secret_key
-        ifttt_url = 'https://maker.ifttt.com/trigger/' + ifttt_name + '/with/key/' + secret_key
-        # TODO define payload value
-        payload = {'value1': Title, 'value2': URL, 'value3': ''}
+        title = self.context.Title().decode('utf-8', 'ignore')
+        url = self.context.absolute_url()
+        secret_key = api.portal.get_registry_record('ifttt.ifttt_secret_key')
+        ifttt_trigger_url = 'https://maker.ifttt.com/trigger/' + \
+                            ifttt_event_name + '/with/key/' + secret_key
+        payload = {'title': title, 'url': url}
         if payload_option == PAYLOAD_DESCRIPTION:
-            payload['value3'] = self.event.description
+            payload[payload_option] = self.context.description
         elif payload_option == PAYLOAD_USERNAME:
-            payload['value3'] = api.user.get_users()
+            payload[payload_option] = api.user.get_current()
         elif payload_option == PAYLOAD_START:
-            payload['value3'] = self.context.start
+            if self.context.get('effective_date'):
+                payload[payload_option] = self.context.effective_date
+            else:
+                payload[payload_option] = 'None'
+
         logger.info('Calling Post request to Ifttt')
         try:
             # Post HTTP request
-            requests.post(ifttt_url, data=payload, timeout=self.timeout)
-            logger.info('Successful request call to Ifttt')
-        except:
+            requests.post(
+                ifttt_trigger_url, data=payload, timeout=self.timeout
+            )
+            # show this logging message to Plone user as notification
+            api.portal.show_message(
+                message=_(
+                    u'Successful trigger to Ifttt applet ${ifttt_event_name}',
+                    mapping=dict(ifttt_event_name=ifttt_event_name, ),
+                ),
+                request=getRequest(),
+                type='info'
+            )
+            logger.info('Successful Post request to Ifttt')
+
+        except TypeError:
             logger.exception('Error calling Ifttt Trigger')
+
+            # show this logging message to Plone user as notification
+            api.portal.show_message(
+                message=_(
+                    u'Error calling Ifttt Trigger',
+                ),
+                request=getRequest(),
+                type='info'
+            )
+
         return True
 
 
