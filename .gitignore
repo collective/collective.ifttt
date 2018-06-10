@@ -40,3 +40,4 @@ Pipfile
 .DS_Store
 docs/_build/
 selenium-screenshot*.png
+docs/_screenshots*
