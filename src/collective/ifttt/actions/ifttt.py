@@ -7,6 +7,7 @@ from plone.app.contentrules.actions import ActionEditForm
 from plone.app.contentrules.browser.formhelper import ContentRuleFormWrapper
 from plone.contentrules.rule.interfaces import IExecutable
 from plone.contentrules.rule.interfaces import IRuleElementData
+from plone.event.interfaces import IEventAccessor
 from zope import schema
 from zope.component import adapter
 from zope.globalrequest import getRequest
@@ -26,7 +27,9 @@ PAYLOAD_USERNAME = 'username'
 PAYLOAD_START = 'start'
 
 payload_options = SimpleVocabulary([
-    SimpleTerm(value=PAYLOAD_DESCRIPTION, title=_(u'Description of action')),
+    SimpleTerm(
+        value=PAYLOAD_DESCRIPTION, title=_(u'Description/Summary of content')
+    ),
     SimpleTerm(value=PAYLOAD_USERNAME, title=_(u'Username of Editor')),
     SimpleTerm(value=PAYLOAD_START, title=_(u'Event Start Date/Time'))
 ])
@@ -107,10 +110,22 @@ class IftttTriggerActionExecutor(object):
         elif payload_option == PAYLOAD_USERNAME:
             payload[payload_option] = api.user.get_current()
         elif payload_option == PAYLOAD_START:
-            if self.context.get('effective_date'):
-                payload[payload_option] = self.context.effective_date
-            else:
-                payload[payload_option] = 'None'
+            try:
+                '''
+                This is a new contract in Plone 5 to allow any content that
+                wants to behave like an event to define its start date & time,
+                also decoupling it from the actual storage of the data.
+                This also works for recurring events,
+                because their start date & time should dynamically adapt to the
+                next occurrence.
+                '''
+                payload[payload_option] = IEventAccessor(self.context).start
+            except TypeError:
+                '''
+                when the context does implement or have
+                registered adapter for IEventAccessor interface/contract
+                '''
+                payload[payload_option] = None
 
         logger.info('Calling Post request to Ifttt')
         try:
@@ -121,7 +136,8 @@ class IftttTriggerActionExecutor(object):
             # show this logging message to Plone user as notification
             api.portal.show_message(
                 message=_(
-                    u'Successful trigger to Ifttt applet ${ifttt_event_name}',
+                    u'Successfully triggered the Ifttt applet '
+                    u'${ifttt_event_name}',
                     mapping=dict(ifttt_event_name=ifttt_event_name, ),
                 ),
                 request=getRequest(),
