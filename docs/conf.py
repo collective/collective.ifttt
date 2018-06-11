@@ -26,7 +26,6 @@ author = u'Shriyanshagro'
 version = u''
 # The full version, including alpha/beta/rc tags
 release = u''
-
 # -- General configuration ---------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
