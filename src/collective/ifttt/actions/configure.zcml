@@ -1,0 +1,47 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone"
+    i18n_domain="collective.ifttt">
+
+    <!-- Ifttt action definition-->
+
+    <include package="plone.app.contentrules" />
+
+    <!-- add required adapters-->
+
+    <adapter factory=".ifttt.IftttTriggerActionExecutor" />
+
+    <!-- configure add view -->
+
+    <browser:page
+      for="plone.app.contentrules.browser.interfaces.IRuleActionAdding"
+      name="plone.actions.Ifttt"
+      class=".ifttt.IftttAddFormView"
+      permission="plone.app.contentrules.ManageContentRules"
+      />
+
+    <!-- configure edit view-->
+
+    <browser:page
+      for="collective.ifttt.actions.ifttt.IIftttTriggerAction"
+      name="edit"
+      class=".ifttt.IftttEditFormView"
+      permission="plone.app.contentrules.ManageContentRules"
+      />
+
+    <!-- configure ifttt_actions-->
+
+    <plone:ruleAction
+        name="plone.actions.Ifttt"
+        title="Ifttt Trigger Action"
+        description="Trigger IFTTT webhook with content title and chosen payload"
+        for="*"
+        event="*"
+        addview="plone.actions.Ifttt"
+        editview="edit"
+        schema=".ifttt.IIftttTriggerAction"
+        factory=".ifttt.IftttTriggerAction"
+        />
+
+</configure>

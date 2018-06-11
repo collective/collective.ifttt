@@ -37,7 +37,7 @@ Contents
 --------
 
 This documentation will teach you how to use collective.ifttt to create IFTTT applets for Plone sites.
-We'll start with setting up a Plone RSS feed, which can be used on IFTTT without doing anything special. 
+We'll start with setting up a Plone RSS feed, which can be used on IFTTT without doing anything special.
 In the sections after that you will learn how to set up your IFTTT secret key and create IFTTT triggers,
 so you can create more customized applets.
 
@@ -46,5 +46,7 @@ so you can create more customized applets.
 
    Enable_RSS_feed_on_Plone
    Configuring_Your_IFTTT_Secret_Key
+   Trigger_Ifttt_Action
+
 
 
