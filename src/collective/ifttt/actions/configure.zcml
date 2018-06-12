@@ -34,7 +34,7 @@
 
     <plone:ruleAction
         name="plone.actions.Ifttt"
-        title="Ifttt Trigger Action"
+        title="IFTTT Trigger Action"
         description="Trigger IFTTT webhook with content title and chosen payload"
         for="*"
         event="*"

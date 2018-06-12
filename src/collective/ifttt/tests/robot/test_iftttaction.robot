@@ -48,7 +48,7 @@ ${SCREENSHOTS}  false
 
 *** Test Cases ***
 
-Scenario: As a site administrator I can configure Ifttt Trigger Action on modified news item
+Scenario: As a site administrator I can configure IFTTT Trigger Action on modified news item
   Given I'm logged in as a Site Administrator
    And I'm at Site Setup
    And I'm at Content Rules

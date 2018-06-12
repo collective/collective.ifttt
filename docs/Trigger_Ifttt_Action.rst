@@ -1,47 +1,47 @@
-Trigger Ifttt Action
+Trigger IFTTT Action
 =================================
 
-In this section we will discuss what are `ifttt actions` and
+In this section we will discuss what are `IFTTT actions` and
 how to configure and use them.
 
 Eagle View
 ---------------
 
-Ifttt actions are a powerful mechanism to automate dealing with
+IFTTT actions are a powerful mechanism to automate dealing with
 content and 3rd party web services.
 They are created and configured using Plone Content Rule.
 
 There are several steps, that follow one another:
 
-**Define the ifttt action configuration**
+**Define the IFTTT action configuration**
 
 1. create and name a new rule, specifying what triggers it to be executed
 2. then narrow it down, by using conditions, to execute only on the content items you want
-3. and configure the ifttt action that should be taken
+3. and configure the IFTTT action that should be taken
 
 But by default it will not execute yet; there is one more step to take:
 
 Apply it to a portion of your site. Or to the whole site, if you so choose to.
-You can also apply different/multiple ifttt actions onto different/multiple
+You can also apply different/multiple IFTTT actions onto different/multiple
 part of your site.
 
 Triggers, conditions, actions
 -----------------------------
 
-A general overview what makes up a ifttt actions,
+A general overview what makes up a IFTTT actions,
 some sample use cases, and who can set up and use content rules.
 
-**What is a `ifttt action`?**
+**What is a `IFTTT action`?**
 
-A `ifttt action` will automatically perform
+A `IFTTT action` will automatically perform
 an action when certain events (known as “triggers”) take place.
 
-You can set up an `ifttt action` to email (the action)
+You can set up an `IFTTT action` to email (the action)
 whenever certain (or any) content is modified to a specific folder (the trigger).
 
-**Who can set up and use ifttt actions?**
+**Who can set up and use IFTTT actions?**
 
-Site Manager permissions are required to in order to set up and apply ifttt actions.
+Site Manager permissions are required to in order to set up and apply IFTTT actions.
 
 **What are the triggers and conditions that come with Plone 5.0?**
 
@@ -76,8 +76,8 @@ The following general **conditions** are available by default:
 Creating and Defining Content Rules
 -----------------------------------
 
-Ifttt actions are configured inside content rules.
-So before starting with ifttt actions, content rules have to be defined.
+IFTTT actions are configured inside content rules.
+So before starting with IFTTT actions, content rules have to be defined.
 
 Creating a Rule
 ^^^^^^^^^^^^^^^
@@ -91,11 +91,11 @@ you’re going to create a content rule that will send an email any time a News 
 
 - Go to site setup
 
-.. image:: _static/images/Trigger_Ifttt_Action/site_setup.png
+.. image:: _static/images/Trigger_IFTTT_Action/site_setup.png
 
 - Select “Content Rules” in General tab.
 
-.. image:: _static/images/Trigger_Ifttt_Action/Content_Rules_on_site_setup.png
+.. image:: _static/images/Trigger_IFTTT_Action/Content_Rules_on_site_setup.png
 
 - The first option, “Disable Globally”, allows you to disable ALL content rules.
   This is the emergency brake, for when you have created rules that are not doing what you want.
@@ -103,7 +103,7 @@ you’re going to create a content rule that will send an email any time a News 
   any existing content rules will be listed.
   There are also some checkboxes to filter them, which can be useful if there are many rules defined.
 
-.. image:: _static/images/Trigger_Ifttt_Action/add_content_rule.png
+.. image:: _static/images/Trigger_IFTTT_Action/add_content_rule.png
 
 If no content rules exist, the only option is an “Add content rule” button. Click that.
 
@@ -113,14 +113,14 @@ for this example, use: “Send Email when any News item is Modified”. Enter a 
 For the “Triggering event” select “Object modified”. Leave “Enabled” checked,
 and “Stop executing rules” and “Cascading rule” unchecked.
 
-.. image:: _static/images/Trigger_Ifttt_Action/configure_content_rule.png
+.. image:: _static/images/Trigger_IFTTT_Action/configure_content_rule.png
 
 Click the “Save” button.
 At this point, you have essentially created a “container” for the content rule.
 
 Next you’ll further define the trigger and actions for this rule.
 
-.. image:: _static/images/Trigger_Ifttt_Action/save_content_rule.png
+.. image:: _static/images/Trigger_IFTTT_Action/save_content_rule.png
 
 
 Defining conditions and actions
@@ -136,13 +136,16 @@ actions that will occur based on those conditions.
   click on the “Add” button.
 - From the “Add Content Type Condition” page, select “News item” and click on “Save”
 
-.. image:: _static/images/Trigger_Ifttt_Action/configure_trigger.png
+.. image:: _static/images/Trigger_IFTTT_Action/configure_trigger.png
 
 **For the action:**
 
-- Select “Ifttt Trigger Action” from the drop down menu and click on the “Add” button.
-- From the “Add Ifttt Trigger Action” page, fill out the form:
-- For the “Ifttt applet name” enter: the Ifttt applet which you want to trigger.
+- Select “IFTTT Trigger Action” from the drop down menu and click on the “Add” button.
+
+.. image:: _static/images/Trigger_IFTTT_Action/select_action.png
+
+- From the “Add IFTTT Trigger Action” page, fill out the form:
+- For the “IFTTT applet name” enter: the IFTTT applet which you want to trigger.
   For the given example, enter "send_email"
 - Choose the 3rd payload from available options (values of which
   will be dynamically fetched from the content which trigger this action) :
@@ -152,15 +155,15 @@ actions that will occur based on those conditions.
   - start - Event Start Date/Time
 - Click the “Save” button.
 
-.. image:: _static/images/Trigger_Ifttt_Action/configure_action.png
+.. image:: _static/images/Trigger_IFTTT_Action/configure_action.png
 
-Congratulations, you have created a working Ifttt Trigger Action content rule!
+Congratulations, you have created a working IFTTT Trigger Action content rule!
 
 
-Data sent to Ifttt applet
+Data sent to IFTTT applet
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In the data sent to ifttt, following values will be dynamically included
+In the data sent to IFTTT, following values will be dynamically included
 (for which content on the site this content rule triggers):
 
 - Title
@@ -188,14 +191,14 @@ and enabled on one or more folders.
 - Click on the “Rules” tab.
   From there you will see a drop down menu of possible content rules:
 
-.. image:: _static/images/Trigger_Ifttt_Action/rules_tab.png
+.. image:: _static/images/Trigger_IFTTT_Action/rules_tab.png
 
 - Select the desired content rule (“Send Email…” in this example) and
   click on the “Add” button.
 - By default, the rule has now been applied to the current folder only as
   indicated by the symbol in the “Enabled here” column indicates.
 
-.. image:: _static/images/Trigger_Ifttt_Action/select_content_rule.png
+.. image:: _static/images/Trigger_IFTTT_Action/select_content_rule.png
 
 There will be several buttons near the bottom.
 
@@ -221,40 +224,40 @@ which is then moved to a folder. But, in this folder, another ContentRule is act
 which will operate on any new content item that gets moved into that folder.
 Cascade means that yes, the second rule should be applied.
 
-Working example of Ifttt Action
+Working example of IFTTT Action
 -------------------------------
 
 Now, that rules have been configured for "New folder".
-So Ifttt actions will be triggered if any content on News is modified.
+So IFTTT actions will be triggered if any content on News is modified.
 
 For example, below we will create a new `news item` and further update it's content
-to trigger Ifttt ``send_email`` applet.
+to trigger IFTTT ``send_email`` applet.
 
 Create news item
 ^^^^^^^^^^^^^^^^
 - Select Add new - news item
 
-.. image:: _static/images/Trigger_Ifttt_Action/new_news_item.png
+.. image:: _static/images/Trigger_IFTTT_Action/new_news_item.png
 
 - Fill in form for new news. And click save.
 
-.. image:: _static/images/Trigger_Ifttt_Action/fill_new_news_item.png
+.. image:: _static/images/Trigger_IFTTT_Action/fill_new_news_item.png
 
 Update news item
 ^^^^^^^^^^^^^^^^
 
 - Select Edit for news item.
 
-.. image:: _static/images/Trigger_Ifttt_Action/edit_new_news_item.png
+.. image:: _static/images/Trigger_IFTTT_Action/edit_new_news_item.png
 
 - Update news item. And click save.
 
-.. image:: _static/images/Trigger_Ifttt_Action/update_new_news_item.png
+.. image:: _static/images/Trigger_IFTTT_Action/update_new_news_item.png
 
-Triggered the Ifttt Applet
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Triggered the IFTTT Applet
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. image:: _static/images/Trigger_Ifttt_Action/ifttt_trigger.png
+.. image:: _static/images/Trigger_IFTTT_Action/IFTTT_trigger.png
 
 
 
