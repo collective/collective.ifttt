@@ -2,7 +2,7 @@
 <object name="portal_controlpanel" meta_type="IFTTT Control Panel Tool"
   i18n:domain="plone" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
   <configlet
-      title="Ifttt Settings"
+      title="IFTTT Settings"
       action_id="collectiveifttt-controlpanel"
       appId="collectiveifttt-controlpanel"
       category="Products"

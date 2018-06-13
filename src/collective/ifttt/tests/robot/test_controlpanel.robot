@@ -41,20 +41,20 @@ ${SCREENSHOTS}  false
 
 *** Test Cases ***
 
-Scenario: As a site administrator I can see IFTTT settings configlet
+Scenario: As a site administrator I can see IFTTT Settings configlet
   Given I'm logged in as a Site Administrator
    When I open Site Setup
-   Then I can see IFTTT settings configlet
+   Then I can see IFTTT Settings configlet
 
-Scenario: As a site administrator I can open IFTTT settings form
+Scenario: As a site administrator I can open IFTTT Settings form
   Given I'm logged in as a Site Administrator
     And I'm at Site Setup
-   When I click IFTTT settings configlet
-   Then I can see IFTTT settings form
+   When I click IFTTT Settings configlet
+   Then I can see IFTTT Settings form
 
 Scenario: As a site administrator I can set IFTTT secret
   Given I'm logged in as a Site Administrator
-    And I'm at IFTTT settings form
+    And I'm at IFTTT Settings form
    When I enter IFTTT secret
     And I press Save
    Then I see confirmation on success
@@ -72,9 +72,9 @@ I'm at Site Setup
   Page should contain  Site Setup
   Page should contain  Configuration area for Plone
 
-I'm at IFTTT settings form
+I'm at IFTTT Settings form
   Goto  ${PLONE_URL}/@@collectiveifttt-controlpanel
-  Page should contain  Ifttt Settings
+  Page should contain  IFTTT Settings
 
 
 # --- WHEN -------------------------------------------------------------------
@@ -84,9 +84,9 @@ I open Site Setup
   Page should contain  Site Setup
   Page should contain  Configuration area for Plone
 
-I click IFTTT settings configlet
+I click IFTTT Settings configlet
   Page should contain  Add-on Configuration
-  Page should contain  Ifttt Settings
+  Page should contain  IFTTT Settings
   Page should contain link  css=a[href$="@@collectiveifttt-controlpanel"]
   Click link  css=a[href$="@@collectiveifttt-controlpanel"]
 
@@ -109,12 +109,12 @@ I press Save
 
 # --- THEN -------------------------------------------------------------------
 
-I can see IFTTT settings configlet
+I can see IFTTT Settings configlet
   Page should contain  Add-on Configuration
-  Page should contain  Ifttt Settings
+  Page should contain  IFTTT Settings
   Page should contain link  css=a[href$="@@collectiveifttt-controlpanel"]
 
-I can see IFTTT settings form
+I can see IFTTT Settings form
   Page should contain element
   ...  css=body.template-collectiveifttt-controlpanel #content #form
   Element should be visible

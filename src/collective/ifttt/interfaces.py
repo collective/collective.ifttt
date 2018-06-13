@@ -17,5 +17,5 @@ class ICollectiveIFtttSettings(Interface):
 
     ifttt_secret_key = schema.TextLine(
         title=_(u'Secret Key'),
-        description=_(u'Register Ifttt"s secret key'),
+        description=_(u'Register an IFTTT secret key'),
     )

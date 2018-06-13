@@ -23,4 +23,4 @@ class TestControlPanelView(unittest.TestCase):
     def test_controlpanel(self):
 
         controlpanel_view = self.view()
-        self.assertIn('Register Ifttt"s secret key', controlpanel_view)
+        self.assertIn('Register an IFTTT secret key', controlpanel_view)
