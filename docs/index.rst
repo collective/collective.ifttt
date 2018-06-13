@@ -1,6 +1,13 @@
 Welcome to collective.ifttt!
 ============================================
 
+.. image:: https://travis-ci.org/collective/collective.ifttt.svg?branch=master
+    :target: https://travis-ci.org/collective/collective.ifttt
+.. image:: https://coveralls.io/repos/github/collective/collective.ifttt/badge.svg
+    :target: https://coveralls.io/github/collective/collective.ifttt
+.. image:: https://readthedocs.org/projects/collectiveifttt/badge/?version=latest
+    :target: https://collectiveifttt.readthedocs.io/en/latest/?badge=latest
+
 Introduction
 ---------------------
 
