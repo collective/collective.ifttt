@@ -10,7 +10,7 @@ from plone.z3cform import layout
 class IftttControlPanelForm(RegistryEditForm):
     schema = ICollectiveIFtttSettings
     schema_prefix = 'ifttt'
-    label = _(u'Ifttt Settings')
+    label = _(u'IFTTT Settings')
 
 
 IftttControlPanelView = layout.wrap_form(

@@ -40,9 +40,9 @@ class IIftttTriggerAction(Interface):
         Definition of the configuration available for a  Ifttt action
     """
     ifttt_event_name = schema.TextLine(
-        title=_(u'Ifttt applet name'),
+        title=_(u'IFTTT applet name'),
         description=_(
-            u'Give the name of Ifttt applet which you want to trigger'
+            u'Give the name of IFTTT applet which you want to trigger'
         ),
         required=True,
     )
@@ -127,7 +127,7 @@ class IftttTriggerActionExecutor(object):
                 '''
                 payload[payload_option] = None
 
-        logger.info('Calling Post request to Ifttt')
+        logger.info('Calling Post request to IFTTT')
         try:
             # Post HTTP request
             requests.post(
@@ -136,22 +136,22 @@ class IftttTriggerActionExecutor(object):
             # show this logging message to Plone user as notification
             api.portal.show_message(
                 message=_(
-                    u'Successfully triggered the Ifttt applet '
+                    u'Successfully triggered the IFTTT applet '
                     u'${ifttt_event_name}',
                     mapping=dict(ifttt_event_name=ifttt_event_name, ),
                 ),
                 request=getRequest(),
                 type='info'
             )
-            logger.info('Successful Post request to Ifttt')
+            logger.info('Successful Post request to IFTTT')
 
         except TypeError:
-            logger.exception('Error calling Ifttt Trigger')
+            logger.exception('Error calling IFTTT Trigger')
 
             # show this logging message to Plone user as notification
             api.portal.show_message(
                 message=_(
-                    u'Error calling Ifttt Trigger',
+                    u'Error calling IFTTT Trigger',
                 ),
                 request=getRequest(),
                 type='info'
@@ -165,9 +165,9 @@ class IftttAddForm(ActionAddForm):
     An add form for the ifttt action
     """
     schema = IIftttTriggerAction
-    label = _(u'Add Ifttt Trigger Action')
+    label = _(u'Add IFTTT Trigger Action')
     description = _(
-        u'An ifttt trigger action will execute POST request to Ifttt'
+        u'An IFTTT trigger action will execute POST request to IFTTT'
     )
     form_name = _(u'Configure element')
     Type = IftttTriggerAction
@@ -183,9 +183,9 @@ class IftttEditForm(ActionEditForm):
     z3c.form does all the magic here.
     """
     schema = IIftttTriggerAction
-    label = _(u'Edit Ifttt Action')
+    label = _(u'Edit IFTTT Action')
     description = _(
-        u'An ifttt trigger action will execute POST request to Ifttt'
+        u'An IFTTT trigger action will execute POST request to IFTTT'
     )
     form_name = _(u'Configure element')
 
