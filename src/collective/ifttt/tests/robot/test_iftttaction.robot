@@ -121,8 +121,7 @@ I configure IFTTT trigger action
 
 I fill secret key
   Goto  ${PLONE_URL}/@@collectiveifttt-controlpanel
-#  This has to be changed to {IFTTT Settings} once merged to master
-  check 'Ifttt Settings' on pagecontent
+  check 'IFTTT Settings' on pagecontent
   input 'secret' into 'form.widgets.ifttt_secret_key' textinput
   press 'Save' clickbutton
   check 'Changes' on pagecontent
