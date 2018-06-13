@@ -94,7 +94,7 @@ Viewing Your RSS Feed
 *Step 1*
 
 Your RSS feed can be viewed by appending ``/RSS`` to your collection's (or folder's) URL - 
-something like ``/path_to_collection/RSS``. 
+something like ``/path_to_collection/RSS``. (Note that this is case sensitive, "/rss" will not work.)
 For our example the URL to the RSS feed is ``http://localhost:8080/Plone/plone-site-rss-feed/RSS`` \
 
 .. image:: _static/images/Enable_Rss_Feed/creating_collection/Step8.png
