@@ -19,3 +19,7 @@ class ICollectiveIFtttSettings(Interface):
         title=_(u'Secret Key'),
         description=_(u'Register an IFTTT secret key'),
     )
+
+
+class IRequestsLibrary(Interface):
+    '''Indirection interface for adapting some context to requests library'''
