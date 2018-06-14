@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collective.ifttt.interfaces import IRequestsLibrary
 from OFS.SimpleItem import SimpleItem
 from plone import api
 from plone.app.contentrules import PloneMessageFactory as _
@@ -10,6 +11,7 @@ from plone.contentrules.rule.interfaces import IRuleElementData
 from plone.event.interfaces import IEventAccessor
 from zope import schema
 from zope.component import adapter
+from zope.component import queryMultiAdapter
 from zope.globalrequest import getRequest
 from zope.interface import implementer
 from zope.interface import Interface
@@ -105,10 +107,12 @@ class IftttTriggerActionExecutor(object):
         ifttt_trigger_url = 'https://maker.ifttt.com/trigger/' + \
                             ifttt_event_name + '/with/key/' + secret_key
         payload = {'title': title, 'url': url}
+
+        # define 3rd payload as chosen by user
         if payload_option == PAYLOAD_DESCRIPTION:
             payload[payload_option] = self.context.description
         elif payload_option == PAYLOAD_USERNAME:
-            payload[payload_option] = api.user.get_current()
+            payload[payload_option] = str(api.user.get_current())
         elif payload_option == PAYLOAD_START:
             try:
                 '''
@@ -126,13 +130,17 @@ class IftttTriggerActionExecutor(object):
                 registered adapter for IEventAccessor interface/contract
                 '''
                 payload[payload_option] = None
+        '''we expect default behaviour here until
+        indirection interface is needed to call IFTTT'''
+        r = queryMultiAdapter((self.element, getRequest()),
+                              IRequestsLibrary,
+                              default=requests)
 
         logger.info('Calling Post request to IFTTT')
         try:
-            # Post HTTP request
-            requests.post(
-                ifttt_trigger_url, data=payload, timeout=self.timeout
-            )
+
+            r.post(ifttt_trigger_url, data=payload, timeout=self.timeout)
+
             # show this logging message to Plone user as notification
             api.portal.show_message(
                 message=_(
