@@ -112,7 +112,7 @@ class IftttTriggerActionExecutor(object):
         if payload_option == PAYLOAD_DESCRIPTION:
             payload[payload_option] = self.context.description
         elif payload_option == PAYLOAD_USERNAME:
-            payload[payload_option] = api.user.get_current()
+            payload[payload_option] = str(api.user.get_current())
         elif payload_option == PAYLOAD_START:
             try:
                 '''

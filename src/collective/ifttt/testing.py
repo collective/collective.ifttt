@@ -92,6 +92,7 @@ class RequestsLibraryMock(object):
             u'Dispatched requests.post to {0:s}'
             u'with payload {1:s}.'.format(url, payload),
         )
+
         api.portal.show_message(
             message=_(
                 u'Dispatched requests.post to ${url}'
