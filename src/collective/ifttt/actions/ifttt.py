@@ -173,7 +173,7 @@ class IftttAddForm(ActionAddForm):
     An add form for the ifttt action
     """
     schema = IIftttTriggerAction
-    label = _(u'Add IFTTT Trigger Action')
+    label = _(u'Add IFTTT Trigger')
     description = _(
         u'An IFTTT trigger action will execute POST request to IFTTT'
     )
