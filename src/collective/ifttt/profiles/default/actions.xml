@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<object name="portal_actions" meta_type="Plone Actions Tool"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+ <object name="object" meta_type="CMF Action Category">
+  <object name="Add IFTTT Content Trigger" meta_type="CMF Action" i18n:domain="plone">
+   <property name="title" i18n:translate="">Add IFTTT Content Trigger</property>
+   <property name="description" i18n:translate="">Add new IFTTT Content Trigger</property>
+   <property name="url_expr">string:$object_url/add_ifttt_trigger</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">folder/cb_dataValid|nothing</property>
+   <property name="permissions">
+    <element value="Content rules: Manage rules"/>
+    <element value="Plone Site Setup: IFTTT"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
+ </object>
+</object>
