@@ -28,6 +28,14 @@
       permission="collective.ifttt.manageSettings"
       />
 
+  <browser:page
+      for="*"
+      name="checkifttt"
+      class=".views.checkView"
+      permission="collective.ifttt.manageSettings"
+      allowed_attributes="check_iftttconfig"
+      />
+
 </configure>
 
 
