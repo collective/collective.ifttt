@@ -23,6 +23,32 @@ class AddRuleSchema(Interface):
         required=True,
     )
 
+    content_types = schema.Tuple(
+        title=_(u'Restrict Content Types'),
+        description=_(
+            u'Select certain content types which should be restricted'
+        ),
+        required=False,
+        missing_value=None,
+        default=(),
+        value_type=schema.Choice(
+            vocabulary='plone.app.vocabularies.ReallyUserFriendlyTypes'
+        )
+    )
+
+    workflow_transitions = schema.Tuple(
+        title=_(u'Restrict Workflow Transitions'),
+        description=_(
+            u'Select certain workflow transitions which should be restricted'
+        ),
+        required=False,
+        missing_value=None,
+        default=(),
+        value_type=schema.Choice(
+            vocabulary='plone.app.vocabularies.WorkflowTransitions'
+        )
+    )
+
 
 class AddRule(AutoExtensibleForm, form.Form):
     '''
