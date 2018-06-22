@@ -36,6 +36,13 @@
       allowed_attributes="check_iftttconfig"
       />
 
+  <browser:page
+      for="*"
+      name="add_ifttt_trigger"
+      class=".ifttt_trigger.AddRule"
+      permission="collective.ifttt.manageSettings"
+      />
+
 </configure>
 
 
