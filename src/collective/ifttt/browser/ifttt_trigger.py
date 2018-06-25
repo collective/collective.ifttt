@@ -9,6 +9,11 @@ from zope import schema
 from zope.globalrequest import getRequest
 from zope.interface import Interface
 
+import logging
+
+
+logger = logging.getLogger('collective.ifttt')
+
 
 class AddRuleSchema(Interface):
     '''
@@ -94,7 +99,11 @@ class AddRule(AutoExtensibleForm, form.Form):
                 type='info'
             )
 
-        except TypeError:
+        except Exception as er:
+
+            logger.exception(
+                u'Unexpected exception: {0:s}'.format(er),
+            )  # noqa
 
             # Redirect back to the front page with a status message
 
@@ -104,8 +113,10 @@ class AddRule(AutoExtensibleForm, form.Form):
                 type='info'
             )
 
-        contextURL = self.context.absolute_url()
-        self.request.response.redirect(contextURL)
+        finally:
+
+            contextURL = self.context.absolute_url()
+            self.request.response.redirect(contextURL)
 
     @button.buttonAndHandler(_(u'Cancel'))
     def handleCancel(self, action):
