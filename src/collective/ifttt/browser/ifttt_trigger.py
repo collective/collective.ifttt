@@ -16,9 +16,9 @@ class AddRuleSchema(Interface):
         '''
 
     ifttt_event_name = schema.TextLine(
-        title=_(u'IFTTT applet name'),
+        title=_(u'IFTTT event name'),
         description=_(
-            u'Give the name of IFTTT applet which you want to trigger'
+            u'Give the name of IFTTT event which you want to trigger'
         ),
         required=True,
     )
@@ -69,7 +69,7 @@ class AddRule(AutoExtensibleForm, form.Form):
         # call the base class version - this is very important!
         super(AddRule, self).update()
 
-    @button.buttonAndHandler(_(u'ADD'))
+    @button.buttonAndHandler(_(u'Add'))
     def handleApply(self, action):
         data, errors = self.extractData()
         if errors:
@@ -83,7 +83,7 @@ class AddRule(AutoExtensibleForm, form.Form):
 
             api.portal.show_message(
                 message=_(
-                    u'Successfully applied the IFTTT applet '
+                    u'Successfully applied the IFTTT event '
                     u'${ifttt_event_name} to ${title}',
                     mapping=dict(
                         ifttt_event_name=data['ifttt_event_name'],
