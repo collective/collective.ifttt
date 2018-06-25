@@ -3,9 +3,11 @@
 from collective.ifttt import _
 from plone import api
 from plone.autoform.form import AutoExtensibleForm
+from Products.CMFCore.interfaces._events import IActionSucceededEvent
 from z3c.form import button
 from z3c.form import form
 from zope import schema
+from zope.component import getMultiAdapter
 from zope.globalrequest import getRequest
 from zope.interface import Interface
 
@@ -29,9 +31,10 @@ class AddRuleSchema(Interface):
     )
 
     content_types = schema.Tuple(
-        title=_(u'Restrict Content Types'),
+        title=_(u'Content Types'),
         description=_(
-            u'Select certain content types which should be restricted'
+            u'Select certain content types which should be restricted '
+            u'to this event'
         ),
         required=False,
         missing_value=None,
@@ -42,9 +45,10 @@ class AddRuleSchema(Interface):
     )
 
     workflow_transitions = schema.Tuple(
-        title=_(u'Restrict Workflow Transitions'),
+        title=_(u'Workflow Transitions'),
         description=_(
             u'Select certain workflow transitions which should be restricted'
+            u' to this event'
         ),
         required=False,
         missing_value=None,
@@ -83,6 +87,10 @@ class AddRule(AutoExtensibleForm, form.Form):
 
         try:
             # all the backend magic goes here
+
+            self.add_rule(data)
+
+            self.configure_rule(data)
 
             # Redirect back to the front page with a status message
 
@@ -124,3 +132,64 @@ class AddRule(AutoExtensibleForm, form.Form):
         """
         contextURL = self.context.absolute_url()
         self.request.response.redirect(contextURL)
+
+    def add_rule(self, data):
+        '''
+        Create new rule
+        require data related to field values to create new rule
+        '''
+
+        # HACK
+        rule_name = _(
+            u'${title}_Trigger_${ifttt_event_name}',
+            mapping=dict(
+                ifttt_event_name=data['ifttt_event_name'],
+                title=self.context.Title().decode('utf-8', 'ignore'),
+            )
+        )
+
+        rule_description = _(
+            u'This rule is created to trigger ${ifttt_event_name} '
+            u'on ${title} folder',
+            mapping=dict(
+                ifttt_event_name=data['ifttt_event_name'],
+                title=self.context.Title().decode('utf-8', 'ignore'),
+            )
+        )
+
+        # HACK
+        adding = self.context.restrictedTraverse('/Plone/+rule')
+
+        addview = getMultiAdapter((adding, self.request),
+                                  name='plone.ContentRule')
+        addview.form_instance.update()
+        content = addview.form_instance.create({
+            'title':
+            rule_name,
+            'description':
+            rule_description,
+            'enabled':
+            True,
+            'stop':
+            False,
+            'cascading':
+            False,
+            'event':
+            IActionSucceededEvent
+        })  # noqa
+        addview.form_instance.add(content)
+
+    def delete_rule(self):
+        '''
+        Delete rule
+        '''
+
+    #     rule_id = self.request['rule-id']
+    #     storage = getUtility(IRuleStorage)
+    #     del storage[rule_id]
+    #     return 'ok'
+
+    def configure_rule(self, data):
+        '''
+        Add trigger and action conditions to newly created content rule
+        '''
