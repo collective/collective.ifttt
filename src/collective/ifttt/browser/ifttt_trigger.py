@@ -3,11 +3,14 @@
 from collective.ifttt import _
 from plone import api
 from plone.autoform.form import AutoExtensibleForm
+from plone.contentrules.engine.interfaces import IRuleStorage
+from plone.contentrules.rule.interfaces import IRuleCondition
 from Products.CMFCore.interfaces._events import IActionSucceededEvent
 from z3c.form import button
 from z3c.form import form
 from zope import schema
 from zope.component import getMultiAdapter
+from zope.component import getUtility
 from zope.globalrequest import getRequest
 from zope.interface import Interface
 
@@ -192,4 +195,58 @@ class AddRule(AutoExtensibleForm, form.Form):
     def configure_rule(self, data):
         '''
         Add trigger and action conditions to newly created content rule
+        '''
+
+        storage = getUtility(IRuleStorage)
+
+        # find the rule_id of newly created rule
+        # HACK, last created rule is the required rule
+        rule_id = storage.values()[-1].id
+
+        # traverse to configuration page of content rule
+        rule_url = '/Plone/' + rule_id
+        adding = self.context.restrictedTraverse(rule_url)
+
+        # add conditions to rule
+        self.add_condition(data, adding)
+
+        # add actions to rule
+        self.add_action(data, adding)
+
+    def add_condition(self, data, adding):
+        '''
+        Add condition to rule
+        '''
+
+        # add content_types conditions
+        element = getUtility(
+            IRuleCondition, name='plone.conditions.PortalType'
+        )
+        addview = getMultiAdapter((adding, self.request), name='+condition')
+        addview = getMultiAdapter((addview, self.request),
+                                  name=element.addview)
+
+        for i in data['content_types']:
+            addview.form_instance.update()
+            content = addview.form_instance.create(data={'check_types': [i]})
+            addview.form_instance.add(content)
+
+        # add workflow_transitions conditions
+        element = getUtility(
+            IRuleCondition, name='plone.conditions.WorkflowTransition'
+        )
+        addview = getMultiAdapter((adding, self.request), name='+condition')
+        addview = getMultiAdapter((addview, self.request),
+                                  name=element.addview)
+
+        for i in data['workflow_transitions']:
+            addview.form_instance.update()
+            content = addview.form_instance.create(
+                data={'wf_transitions': [i]}
+            )
+            addview.form_instance.add(content)
+
+    def add_action(self, data, adding):
+        '''
+        Add actions to rule
         '''
