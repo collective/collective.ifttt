@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
+from Acquisition import aq_parent
 from collective.ifttt import _
 from collective.ifttt.actions.ifttt import PAYLOAD_DESCRIPTION
 from plone import api
+from plone.app.contentrules import api as rules_api
 from plone.autoform.form import AutoExtensibleForm
 from plone.contentrules.engine.interfaces import IRuleStorage
 from plone.contentrules.rule.interfaces import IRuleAction
@@ -146,7 +148,7 @@ class AddRule(AutoExtensibleForm, form.Form):
         require data related to field values to create new rule
         '''
 
-        # HACK
+        # REDFINE ME
         rule_name = _(
             u'${title}_Trigger_${ifttt_event_name}',
             mapping=dict(
@@ -205,10 +207,10 @@ class AddRule(AutoExtensibleForm, form.Form):
 
         # find the rule_id of newly created rule
         # HACK, last created rule is the required rule
-        rule_id = storage.values()[-1].id
+        self.rule_id = storage.values()[-1].id
 
         # traverse to configuration page of content rule
-        rule_url = '/Plone/' + rule_id
+        rule_url = '/Plone/' + self.rule_id
         rule = self.context.restrictedTraverse(rule_url)
 
         # add conditions to rule
@@ -268,3 +270,15 @@ class AddRule(AutoExtensibleForm, form.Form):
 
     def apply_rule(self):
         'Apply content rule to requested folder'
+
+        self.true_rule_id = self.rule_id.split('+')[-1]
+
+        # sometimes self.context is a collection so,
+        # we need to traverse to it's parent folder
+        context = self.context
+        allowed_portal_type = ['Folder', 'Plone Site']
+        while context.portal_type not in allowed_portal_type:
+            context = aq_parent(self.context)
+
+        # 'form.button.AddAssignment'
+        rules_api.assign_rule(context, self.true_rule_id)
