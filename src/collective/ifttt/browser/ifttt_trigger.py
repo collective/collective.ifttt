@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from collective.ifttt import _
+from collective.ifttt.actions.ifttt import PAYLOAD_DESCRIPTION
 from plone import api
 from plone.autoform.form import AutoExtensibleForm
 from plone.contentrules.engine.interfaces import IRuleStorage
+from plone.contentrules.rule.interfaces import IRuleAction
 from plone.contentrules.rule.interfaces import IRuleCondition
 from Products.CMFCore.interfaces._events import IActionSucceededEvent
 from z3c.form import button
@@ -94,6 +96,8 @@ class AddRule(AutoExtensibleForm, form.Form):
             self.add_rule(data)
 
             self.configure_rule(data)
+
+            self.apply_rule()
 
             # Redirect back to the front page with a status message
 
@@ -187,10 +191,10 @@ class AddRule(AutoExtensibleForm, form.Form):
         Delete rule
         '''
 
-    #     rule_id = self.request['rule-id']
-    #     storage = getUtility(IRuleStorage)
-    #     del storage[rule_id]
-    #     return 'ok'
+        # rule_id = self.request['rule-id']
+        # storage = getUtility(IRuleStorage)
+        # del storage[rule_id]
+        # return 'ok'
 
     def configure_rule(self, data):
         '''
@@ -205,15 +209,15 @@ class AddRule(AutoExtensibleForm, form.Form):
 
         # traverse to configuration page of content rule
         rule_url = '/Plone/' + rule_id
-        adding = self.context.restrictedTraverse(rule_url)
+        rule = self.context.restrictedTraverse(rule_url)
 
         # add conditions to rule
-        self.add_condition(data, adding)
+        self.add_condition(data, rule)
 
         # add actions to rule
-        self.add_action(data, adding)
+        self.add_action(data, rule)
 
-    def add_condition(self, data, adding):
+    def add_condition(self, data, rule):
         '''
         Add condition to rule
         '''
@@ -222,9 +226,8 @@ class AddRule(AutoExtensibleForm, form.Form):
         element = getUtility(
             IRuleCondition, name='plone.conditions.PortalType'
         )
-        addview = getMultiAdapter((adding, self.request), name='+condition')
-        addview = getMultiAdapter((addview, self.request),
-                                  name=element.addview)
+        adding = getMultiAdapter((rule, self.request), name='+condition')
+        addview = getMultiAdapter((adding, self.request), name=element.addview)
 
         for i in data['content_types']:
             addview.form_instance.update()
@@ -235,9 +238,8 @@ class AddRule(AutoExtensibleForm, form.Form):
         element = getUtility(
             IRuleCondition, name='plone.conditions.WorkflowTransition'
         )
-        addview = getMultiAdapter((adding, self.request), name='+condition')
-        addview = getMultiAdapter((addview, self.request),
-                                  name=element.addview)
+        adding = getMultiAdapter((rule, self.request), name='+condition')
+        addview = getMultiAdapter((adding, self.request), name=element.addview)
 
         for i in data['workflow_transitions']:
             addview.form_instance.update()
@@ -246,7 +248,23 @@ class AddRule(AutoExtensibleForm, form.Form):
             )
             addview.form_instance.add(content)
 
-    def add_action(self, data, adding):
+    def add_action(self, data, rule):
         '''
         Add actions to rule
         '''
+
+        element = getUtility(IRuleAction, name='plone.actions.Ifttt')
+        adding = getMultiAdapter((rule, self.request), name='+action')
+        addview = getMultiAdapter((adding, self.request), name=element.addview)
+
+        addview.form_instance.update()
+        content = addview.form_instance.create(
+            data={
+                'ifttt_event_name': data['ifttt_event_name'],
+                'payload_option': PAYLOAD_DESCRIPTION
+            }
+        )
+        addview.form_instance.add(content)
+
+    def apply_rule(self):
+        'Apply content rule to requested folder'
