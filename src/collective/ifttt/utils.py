@@ -2,145 +2,25 @@
 
 from Acquisition import aq_parent
 from collective.ifttt import _
-from collective.ifttt.actions.ifttt import PAYLOAD_DESCRIPTION
-from plone import api
 from plone.app.contentrules import api as rules_api
-from plone.autoform.form import AutoExtensibleForm
 from plone.contentrules.engine.interfaces import IRuleStorage
 from plone.contentrules.rule.interfaces import IRuleAction
 from plone.contentrules.rule.interfaces import IRuleCondition
 from Products.CMFCore.interfaces._events import IActionSucceededEvent
-from z3c.form import button
-from z3c.form import form
-from zope import schema
 from zope.component import getMultiAdapter
 from zope.component import getUtility
-from zope.globalrequest import getRequest
-from zope.interface import Interface
-
-import logging
 
 
-logger = logging.getLogger('collective.ifttt')
+class Rules(object):
+    """Define content rule operations within collective.ifttt environment"""
 
-
-class AddRuleSchema(Interface):
-    '''
-        Define schema for add rule form
+    def __init__(self, context, request):
+        self.context = context
+        self.request = request
         '''
-
-    ifttt_event_name = schema.TextLine(
-        title=_(u'IFTTT event name'),
-        description=_(
-            u'Give the name of IFTTT event which you want to trigger'
-        ),
-        required=True,
-    )
-
-    content_types = schema.Tuple(
-        title=_(u'Content Types'),
-        description=_(
-            u'Select certain content types which should be restricted '
-            u'to this event'
-        ),
-        required=False,
-        missing_value=None,
-        default=(),
-        value_type=schema.Choice(
-            vocabulary='plone.app.vocabularies.ReallyUserFriendlyTypes'
-        )
-    )
-
-    workflow_transitions = schema.Tuple(
-        title=_(u'Workflow Transitions'),
-        description=_(
-            u'Select certain workflow transitions which should be restricted'
-            u' to this event'
-        ),
-        required=False,
-        missing_value=None,
-        default=(),
-        value_type=schema.Choice(
-            vocabulary='plone.app.vocabularies.WorkflowTransitions'
-        )
-    )
-
-
-class AddRule(AutoExtensibleForm, form.Form):
-    '''
-    Define Form
-    '''
-
-    schema = AddRuleSchema
-    ignoreContext = True
-    form_name = 'add_ifttt_rule'
-
-    label = _(u'Add new IFTTT trigger')
-    description = _(u'This will add new IFTTT Trigger')
-
-    def update(self):
-        # disable Plone's editable border
-        self.request.set('disable_border', True)
-
-        # call the base class version - this is very important!
-        super(AddRule, self).update()
-
-    @button.buttonAndHandler(_(u'Add'))
-    def handleApply(self, action):
-        data, errors = self.extractData()
-        if errors:
-            self.status = self.formErrorsMessage
-            return
-
-        try:
-            # all the backend magic goes here
-
-            self.add_rule(data)
-
-            self.configure_rule(data)
-
-            self.apply_rule()
-
-            # Redirect back to the front page with a status message
-
-            api.portal.show_message(
-                message=_(
-                    u'Successfully applied the IFTTT event '
-                    u'${ifttt_event_name} to ${title}',
-                    mapping=dict(
-                        ifttt_event_name=data['ifttt_event_name'],
-                        title=self.context.Title().decode('utf-8', 'ignore'),
-                    ),
-                ),
-                request=getRequest(),
-                type='info'
-            )
-
-        except Exception as er:
-
-            logger.exception(
-                u'Unexpected exception: {0:s}'.format(er),
-            )  # noqa
-
-            # Redirect back to the front page with a status message
-
-            api.portal.show_message(
-                message=_(u'Error calling IFTTT Trigger'),
-                request=getRequest(),
-                type='info'
-            )
-
-        finally:
-
-            contextURL = self.context.absolute_url()
-            self.request.response.redirect(contextURL)
-
-    @button.buttonAndHandler(_(u'Cancel'))
-    def handleCancel(self, action):
-        """User cancelled. Redirect back to the front page.
-        """
-        contextURL = self.context.absolute_url()
-        self.request.response.redirect(contextURL)
+        data should have keys
+        ifttt_event_name, content_types, workflow_transitions  and payload
+        '''
 
     def add_rule(self, data):
         '''
@@ -152,7 +32,7 @@ class AddRule(AutoExtensibleForm, form.Form):
         rule_name = _(
             u'${title}_Trigger_${ifttt_event_name}',
             mapping=dict(
-                ifttt_event_name=data['ifttt_event_name'],
+                ifttt_event_name=data.get('ifttt_event_name'),
                 title=self.context.Title().decode('utf-8', 'ignore'),
             )
         )
@@ -161,7 +41,7 @@ class AddRule(AutoExtensibleForm, form.Form):
             u'This rule is created to trigger ${ifttt_event_name} '
             u'on ${title} folder',
             mapping=dict(
-                ifttt_event_name=data['ifttt_event_name'],
+                ifttt_event_name=data.get('ifttt_event_name'),
                 title=self.context.Title().decode('utf-8', 'ignore'),
             )
         )
@@ -225,7 +105,7 @@ class AddRule(AutoExtensibleForm, form.Form):
         adding = getMultiAdapter((rule, self.request), name='+condition')
         addview = getMultiAdapter((adding, self.request), name=element.addview)
 
-        for i in data['content_types']:
+        for i in data.get('content_types'):
             addview.form_instance.update()
             content = addview.form_instance.create(data={'check_types': [i]})
             addview.form_instance.add(content)
@@ -237,7 +117,7 @@ class AddRule(AutoExtensibleForm, form.Form):
         adding = getMultiAdapter((rule, self.request), name='+condition')
         addview = getMultiAdapter((adding, self.request), name=element.addview)
 
-        for i in data['workflow_transitions']:
+        for i in data.get('workflow_transitions'):
             addview.form_instance.update()
             content = addview.form_instance.create(
                 data={'wf_transitions': [i]}
@@ -256,8 +136,8 @@ class AddRule(AutoExtensibleForm, form.Form):
         addview.form_instance.update()
         content = addview.form_instance.create(
             data={
-                'ifttt_event_name': data['ifttt_event_name'],
-                'payload_option': PAYLOAD_DESCRIPTION
+                'ifttt_event_name': data.get('ifttt_event_name'),
+                'payload_option': data.get('payload')
             }
         )
         addview.form_instance.add(content)
