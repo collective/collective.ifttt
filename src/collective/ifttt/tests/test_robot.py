@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+from collective.ifttt.testing import COLLECTIVE_IFTTT_ACCEPTANCE_TESTING  # noqa
 from plone.app.testing import ROBOT_TEST_LEVEL
 from plone.testing import layered
-from collective.ifttt.testing import COLLECTIVE_IFTTT_ACCEPTANCE_TESTING  # noqa
 
 import os
 import robotsuite
@@ -13,7 +13,8 @@ def test_suite():
     current_dir = os.path.abspath(os.path.dirname(__file__))
     robot_dir = os.path.join(current_dir, 'robot')
     robot_tests = [
-        os.path.join('robot', doc) for doc in os.listdir(robot_dir)
+        os.path.join('robot', doc)
+        for doc in os.listdir(robot_dir)
         if doc.endswith('.robot') and doc.startswith('test_')
     ]
     for robot_test in robot_tests:
