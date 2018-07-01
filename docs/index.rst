@@ -54,6 +54,7 @@ so you can create more customized applets.
    Enable_RSS_feed_on_Plone
    Configuring_Your_IFTTT_Secret_Key
    Trigger_IFTTT_Action
+   content_trigger
 
 
 
