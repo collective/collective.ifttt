@@ -173,18 +173,12 @@ class AddRule(AutoExtensibleForm, form.Form):
                                   name='plone.ContentRule')
         addview.form_instance.update()
         content = addview.form_instance.create({
-            'title':
-            rule_name,
-            'description':
-            rule_description,
-            'enabled':
-            True,
-            'stop':
-            False,
-            'cascading':
-            False,
-            'event':
-            IActionSucceededEvent
+            'title': rule_name,
+            'description': rule_description,
+            'enabled': True,
+            'stop': False,
+            'cascading': False,
+            'event': IActionSucceededEvent
         })  # noqa
         addview.form_instance.add(content)
 
