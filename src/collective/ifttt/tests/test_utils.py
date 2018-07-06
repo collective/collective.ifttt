@@ -5,6 +5,7 @@ from collective.ifttt.actions.ifttt import PAYLOAD_DESCRIPTION
 from collective.ifttt.testing import COLLECTIVE_IFTTT_INTEGRATION_TESTING
 from collective.ifttt.utils import Rules
 from plone.app.contentrules.conditions.portaltype import PortalTypeCondition
+from plone.app.contentrules.conditions.wfstate import WorkflowStateCondition
 from plone.app.contentrules.conditions.wftransition import WorkflowTransitionCondition
 from plone.contentrules.engine.interfaces import IRuleAssignmentManager
 from plone.contentrules.engine.interfaces import IRuleStorage
@@ -31,6 +32,7 @@ class TestRules(unittest.TestCase):
             'content_types': ('Folder', 'Discussion Item', 'News Item'),
             'workflow_transitions': ('publish', 'reject'),
             'payload': PAYLOAD_DESCRIPTION,
+            'event': IActionSucceededEvent,
         }
         return test_data
 
@@ -53,14 +55,18 @@ class TestRules(unittest.TestCase):
         self.rules.add_rule(self.get_testData())
         self.rules.configure_rule(self.get_testData())
         storage = getUtility(IRuleStorage)
-        self.assertEqual(5, len(storage.values()[0].conditions))
+        self.assertEqual(6, len(storage.values()[0].conditions))
         self.assertEqual(
             PortalTypeCondition,
             storage.values()[0].conditions[0].__class__
         )
         self.assertEqual(
             WorkflowTransitionCondition,
-            storage.values()[0].conditions[-1].__class__
+            storage.values()[0].conditions[3].__class__
+        )
+        self.assertEqual(
+            WorkflowStateCondition,
+            storage.values()[0].conditions[5].__class__
         )
         self.assertEqual(
             'plone.actions.Ifttt',

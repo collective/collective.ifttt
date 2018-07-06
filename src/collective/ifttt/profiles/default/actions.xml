@@ -14,5 +14,17 @@
    </property>
    <property name="visible">True</property>
   </object>
+  <object name="Add IFTTT User Trigger" meta_type="CMF Action" i18n:domain="collective.ifttt">
+   <property name="title" i18n:translate="">Add IFTTT User Trigger</property>
+   <property name="description" i18n:translate="">Add new IFTTT User Trigger</property>
+   <property name="url_expr">string:$object_url/@@ifttt_user_trigger</property>
+   <property name="icon_expr"></property>
+   <property name="available_expr">python:path('object/@@checkifttt').check_iftttconfig()</property>
+   <property name="permissions">
+      <element value="Content rules: Manage rules"/>
+      <element value="Plone Site Setup: IFTTT"/>
+   </property>
+   <property name="visible">True</property>
+  </object>
  </object>
 </object>
