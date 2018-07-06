@@ -50,6 +50,13 @@
       permission="collective.ifttt.manageSettings"
       />
 
+  <browser:page
+      for="*"
+      name="ifttt_event_trigger"
+      class=".event_trigger.EventTrigger"
+      permission="collective.ifttt.manageSettings"
+      />
+
 </configure>
 
 
