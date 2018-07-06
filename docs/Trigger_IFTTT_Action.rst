@@ -1,5 +1,5 @@
-Trigger IFTTT Action
-=================================
+Trigger IFTTT" Content Rule Action
+==================================
 
 `Plone Content Rules <https://docs.plone.org/working-with-content/managing-content/contentrules.html>`_
 are a powerful mechanism to automate dealing with content using `conditions` and `actions`.
@@ -28,7 +28,7 @@ Create a content rule as follows and assign it to a folder on your site (or at t
 .. image:: _static/images/Trigger_IFTTT_Action/select_action.png
 
 - From the “Add IFTTT Trigger” page, fill out the form:
-- For the “IFTTT applet name” enter: the IFTTT applet which you want to trigger.
+- For the “IFTTT event name” enter: the IFTTT event which you want to trigger.
 - Choose the 3rd payload from available options (values of which
   will be dynamically fetched from the content which trigger this action) :
 

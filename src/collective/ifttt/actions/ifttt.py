@@ -42,9 +42,9 @@ class IIftttTriggerAction(Interface):
         Definition of the configuration available for a  Ifttt action
     """
     ifttt_event_name = schema.TextLine(
-        title=_(u'IFTTT applet name'),
+        title=_(u'IFTTT event name'),
         description=_(
-            u'Give the name of IFTTT applet which you want to trigger'
+            u'Give the name of IFTTT event which you want to trigger'
         ),
         required=True,
     )
