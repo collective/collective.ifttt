@@ -45,6 +45,11 @@ ${SCREENSHOTS}  false
 
 *** Test Cases ***
 
+Scenario: As a site administrator I cannot see Content Trigger actions form if secret key is not filled
+    Given I'm logged in as a Site Administrator
+    And I goto home page
+    Then I check the 'Add IFTTT Content Trigger' action menu item
+
 Scenario: As a site administrator I can see Content Trigger actions form
     Given I'm logged in as a Site Administrator
     And I fill secret key
@@ -78,6 +83,9 @@ I goto home page
    GOTO  ${PLONE_URL}/
 
 # --- WHEN -------------------------------------------------------------------
+
+I check the 'Add IFTTT Content Trigger' action menu item
+    Element should not be visible  xpath=//li[@id='plone-contentmenu-actions']/a
 
 I trigger the '${action}' action menu item
     Element should be visible  xpath=//li[@id='plone-contentmenu-actions']/a
