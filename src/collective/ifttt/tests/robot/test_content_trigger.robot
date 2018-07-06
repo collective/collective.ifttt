@@ -49,16 +49,16 @@ Scenario: As a site administrator I can see Content Trigger actions form
     Given I'm logged in as a Site Administrator
     And I fill secret key
     And I goto home page
-   When I trigger the 'Add IFTTT Content Trigger' action menu item
-   Then check 'This will add new IFTTT Trigger' on pagecontent
+    When I trigger the 'Add IFTTT Content Trigger' action menu item
+    Then check 'This will add new IFTTT Trigger' on pagecontent
 
 Scenario: As a site administrator I can configure Content Trigger action
     Given I'm logged in as a Site Administrator
     And I fill secret key
     And I goto home page
-   And I trigger the 'Add IFTTT Content Trigger' action menu item
-   When I fill Content Trigger form
-   Then I see ' Successfully applied the IFTTT event test_event to Plone site' on success
+    And I trigger the 'Add IFTTT Content Trigger' action menu item
+    When I fill Content Trigger form
+    Then I see 'Successfully applied the IFTTT event test_event to Plone site' on success
 
 *** Keywords ***
 

@@ -2,6 +2,7 @@
 
 from Acquisition import aq_parent
 from collective.ifttt import _
+from plone import api
 from plone.app.contentrules import api as rules_api
 from plone.contentrules.engine.interfaces import IRuleStorage
 from plone.contentrules.rule.interfaces import IRuleAction
@@ -9,6 +10,8 @@ from plone.contentrules.rule.interfaces import IRuleCondition
 from Products.CMFCore.interfaces._events import IActionSucceededEvent
 from zope.component import getMultiAdapter
 from zope.component import getUtility
+
+import os
 
 
 class Rules(object):
@@ -46,8 +49,8 @@ class Rules(object):
             )
         )
 
-        # HACK
-        adding = self.context.restrictedTraverse('/Plone/+rule')
+        portal = api.portal.get()
+        adding = getMultiAdapter((portal, self.request), name='+rule')
 
         addview = getMultiAdapter((adding, self.request),
                                   name='plone.ContentRule')
@@ -84,7 +87,8 @@ class Rules(object):
         self.rule_id = storage.values()[-1].id
 
         # traverse to configuration page of content rule
-        rule_url = '/Plone/' + self.rule_id
+        portal = api.portal.get().__name__
+        rule_url = (os.sep).join(('', portal, self.rule_id))
         rule = self.context.restrictedTraverse(rule_url)
 
         # add conditions to rule
