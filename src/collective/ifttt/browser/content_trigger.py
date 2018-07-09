@@ -90,13 +90,17 @@ class ContentTrigger(AutoExtensibleForm, form.Form):
             # all the backend magic goes here
             '''
             available keys for data
-            ifttt_event_name, content_types, workflow_transitions, payload
+            ifttt_event_name, content_types, workflow_transitions, payload, workflow_states
             and trigger event
             '''
 
             data['payload'] = PAYLOAD_DESCRIPTION
 
             data['event'] = IActionSucceededEvent
+
+            data['workflow_states'] = [
+                'published',
+            ]
 
             rule = Rules(self.context, self.request)
 

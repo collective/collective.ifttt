@@ -31,6 +31,7 @@ class TestRules(unittest.TestCase):
             'ifttt_event_name': 'Test',
             'content_types': ('Folder', 'Discussion Item', 'News Item'),
             'workflow_transitions': ('publish', 'reject'),
+            'workflow_states': ('published', ),
             'payload': PAYLOAD_DESCRIPTION,
             'event': IActionSucceededEvent,
         }

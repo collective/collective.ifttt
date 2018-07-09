@@ -108,7 +108,7 @@ class Rules(object):
         adding = getMultiAdapter((rule, self.request), name='+condition')
         addview = getMultiAdapter((adding, self.request), name=element.addview)
 
-        for i in data.get('content_types'):
+        for i in data.get('content_types', []):
             addview.form_instance.update()
             content = addview.form_instance.create(data={'check_types': [i]})
             addview.form_instance.add(content)
@@ -120,25 +120,25 @@ class Rules(object):
         adding = getMultiAdapter((rule, self.request), name='+condition')
         addview = getMultiAdapter((adding, self.request), name=element.addview)
 
-        for i in data.get('workflow_transitions'):
+        for i in data.get('workflow_transitions', []):
             addview.form_instance.update()
             content = addview.form_instance.create(
                 data={'wf_transitions': [i]}
             )
             addview.form_instance.add(content)
 
-        # add default condition of published state
+        # add workflow_states condition
         element = getUtility(
             IRuleCondition, name='plone.conditions.WorkflowState'
         )
         adding = getMultiAdapter((rule, self.request), name='+condition')
         addview = getMultiAdapter((adding, self.request), name=element.addview)
 
-        addview.form_instance.update()
-        content = addview.form_instance.create(
-            data={'wf_states': ['published']}
-        )
-        addview.form_instance.add(content)
+        for i in data.get('workflow_states', []):
+
+            addview.form_instance.update()
+            content = addview.form_instance.create(data={'wf_states': [i]})
+            addview.form_instance.add(content)
 
     def add_action(self, data, rule):
         '''

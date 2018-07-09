@@ -76,15 +76,13 @@ class UserTrigger(AutoExtensibleForm, form.Form):
             # all the backend magic goes here
             '''
             available keys for data
-            ifttt_event_name, content_types, workflow_transitions, payload
+            ifttt_event_name, content_types, workflow_transitions, payload, workflow_states
             and trigger event
             '''
 
             data['payload'] = PAYLOAD_USERNAME
 
             data['event'] = IObjectModifiedEvent
-
-            data['workflow_transitions'] = []
 
             rule = Rules(self.context, self.request)
 
