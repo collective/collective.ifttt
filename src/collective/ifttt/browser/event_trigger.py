@@ -76,7 +76,8 @@ class EventTrigger(AutoExtensibleForm, form.Form):
             # all the backend magic goes here
             '''
             available keys for data
-            ifttt_event_name, content_types, workflow_transitions, payload
+            ifttt_event_name, content_types, workflow_transitions,
+            payload, workflow_states
             and trigger event
             '''
 
@@ -85,6 +86,10 @@ class EventTrigger(AutoExtensibleForm, form.Form):
             data['event'] = IActionSucceededEvent
 
             data['content_types'] = ['Event']
+
+            data['workflow_states'] = [
+                'published',
+            ]
 
             rule = Rules(self.context, self.request)
 
