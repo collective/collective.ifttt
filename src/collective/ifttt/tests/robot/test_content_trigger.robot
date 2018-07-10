@@ -55,7 +55,7 @@ Scenario: As a site administrator I can see Content Trigger actions form
     And I fill secret key
     And I goto home page
     When I trigger the 'Add IFTTT Content Trigger' action menu item
-    Then check 'This will add new IFTTT Trigger' on pagecontent
+    Then check 'including the description of content' on pagecontent
 
 Scenario: As a site administrator I can configure Content Trigger action
     Given I'm logged in as a Site Administrator

@@ -55,6 +55,7 @@ so you can create more customized applets.
    Configuring_Your_IFTTT_Secret_Key
    Trigger_IFTTT_Action
    content_trigger
+   user_trigger
 
 
 

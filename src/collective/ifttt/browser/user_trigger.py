@@ -55,8 +55,12 @@ class UserTrigger(AutoExtensibleForm, form.Form):
     ignoreContext = True
     form_name = 'user_content_trigger'
 
-    label = _(u'Add new IFTTT trigger')
-    description = _(u'This will add new IFTTT Trigger')
+    label = _(u'Add new Content and User Trigger')
+    description = _(
+        u'This will send a trigger to IFTTT when content '
+        u'at or below the current path is edited, including '
+        u'the information of who changed it. '
+    )
 
     def update(self):
         # disable Plone's editable border
@@ -76,7 +80,8 @@ class UserTrigger(AutoExtensibleForm, form.Form):
             # all the backend magic goes here
             '''
             available keys for data
-            ifttt_event_name, content_types, workflow_transitions, payload, workflow_states
+            ifttt_event_name, content_types, workflow_transitions,
+            payload, workflow_states
             and trigger event
             '''
 

@@ -69,8 +69,12 @@ class ContentTrigger(AutoExtensibleForm, form.Form):
     ignoreContext = True
     form_name = 'add_ifttt_rule'
 
-    label = _(u'Add new IFTTT trigger')
-    description = _(u'This will add new IFTTT Trigger')
+    label = _(u'Add new Content Trigger')
+    description = _(
+        u'This will send a trigger to IFTTT '
+        u'when content at or below the current path is published, '
+        u'including the description of content'
+    )
 
     def update(self):
         # disable Plone's editable border
@@ -90,7 +94,8 @@ class ContentTrigger(AutoExtensibleForm, form.Form):
             # all the backend magic goes here
             '''
             available keys for data
-            ifttt_event_name, content_types, workflow_transitions, payload, workflow_states
+            ifttt_event_name, content_types, workflow_transitions,
+            payload, workflow_states
             and trigger event
             '''
 
