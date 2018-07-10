@@ -55,8 +55,12 @@ class EventTrigger(AutoExtensibleForm, form.Form):
     ignoreContext = True
     form_name = 'event_content_trigger'
 
-    label = _(u'Add new IFTTT trigger')
-    description = _(u'This will add new IFTTT Trigger')
+    label = _(u'Add new Event trigger')
+    description = _(
+        u'This will send a trigger to IFTTT '
+        u'when an event at or below the current path is published, '
+        u'including the datetime of event'
+    )
 
     def update(self):
         # disable Plone's editable border
