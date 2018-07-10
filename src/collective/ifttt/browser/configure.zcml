@@ -43,6 +43,13 @@
       permission="collective.ifttt.manageSettings"
       />
 
+  <browser:page
+      for="*"
+      name="ifttt_user_trigger"
+      class=".user_trigger.UserTrigger"
+      permission="collective.ifttt.manageSettings"
+      />
+
 </configure>
 
 

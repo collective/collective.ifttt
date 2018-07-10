@@ -24,4 +24,4 @@ class TestActionMenu(unittest.TestCase):
         # Check existence of IFTTT Action Menu
 
         actions_view = self.view()
-        self.assertIn('This will add new IFTTT Trigger', actions_view)
+        self.assertIn('including the description of content', actions_view)

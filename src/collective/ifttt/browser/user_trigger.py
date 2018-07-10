@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 
 from collective.ifttt import _
-from collective.ifttt.actions.ifttt import PAYLOAD_DESCRIPTION
+from collective.ifttt.actions.ifttt import PAYLOAD_USERNAME
 from collective.ifttt.utils import Rules
 from plone import api
 from plone.autoform.form import AutoExtensibleForm
-from Products.CMFCore.interfaces._events import IActionSucceededEvent
 from z3c.form import button
 from z3c.form import form
 from zope import schema
 from zope.globalrequest import getRequest
 from zope.interface import Interface
+from zope.lifecycleevent.interfaces import IObjectModifiedEvent
 
 import logging
 
@@ -18,7 +18,7 @@ import logging
 logger = logging.getLogger('collective.ifttt')
 
 
-class ContentTriggerSchema(Interface):
+class UserTriggerSchema(Interface):
     '''
         Define schema for add rule form
         '''
@@ -45,35 +45,21 @@ class ContentTriggerSchema(Interface):
         )
     )
 
-    workflow_transitions = schema.Tuple(
-        title=_(u'Workflow Transitions'),
-        description=_(
-            u'Select certain workflow transitions which should be restricted'
-            u' to this event'
-        ),
-        required=False,
-        missing_value=None,
-        default=(),
-        value_type=schema.Choice(
-            vocabulary='plone.app.vocabularies.WorkflowTransitions'
-        )
-    )
 
-
-class ContentTrigger(AutoExtensibleForm, form.Form):
+class UserTrigger(AutoExtensibleForm, form.Form):
     '''
     Define Form
     '''
 
-    schema = ContentTriggerSchema
+    schema = UserTriggerSchema
     ignoreContext = True
-    form_name = 'add_ifttt_rule'
+    form_name = 'user_content_trigger'
 
-    label = _(u'Add new Content Trigger')
+    label = _(u'Add new Content and User Trigger')
     description = _(
-        u'This will send a trigger to IFTTT '
-        u'when content at or below the current path is published, '
-        u'including the description of content'
+        u'This will send a trigger to IFTTT when content '
+        u'at or below the current path is edited, including '
+        u'the information of who changed it. '
     )
 
     def update(self):
@@ -81,7 +67,7 @@ class ContentTrigger(AutoExtensibleForm, form.Form):
         self.request.set('disable_border', True)
 
         # call the base class version - this is very important!
-        super(ContentTrigger, self).update()
+        super(UserTrigger, self).update()
 
     @button.buttonAndHandler(_(u'Add'))
     def handleApply(self, action):
@@ -99,13 +85,9 @@ class ContentTrigger(AutoExtensibleForm, form.Form):
             and trigger event
             '''
 
-            data['payload'] = PAYLOAD_DESCRIPTION
+            data['payload'] = PAYLOAD_USERNAME
 
-            data['event'] = IActionSucceededEvent
-
-            data['workflow_states'] = [
-                'published',
-            ]
+            data['event'] = IObjectModifiedEvent
 
             rule = Rules(self.context, self.request)
 

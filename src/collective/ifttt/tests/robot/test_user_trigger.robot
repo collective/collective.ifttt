@@ -5,7 +5,7 @@
 #
 # Run this robot test stand-alone:
 #
-#  $ bin/test -s collective.ifttt -t test_content_trigger.robot --all
+#  $ bin/test -s collective.ifttt -t test_user_trigger.robot --all
 #
 # Run this robot test with robot server (which is faster):
 #
@@ -15,10 +15,10 @@
 #
 # 2) Run robot tests:
 #
-# $ bin/robot src/collective/ifttt/tests/robot/test_content_trigger.robot
+# $ bin/robot src/collective/ifttt/tests/robot/test_user_trigger.robot
 #
 #   for debug mode
-# $ bin/robot-debug src/collective/ifttt/tests/robot/test_content_trigger.robot
+# $ bin/robot-debug src/collective/ifttt/tests/robot/test_user_trigger.robot
 
 # See the http://docs.plone.org for further details (search for robot
 # framework).
@@ -48,20 +48,20 @@ ${SCREENSHOTS}  false
 Scenario: As a site administrator I cannot see Content Trigger actions form if secret key is not filled
     Given I'm logged in as a Site Administrator
     And I goto home page
-    Then I check the 'Add IFTTT Content Trigger' action menu item
+    Then I check the 'Add IFTTT User Trigger' action menu item
 
 Scenario: As a site administrator I can see Content Trigger actions form
     Given I'm logged in as a Site Administrator
     And I fill secret key
     And I goto home page
-    When I trigger the 'Add IFTTT Content Trigger' action menu item
-    Then check 'including the description of content' on pagecontent
+    When I trigger the 'Add IFTTT User Trigger' action menu item
+    Then check 'including the information of who changed it' on pagecontent
 
 Scenario: As a site administrator I can configure Content Trigger action
     Given I'm logged in as a Site Administrator
     And I fill secret key
     And I goto home page
-    And I trigger the 'Add IFTTT Content Trigger' action menu item
+    And I trigger the 'Add IFTTT User Trigger' action menu item
     When I fill Content Trigger form
     Then I see 'Successfully applied the IFTTT event test_event to Plone site' on success
 
@@ -84,7 +84,7 @@ I goto home page
 
 # --- WHEN -------------------------------------------------------------------
 
-I check the 'Add IFTTT Content Trigger' action menu item
+I check the 'Add IFTTT User Trigger' action menu item
     Element should not be visible  xpath=//li[@id='plone-contentmenu-actions']/a
 
 I trigger the '${action}' action menu item
