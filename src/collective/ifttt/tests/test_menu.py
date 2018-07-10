@@ -17,7 +17,7 @@ class TestActionMenu(unittest.TestCase):
         self.request = self.layer['request']
         self.view = getMultiAdapter(
             (self.layer['portal'], self.layer['request']),
-            name='add_ifttt_trigger'
+            name='ifttt_content_trigger'
         )
 
     def test_view(self):

@@ -38,8 +38,8 @@
 
   <browser:page
       for="*"
-      name="add_ifttt_trigger"
-      class=".ifttt_trigger.AddRule"
+      name="ifttt_content_trigger"
+      class=".content_trigger.ContentTrigger"
       permission="collective.ifttt.manageSettings"
       />
 

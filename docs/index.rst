@@ -30,6 +30,7 @@ so you can create more customized applets.
    Using_Plone_RSS_Feeds_in_IFTTT_Applets
    Configuring_Your_IFTTT_Secret_Key
    Trigger_IFTTT_Action
+   content_trigger
 
 
 
