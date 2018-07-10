@@ -33,6 +33,4 @@ so you can create more customized applets.
    content_trigger
    user_trigger
    event_trigger
-
-
-
+   
