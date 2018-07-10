@@ -32,6 +32,5 @@ so you can create more customized applets.
    Trigger_IFTTT_Action
    content_trigger
    user_trigger
-
-
-
+   event_trigger
+   
