@@ -48,7 +48,7 @@ ${SCREENSHOTS}  false
 
 *** Test Cases ***
 
-Scenario: As a site administrator I can configure IFTTT Trigger Action on modified news item
+Scenario: As a site administrator I can configure IFTTT Trigger on modified news item
     Given I'm logged in as a Site Administrator
     And I'm at Content Rules
     And I configure new content rule form
@@ -97,7 +97,7 @@ I configure new content rule form
   select 'Object modified' into 'form-widgets-event' selectbox
   press 'Save' clickbutton
   check 'Edit content rule' on pagecontent
-  check 'IFTTT Trigger Action' on pagecontent
+  check 'IFTTT Trigger' on pagecontent
 
 I configure trigger condition
    select 'plone.conditions.PortalType' into 'contentrules-add-condition' selectbox
