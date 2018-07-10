@@ -5,7 +5,7 @@ from collective.ifttt.actions.ifttt import PAYLOAD_DESCRIPTION
 from collective.ifttt.testing import COLLECTIVE_IFTTT_INTEGRATION_TESTING
 from collective.ifttt.utils import Rules
 from plone.app.contentrules.conditions.portaltype import PortalTypeCondition
-from plone.app.contentrules.conditions.wftransition import WorkflowTransitionCondition
+from plone.app.contentrules.conditions.wftransition import WorkflowTransitionCondition  # noqa: E501
 from plone.contentrules.engine.interfaces import IRuleAssignmentManager
 from plone.contentrules.engine.interfaces import IRuleStorage
 from Products.CMFCore.interfaces._events import IActionSucceededEvent
