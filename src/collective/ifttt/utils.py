@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 from Acquisition import aq_parent
 from collective.ifttt import _
 from plone import api
@@ -9,8 +8,6 @@ from plone.contentrules.rule.interfaces import IRuleAction
 from plone.contentrules.rule.interfaces import IRuleCondition
 from zope.component import getMultiAdapter
 from zope.component import getUtility
-
-import os
 
 
 class Rules(object):
@@ -86,9 +83,7 @@ class Rules(object):
         self.rule_id = storage.values()[-1].id
 
         # traverse to configuration page of content rule
-        portal = api.portal.get().__name__
-        rule_url = (os.sep).join(('', portal, self.rule_id))
-        rule = self.context.restrictedTraverse(rule_url)
+        rule = api.portal.get().restrictedTraverse(self.rule_id)
 
         # add conditions to rule
         self.add_condition(data, rule)
