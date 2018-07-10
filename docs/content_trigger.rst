@@ -25,7 +25,7 @@ Follow the steps given below to Add an IFTTT Content Trigger onto any folder.
 
 
 Behind the Scenes
-^^^^^^^^^^^^^^^^^
+-----------------
 
 This section details all jobs performed behind the scenes
 after form gets filled.
@@ -41,7 +41,27 @@ To know more about content rules, follow this
 .. image:: _static/images/add_ifttt_content_trigger/rule_tab.png
 
 
-3. Trigger condition for this content rule is by default configured to
-``Workflow state changed``
+Default Settings
+-----------------
 
+Following are the default settings which are configured during
+creation of content rule.
+
+Conditions
+^^^^^^^^^^
+
+1. Default Trigger condition for this content rule is: ``Workflow state changed``
+
+2. Default contition for this content rule is: Workflow State as
+``published``
+
+Data sent to IFTTT applet
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
+In the data sent to IFTTT, following values will be dynamically included
+(for which content on the site this content rule triggers):
+
+- Title
+- Absolute_url
+- Description
 
