@@ -41,7 +41,7 @@ class IftttTests(unittest.TestCase):
         element = getUtility(IRuleAction, name='plone.actions.Ifttt')
         self.assertEqual('plone.actions.Ifttt', element.addview)
         self.assertEqual('edit', element.editview)
-        self.assertEqual('IFTTT Trigger Action', element.title)
+        self.assertEqual('IFTTT Trigger', element.title)
 
     def test_AddFormView(self):
         element = getUtility(IRuleAction, name='plone.actions.Ifttt')

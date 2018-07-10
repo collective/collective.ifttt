@@ -42,9 +42,9 @@ class IIftttTriggerAction(Interface):
         Definition of the configuration available for a  Ifttt action
     """
     ifttt_event_name = schema.TextLine(
-        title=_(u'IFTTT applet name'),
+        title=_(u'IFTTT event name'),
         description=_(
-            u'Give the name of IFTTT applet which you want to trigger'
+            u'Give the name of IFTTT event which you want to trigger'
         ),
         required=True,
     )
@@ -112,7 +112,7 @@ class IftttTriggerActionExecutor(object):
         if payload_option == PAYLOAD_DESCRIPTION:
             payload[payload_option] = self.context.description
         elif payload_option == PAYLOAD_USERNAME:
-            payload[payload_option] = str(api.user.get_current())
+            payload[payload_option] = api.user.get_current().getId()
         elif payload_option == PAYLOAD_START:
             try:
                 '''
@@ -173,7 +173,7 @@ class IftttAddForm(ActionAddForm):
     An add form for the ifttt action
     """
     schema = IIftttTriggerAction
-    label = _(u'Add IFTTT Trigger Action')
+    label = _(u'Add IFTTT Trigger')
     description = _(
         u'An IFTTT trigger action will execute POST request to IFTTT'
     )
