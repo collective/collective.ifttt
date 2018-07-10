@@ -1,5 +1,5 @@
 What is IFTTT?
----------------------
+==============
 
 `ifttt.com <https://ifttt.com/discover>`_ - If This Then That, also known as IFTTT (pronounced /ɪft/) -
 is a free web-based service to create chains of simple conditional statements,
