@@ -1,5 +1,5 @@
-Trigger IFTTT" Content Rule Action
-==================================
+Trigger IFTTT Content Rule Action
+=================================
 
 `Plone Content Rules <https://docs.plone.org/working-with-content/managing-content/contentrules.html>`_
 are a powerful mechanism to automate dealing with content using `conditions` and `actions`.
