@@ -42,14 +42,8 @@ To know more about content rules, follow this
 .. image:: _static/images/add_ifttt_content_trigger/rule_tab.png
 
 
-Default Settings
------------------
-
-Following are the default settings which are configured during
-creation of content rule.
-
-Conditions
-^^^^^^^^^^
+Content Rule Conditions
+^^^^^^^^^^^^^^^^^^^^^^^
 
 Default Trigger condition for this content rule is: ``Object Modified``
 
