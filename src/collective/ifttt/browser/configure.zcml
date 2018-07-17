@@ -60,14 +60,14 @@
   <!-- Sub-menus -->
 
   <browser:menu
-    id="plone_contentmenu_iftttactions"
-    title="The 'actions' menu - allows the user to execute actions on an object"
+    id="plone_contentmenu_ifttttriggers"
+    title="The IFTTT - allows the user to configure IFTTT content rules on an object"
     class=".menu.IftttTriggersMenu"
     />
 
   <adapter for="* *"
-           name="plone.contentmenu.actions"
-           factory=".menu.IftttTriggerSubMenuItem"
-           provides=".interfaces.IContentMenuItem" />
+           name="plone.contentmenu.ifttttriggers"
+           factory=".menu.IftttTriggersSubMenuItem"
+           provides="plone.app.contentmenu.interfaces.IContentMenuItem" />
 
 </configure>
