@@ -67,7 +67,7 @@ class IftttTriggersMenu(BrowserMenu):
                 'selected': False,
                 'icon': icon,
                 'extra': {
-                    'id': 'plone-contentmenu-actions-' + aid,
+                    'id': 'plone-contentmenu-ifttttriggers-' + aid,
                     'separator': None,
                     'class': css_class,
                     'modal': modal,
