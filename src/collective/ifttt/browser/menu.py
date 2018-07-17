@@ -1,45 +1,33 @@
 # -*- coding: utf-8 -*-
-
 from collective.ifttt import _
 from collective.ifttt.browser.interfaces import IftttTriggersMenu
 from collective.ifttt.browser.interfaces import IftttTriggerSubMenuItem
-from plone.api.portal import get_tool
+from plone.app.contentmenu.menu import ActionsSubMenuItem
 from plone.memoize.instance import memoize
 from plone.protect.utils import addTokenToUrl
-# from Products.CMFCore.utils import getToolByName
-from Products.CMFPlone import utils
 from zope.browsermenu.menu import BrowserMenu
-from zope.browsermenu.menu import BrowserSubMenuItem
 from zope.component import getMultiAdapter
 from zope.interface import implementer
 
+import plone.api as api
+
 
 @implementer(IftttTriggerSubMenuItem)
-class IftttTriggerSubMenuItem(BrowserSubMenuItem):
-
-    title = _(u'label_actions_menu', default=u'Actions')
-    description = _(
-        u'title_actions_menu', default=u'Actions for the current content item'
+class IftttTriggersSubMenuItem(ActionsSubMenuItem):
+    title = _(
+        u'label_ifttt_menu',
+        default=u'IFTTT',
     )
-    submenuId = 'plone_contentmenu_iftttactions'
-
-    order = 30
+    description = _(
+        u'title_ifttt_menu',
+        default=u'IFTTT trigger content rules for the current content item',
+    )
+    submenuId = 'plone_contentmenu_ifttttriggers'
+    order = 35
     extra = {
-        'id': 'plone-contentmenu-actions',
+        'id': 'plone-contentmenu-ifttttriggers',
         'li_class': 'plonetoolbar-content-action'
     }
-
-    def __init__(self, context, request):
-        super(IftttTriggerSubMenuItem, self).__init__(context, request)
-        self.context_state = getMultiAdapter((context, request),
-                                             name='plone_context_state')
-
-    @property
-    def action(self):
-        folder = self.context
-        if not self.context_state.is_structural_folder():
-            folder = utils.parent(self.context)
-        return folder.absolute_url() + '/folder_contents'
 
     @memoize
     def available(self):
@@ -47,10 +35,7 @@ class IftttTriggerSubMenuItem(BrowserSubMenuItem):
         actions = actions_tool.listActionInfos(
             object=self.context, categories=('object_ifttt_triggers', ), max=1
         )
-        return len(editActions) > 0
-
-    def selected(self):
-        return False
+        return len(actions) > 0
 
 
 @implementer(IftttTriggersMenu)
@@ -73,7 +58,7 @@ class IftttTriggersMenu(BrowserMenu):
             icon = action.get('icon', None)
             modal = action.get('modal', None)
             if modal:
-                cssClass += ' pat-plone-modal'
+                css_class += ' pat-plone-modal'
 
             results.append({
                 'title': action['title'],
@@ -84,8 +69,8 @@ class IftttTriggersMenu(BrowserMenu):
                 'extra': {
                     'id': 'plone-contentmenu-actions-' + aid,
                     'separator': None,
-                    'class': cssClass,
-                    'modal': modal
+                    'class': css_class,
+                    'modal': modal,
                 },
                 'submenu': None,
             })
