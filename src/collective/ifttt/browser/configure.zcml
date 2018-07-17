@@ -57,4 +57,17 @@
       permission="collective.ifttt.manageSettings"
       />
 
+  <!-- Sub-menus -->
+
+  <browser:menu
+    id="plone_contentmenu_iftttactions"
+    title="The 'actions' menu - allows the user to execute actions on an object"
+    class=".menu.IftttTriggersMenu"
+    />
+
+  <adapter for="* *"
+           name="plone.contentmenu.actions"
+           factory=".menu.IftttTriggerSubMenuItem"
+           provides=".interfaces.IContentMenuItem" />
+
 </configure>
