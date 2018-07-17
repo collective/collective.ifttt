@@ -43,9 +43,9 @@ class IftttTriggerSubMenuItem(BrowserSubMenuItem):
 
     @memoize
     def available(self):
-        actions_tool = get_tool(self.context, 'portal_actions')
-        editActions = actions_tool.listActionInfos(
-            object=self.context, categories=('object_buttons', ), max=1
+        actions_tool = api.portal.get_tool('portal_actions')
+        actions = actions_tool.listActionInfos(
+            object=self.context, categories=('object_ifttt_triggers', ), max=1
         )
         return len(editActions) > 0
 
@@ -61,15 +61,15 @@ class IftttTriggersMenu(BrowserMenu):
 
         context_state = getMultiAdapter((context, request),
                                         name='plone_context_state')
-        editActions = context_state.actions('object_buttons')
-        if not editActions:
+        actions = context_state.actions('object_ifttt_triggers')
+        if not actions:
             return results
 
-        for action in editActions:
+        for action in actions:
             if not action['allowed']:
                 continue
             aid = action['id']
-            cssClass = 'actionicon-object_buttons-{0}'.format(aid)
+            css_class = 'actionicon-object_ifttt_triggers-{0}'.format(aid)
             icon = action.get('icon', None)
             modal = action.get('modal', None)
             if modal:
