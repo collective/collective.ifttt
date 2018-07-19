@@ -85,13 +85,13 @@ I goto home page
 # --- WHEN -------------------------------------------------------------------
 
 I check the 'Add IFTTT Event Trigger' action menu item
-    Element should not be visible  xpath=//li[@id='plone-contentmenu-actions']/a
+    Element should not be visible  xpath=//li[@id='plone-contentmenu-ifttttriggers']/a
 
 I trigger the '${action}' action menu item
-    Element should be visible  xpath=//li[@id='plone-contentmenu-actions']/a
-    Click link  xpath=//li[@id='plone-contentmenu-actions']/a
-    Wait until element is visible  id=plone-contentmenu-actions-${action}
-    Click link  id=plone-contentmenu-actions-${action}
+    Element should be visible  xpath=//li[@id='plone-contentmenu-ifttttriggers']/a
+    Click link  xpath=//li[@id='plone-contentmenu-ifttttriggers']/a
+    Wait until element is visible  id=plone-contentmenu-ifttttriggers-${action}
+    Click link  id=plone-contentmenu-ifttttriggers-${action}
 
 I fill Content Trigger form
    input 'test_event' into 'form-widgets-ifttt_event_name' textinput
