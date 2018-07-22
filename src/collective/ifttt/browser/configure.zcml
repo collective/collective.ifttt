@@ -57,4 +57,17 @@
       permission="collective.ifttt.manageSettings"
       />
 
+  <!-- Sub-menus -->
+
+  <browser:menu
+    id="plone_contentmenu_ifttttriggers"
+    title="The IFTTT - allows the user to configure IFTTT content rules on an object"
+    class=".menu.IftttTriggersMenu"
+    />
+
+  <adapter for="* *"
+           name="plone.contentmenu.ifttttriggers"
+           factory=".menu.IftttTriggersSubMenuItem"
+           provides="plone.app.contentmenu.interfaces.IContentMenuItem" />
+
 </configure>
