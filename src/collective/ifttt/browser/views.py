@@ -35,14 +35,12 @@ class checkView(BrowserView):
 def availableTriggers(context):
     registry = getUtility(IRuleStorage)
     terms = []
-
     if registry is not None:
-        for rules in registry.values():
-            # TODO come back and think for second argument
+        for key, rule in registry.items():
             terms.append(
                 SimpleVocabulary.createTerm(
-                    rules, rules.title.encode('utf-8'),
-                    _(u'${title}', mapping=dict(title=rules.title))
+                    rule, key.encode('utf-8'),
+                    _(u'${title}', mapping=dict(title=rule.title))
                 )
             )
 
