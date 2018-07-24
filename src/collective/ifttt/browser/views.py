@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+from Acquisition import aq_parent
 from collective.ifttt import _
+from collective.ifttt.interfaces import IFTTTMarker
 from plone import api
 from plone.contentrules.engine.interfaces import IRuleAssignable
+from plone.contentrules.engine.interfaces import IRuleAssignmentManager
 from plone.contentrules.engine.interfaces import IRuleStorage
 from Products.Five.browser import BrowserView
 from zope.component import getUtility
@@ -33,15 +36,34 @@ class checkView(BrowserView):
 
 @provider(IContextSourceBinder)
 def availableTriggers(context):
-    registry = getUtility(IRuleStorage)
+
+    # sometimes context is a collection so,
+    # we need to traverse to it's parent folder
+    context = context
+    allowed_portal_type = ['Folder', 'Plone Site']
+    while context.portal_type not in allowed_portal_type:
+        context = aq_parent(context)
+
+    # get rules assigned to context
+    assignable = IRuleAssignmentManager(context)
+
+    # get storage
+    storage = getUtility(IRuleStorage)
     terms = []
-    if registry is not None:
-        for key, rule in registry.items():
-            terms.append(
-                SimpleVocabulary.createTerm(
-                    rule, key.encode('utf-8'),
-                    _(u'${title}', mapping=dict(title=rule.title))
+
+    if storage and assignable is not None:
+
+        # iterate over context rules
+        for key, assignment in assignable.items():
+            rule = storage.get(key, None)
+
+            # check if given rule is an IFTTT rule
+            if IFTTTMarker.providedBy(rule):
+                terms.append(
+                    SimpleVocabulary.createTerm(
+                        rule, key.encode('utf-8'),
+                        _(u'${title}', mapping=dict(title=rule.title))
+                    )
                 )
-            )
 
     return SimpleVocabulary(terms)
