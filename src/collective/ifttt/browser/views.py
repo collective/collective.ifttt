@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
+from collective.ifttt import _
 from plone import api
 from plone.contentrules.engine.interfaces import IRuleAssignable
 from plone.contentrules.engine.interfaces import IRuleStorage
 from Products.Five.browser import BrowserView
+from zope.component import getUtility
 from zope.component import queryUtility
+from zope.interface import provider
+from zope.schema.interfaces import IContextSourceBinder
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 class checkView(BrowserView):
@@ -24,3 +29,21 @@ class checkView(BrowserView):
         if not secret_key:
             return False
         return True
+
+
+@provider(IContextSourceBinder)
+def availableTriggers(context):
+    registry = getUtility(IRuleStorage)
+    terms = []
+
+    if registry is not None:
+        for rules in registry.values():
+            # TODO come back and think for second argument
+            terms.append(
+                SimpleVocabulary.createTerm(
+                    rules, rules.title.encode('utf-8'),
+                    _(u'${title}', mapping=dict(title=rules.title))
+                )
+            )
+
+    return SimpleVocabulary(terms)
