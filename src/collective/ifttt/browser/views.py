@@ -37,13 +37,6 @@ class checkView(BrowserView):
 @provider(IContextSourceBinder)
 def availableTriggers(context):
 
-    # sometimes context is a collection so,
-    # we need to traverse to it's parent folder
-    context = context
-    allowed_portal_type = ['Folder', 'Plone Site']
-    while context.portal_type not in allowed_portal_type:
-        context = aq_parent(context)
-
     # get rules assigned to context
     assignable = IRuleAssignmentManager(context)
 

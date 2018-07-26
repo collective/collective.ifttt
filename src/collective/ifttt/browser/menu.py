@@ -46,6 +46,10 @@ class IftttTriggersMenu(BrowserMenu):
 
         context_state = getMultiAdapter((context, request),
                                         name='plone_context_state')
+        context_state = getMultiAdapter(
+            (context_state.canonical_object(), request),
+            name='plone_context_state'
+        )
         actions = context_state.actions('object_ifttt_triggers')
         if not actions:
             return results

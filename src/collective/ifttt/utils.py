@@ -161,15 +161,8 @@ class Rules(object):
 
         self.true_rule_id = self.rule_id.split('+')[-1]
 
-        # sometimes self.context is a collection so,
-        # we need to traverse to it's parent folder
-        context = self.context
-        allowed_portal_type = ['Folder', 'Plone Site']
-        while context.portal_type not in allowed_portal_type:
-            context = aq_parent(self.context)
-
         # 'form.button.AddAssignment'
-        rules_api.assign_rule(context, self.true_rule_id)
+        rules_api.assign_rule(self.context, self.true_rule_id)
 
         # imprints IFTTT marker on rules
         alsoProvides(self.rule, IFTTTMarker)
