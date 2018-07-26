@@ -3,11 +3,13 @@
 from collective.ifttt import _
 from plone import api
 from plone.autoform.form import AutoExtensibleForm
+from plone.contentrules.engine.interfaces import IRuleStorage
 from views import availableTriggers
 from z3c.form import button
 from z3c.form import form
 # from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema
+from zope.component import getUtility
 from zope.globalrequest import getRequest
 from zope.interface import Interface
 
@@ -52,7 +54,7 @@ class ManageTrigger(AutoExtensibleForm, form.Form):
         # call the base class version - this is very important!
         super(ManageTrigger, self).update()
 
-    @button.buttonAndHandler(_(u'Add'))
+    @button.buttonAndHandler(_(u'Delete'))
     def handleApply(self, action):
         data, errors = self.extractData()
         if errors:
@@ -60,7 +62,12 @@ class ManageTrigger(AutoExtensibleForm, form.Form):
             return
 
         try:
-            # all the backend magic goes here
+            # delete the requested triggers
+
+            rules = data.get('ifttt_triggers')
+            storage = getUtility(IRuleStorage)
+            for rule in rules:
+                del storage[rule.id.split('+')[-1]]
 
             # Redirect back to the front page with a status message
 
