@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from Acquisition import aq_parent
 from collective.ifttt import _
+from interfaces import IFTTTMarker
 from plone import api
 from plone.app.contentrules import api as rules_api
 from plone.contentrules.engine.interfaces import IRuleStorage
@@ -8,6 +8,7 @@ from plone.contentrules.rule.interfaces import IRuleAction
 from plone.contentrules.rule.interfaces import IRuleCondition
 from zope.component import getMultiAdapter
 from zope.component import getUtility
+from zope.interface import alsoProvides
 
 
 class Rules(object):
@@ -80,7 +81,8 @@ class Rules(object):
 
         # find the rule_id of newly created rule
         # HACK, last created rule is the required rule
-        self.rule_id = storage.values()[-1].id
+        self.rule = storage.values()[-1]
+        self.rule_id = self.rule.id
 
         # traverse to configuration page of content rule
         rule = api.portal.get().restrictedTraverse(self.rule_id)
@@ -158,12 +160,8 @@ class Rules(object):
 
         self.true_rule_id = self.rule_id.split('+')[-1]
 
-        # sometimes self.context is a collection so,
-        # we need to traverse to it's parent folder
-        context = self.context
-        allowed_portal_type = ['Folder', 'Plone Site']
-        while context.portal_type not in allowed_portal_type:
-            context = aq_parent(self.context)
-
         # 'form.button.AddAssignment'
-        rules_api.assign_rule(context, self.true_rule_id)
+        rules_api.assign_rule(self.context, self.true_rule_id)
+
+        # imprints IFTTT marker on rules
+        alsoProvides(self.rule, IFTTTMarker)

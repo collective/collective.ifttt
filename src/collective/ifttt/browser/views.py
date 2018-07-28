@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
+from collective.ifttt import _
+from collective.ifttt.interfaces import IFTTTMarker
 from plone import api
 from plone.contentrules.engine.interfaces import IRuleAssignable
+from plone.contentrules.engine.interfaces import IRuleAssignmentManager
 from plone.contentrules.engine.interfaces import IRuleStorage
 from Products.Five.browser import BrowserView
+from zope.component import getUtility
 from zope.component import queryUtility
+from zope.interface import provider
+from zope.schema.interfaces import IContextSourceBinder
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 class checkView(BrowserView):
@@ -24,3 +31,31 @@ class checkView(BrowserView):
         if not secret_key:
             return False
         return True
+
+
+@provider(IContextSourceBinder)
+def availableTriggers(context):
+
+    # get rules assigned to context
+    assignable = IRuleAssignmentManager(context)
+
+    # get storage
+    storage = getUtility(IRuleStorage)
+    terms = []
+
+    if storage and assignable is not None:
+
+        # iterate over context rules
+        for key, assignment in assignable.items():
+            rule = storage.get(key, None)
+
+            # check if given rule is an IFTTT rule
+            if IFTTTMarker.providedBy(rule):
+                terms.append(
+                    SimpleVocabulary.createTerm(
+                        rule, key.encode('utf-8'),
+                        _(u'${title}', mapping=dict(title=rule.title))
+                    )
+                )
+
+    return SimpleVocabulary(terms)

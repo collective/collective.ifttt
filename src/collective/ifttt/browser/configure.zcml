@@ -57,6 +57,13 @@
       permission="collective.ifttt.manageSettings"
       />
 
+  <browser:page
+      for="*"
+      name="ifttt_manage_trigger"
+      class=".manage_trigger.ManageTrigger"
+      permission="collective.ifttt.manageSettings"
+      />
+
   <!-- Sub-menus -->
 
   <browser:menu

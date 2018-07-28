@@ -23,3 +23,7 @@ class ICollectiveIFtttSettings(Interface):
 
 class IRequestsLibrary(Interface):
     '''Indirection interface for adapting some context to requests library'''
+
+
+class IFTTTMarker(Interface):
+    """Marker interface for IFTTT"""
