@@ -44,4 +44,8 @@
         factory=".ifttt.IftttTriggerAction"
         />
 
+    <!-- IFTTT adapter for easyform -->
+
+    <include file="actions.zcml" />
+
 </configure>
