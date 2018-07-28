@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from Acquisition import aq_parent
 from collective.ifttt import _
 from collective.ifttt.interfaces import IFTTTMarker
 from plone import api

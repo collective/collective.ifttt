@@ -2,12 +2,13 @@
 
 from collective.ifttt import _
 from plone import api
+from plone.autoform import directives as forms
 from plone.autoform.form import AutoExtensibleForm
 from plone.contentrules.engine.interfaces import IRuleStorage
 from views import availableTriggers
 from z3c.form import button
 from z3c.form import form
-# from z3c.form.browser.radio import RadioFieldWidget
+from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema
 from zope.component import getUtility
 from zope.globalrequest import getRequest
@@ -20,11 +21,9 @@ logger = logging.getLogger('collective.ifttt')
 
 
 class ManageTriggerSchema(Interface):
-    '''
-        Define schema for add rule form
-    '''
-    # TODO come back and fix import error
-    # AutoExtensibleForm('ifttt_trigger', RadioFieldWidget)
+    '''Define schema for manage IFTTT Trigger form'''
+
+    forms.widget('ifttt_trigger', RadioFieldWidget)
     ifttt_triggers = schema.Tuple(
         title=_(u'IFTTT Triggers'),
         description=_(u'Select certain IFTTT Triggers to delete'),
