@@ -8,11 +8,13 @@ below the current path is published.
 This will allow them to create IFTTT applets to,
 for example, email, tweet, or Facebook post about the content.
 
+**Pre-requisite**: IFTTT secret key should be configured as discribed at :ref:`configure_ifttt_secret_key`.
+
 Follow the steps given below to Add an IFTTT Content Trigger onto any folder.
 
 1. Traverse to folder on which you desire to apply IFTTT content trigger.
 
-2. From actions menu select ``Add Ifttt Content Trigger``
+2. From IFTTT menu select ``Add Ifttt Content Trigger``
 
 .. image:: _static/images/add_ifttt_content_trigger/select_actions.png
 
