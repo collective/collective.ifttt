@@ -48,7 +48,6 @@ def availableTriggers(context):
         # iterate over context rules
         for key, assignment in assignable.items():
             rule = storage.get(key, None)
-
             # check if given rule is an IFTTT rule
             if IFTTTMarker.providedBy(rule):
                 terms.append(

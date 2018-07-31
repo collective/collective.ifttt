@@ -8,7 +8,7 @@ from plone.contentrules.engine.interfaces import IRuleStorage
 from views import availableTriggers
 from z3c.form import button
 from z3c.form import form
-from z3c.form.browser.radio import RadioFieldWidget
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from zope import schema
 from zope.component import getUtility
 from zope.globalrequest import getRequest
@@ -23,7 +23,7 @@ logger = logging.getLogger('collective.ifttt')
 class ManageTriggerSchema(Interface):
     '''Define schema for manage IFTTT Trigger form'''
 
-    forms.widget('ifttt_trigger', RadioFieldWidget)
+    forms.widget('ifttt_triggers', CheckBoxFieldWidget)
     ifttt_triggers = schema.Tuple(
         title=_(u'IFTTT Triggers'),
         description=_(u'Select certain IFTTT Triggers to delete'),
