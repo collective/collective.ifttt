@@ -15,9 +15,6 @@ class IFTTTTrigger(Action):
     def __init__(self, **kw):
         for i, f in IIFTTT.namesAndDescriptions():
             setattr(self, i, kw.pop(i, f.default))
-        # TODO solve this error
-        'ValueError: Field type collective.ifttt.actions.easyform.IFTTTTrigger ' \
-        'specified for field insdfd_sdf is not supported'
         super(IFTTTTrigger, self).__init__(**kw)
 
     def onSuccess(self, fields, request):
@@ -29,4 +26,4 @@ IFTTTAction = ActionFactory(
     IFTTTTrigger, _(u'IFTTTTrigger'), 'collective.ifttt.easyformadapter'
 )
 
-IFTTTHandler = BaseHandler(IFTTTAction)
+IFTTTHandler = BaseHandler(IFTTTTrigger)
