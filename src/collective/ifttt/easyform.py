@@ -57,22 +57,18 @@ class IFTTTTrigger(Action):
     def onSuccess(self, fields, request):
 
         payload = {}
+
         # get fields data as payload data
         for i in self.payload_fields:
             payload[i] = fields.get(i)
 
-        # send payload data to IFTTTActionExecutor
-        self.IftttTriggerActionExecutor(payload)
-
-    def IftttTriggerActionExecutor(self, payload):
-        """
-            The IFTTT Trigger executor for easyforms
-        """
+        # IFTTTActionExecutor
         timeout = 120
         secret_key = api.portal.get_registry_record('ifttt.ifttt_secret_key')
         ifttt_trigger_url = 'https://maker.ifttt.com/trigger/' + \
                             self.ifttt_event_name + '/with/key/' + secret_key
 
+        # request handler
         r = queryMultiAdapter((self, getRequest()),
                               IRequestsLibrary,
                               default=requests)
