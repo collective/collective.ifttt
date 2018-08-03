@@ -8,11 +8,13 @@ current path is edited, including the information of who changed it.
 This will allow them to create IFTTT applets to, for example,
 log the edit information to Slack or a Google spreadsheet.
 
-Follow the steps given below to Add an IFTTT User Trigger onto any folder.
+**Pre-requisite**: IFTTT secret key should be configured as discribed at :ref:`configure_ifttt_secret_key`.
+
+Follow the steps given below to Add an IFTTT Content Trigger onto any folder.
 
 1. Traverse to folder on which you desire to apply IFTTT content trigger.
 
-2. From actions menu select ``Add Ifttt User Trigger``
+2. From IFTTT menu select ``Add Ifttt User Trigger``
 
 .. image:: _static/images/add_ifttt_content_trigger/select_actions.png
 
@@ -39,7 +41,7 @@ To know more about content rules, follow this
 
 2. ``Rules`` menu on left bar will show you all content rules applied on this folder.
 
-.. image:: _static/images/add_ifttt_content_trigger/rule_tab.png
+.. image:: _static/images/add_ifttt_user_trigger/rule_tab.png
 
 
 Content Rule Conditions
