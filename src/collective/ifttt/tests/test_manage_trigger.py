@@ -50,9 +50,7 @@ class TestActionMenu(unittest.TestCase):
         # test ifttt_manage interface
         self.request.form = {}
         # ERROR: storage value is not reached to manager
-        self.request.form['form.widgets.ifttt_triggers'] = [
-            storage.values()[0]
-        ]
+        self.request.form['form.widgets.ifttt_triggers'] = ['rule-1']
         self.request.form['form.buttons.delete'] = u'Delete'
         self.view = getMultiAdapter((self.portal, self.request),
                                     name='ifttt_manage_trigger')
