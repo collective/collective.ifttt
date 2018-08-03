@@ -4,6 +4,7 @@
 from setuptools import find_packages
 from setuptools import setup
 
+
 long_description = '\n\n'.join([
     open('README.rst').read(),
     open('CONTRIBUTORS.rst').read(),
@@ -44,7 +45,6 @@ setup(
         'setuptools',
         'z3c.jbot',
         'requests',
-        'StringIO',
     ],
     extras_require={
         'test': [

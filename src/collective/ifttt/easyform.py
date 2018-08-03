@@ -56,6 +56,22 @@ class IFTTTTrigger(Action):
     # send field data to IFTTT event and Execute IFTTTTrigger Action
     def onSuccess(self, fields, request):
 
+        # check registry of ifttt secret key
+        secret_key = api.portal.get_registry_record('ifttt.ifttt_secret_key')
+        if not secret_key:
+            api.portal.show_message(
+                message=_(
+                    u'Error calling IFTTT Trigger. '
+                    u'Missing IFTTT secret key'
+                ),
+                request=getRequest(),
+                type='info'
+            )
+            logger.info(
+                'Error calling IFTTT Trigger. Missing IFTTT secret key'
+            )
+            return False
+
         payload = {}
 
         # get fields data as payload data
@@ -64,7 +80,6 @@ class IFTTTTrigger(Action):
 
         # IFTTTActionExecutor
         timeout = 120
-        secret_key = api.portal.get_registry_record('ifttt.ifttt_secret_key')
         ifttt_trigger_url = 'https://maker.ifttt.com/trigger/' + \
                             self.ifttt_event_name + '/with/key/' + secret_key
 

@@ -77,18 +77,20 @@ class IFTTTTriggerTests(unittest.TestCase):
         ifttt_trigger.ifttt_event_name = u'ifttt applet'
         ifttt_trigger.payload_fields = ['replyto', 'topic', 'comments']
 
-        # set secret key
-        api.portal.set_registry_record(
-            name='ifttt.ifttt_secret_key',
-            value=u'secret',
-        )
-
         request = FakeRequest(
             add_auth=True,
             method='POST',
             topic='test subject',
             replyto='test@test.org',
             comments='test comments'
+        )
+
+        self.assertFalse(ifttt_trigger.onSuccess(request.form, request))
+
+        # set secret key
+        api.portal.set_registry_record(
+            name='ifttt.ifttt_secret_key',
+            value=u'secret',
         )
 
         # inspect logs
