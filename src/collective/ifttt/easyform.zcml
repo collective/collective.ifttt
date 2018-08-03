@@ -6,12 +6,12 @@
   <configure zcml:condition="installed collective.easyform">
 
       <utility
-        name="collective.ifttt.actions.easyform.IFTTTTrigger"
+        name="collective.ifttt.easyform.IFTTTTrigger"
         component=".easyform.IFTTTAction"
         />
 
       <utility
-        name="collective.ifttt.actions.easyform.IFTTTTrigger"
+        name="collective.ifttt.easyform.IFTTTTrigger"
         component=".easyform.IFTTTHandler"
         />
 
