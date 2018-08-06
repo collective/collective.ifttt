@@ -23,7 +23,7 @@ class TestActionMenu(unittest.TestCase):
         self.request = self.layer['request']
 
     def test_view(self):
-        # Check existence of IFTTT Action Menu
+        # Check existence of IFTTT Event Trigger Action Menu
 
         self.view = getMultiAdapter((self.portal, self.request),
                                     name='ifttt_event_trigger')
@@ -45,7 +45,7 @@ class TestActionMenu(unittest.TestCase):
         storage = getUtility(IRuleStorage)
 
         # check that rule has been successfully created
-        self.assertEqual(1, len(storage))
+        self.assertEqual(1, len(storage.values()))
         self.assertEqual(IActionSucceededEvent, storage.values()[0].event)
         # workflow_state to be published and content_types to be events
         # is default condition of content_trigger

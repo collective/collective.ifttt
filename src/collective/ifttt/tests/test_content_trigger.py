@@ -47,7 +47,7 @@ class TestActionMenu(unittest.TestCase):
         storage = getUtility(IRuleStorage)
 
         # check that rule has been successfully created
-        self.assertEqual(1, len(storage))
+        self.assertEqual(1, len(storage.values()))
         self.assertEqual(IActionSucceededEvent, storage.values()[0].event)
         # workflow_state to be published is
         # default condition of content_trigger

@@ -1,3 +1,5 @@
+.. _configure_ifttt_secret_key:
+
 Configuring a Plone Site with an IFTTT Secret Key
 =================================================
 

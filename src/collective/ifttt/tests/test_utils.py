@@ -41,7 +41,7 @@ class TestRules(unittest.TestCase):
 
         self.rules.add_rule(self.get_testData())
         storage = getUtility(IRuleStorage)
-        self.assertEqual(1, len(storage))
+        self.assertEqual(1, len(storage.values()))
         self.assertEqual(
             _(u'${title}_Trigger_${ifttt_event_name}'),
             storage.values()[0].title
