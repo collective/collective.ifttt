@@ -33,4 +33,4 @@ so you can create more customized applets.
    user_trigger
    event_trigger
    Trigger_IFTTT_Action
-   
+   IFTTT_Easyform_Action
