@@ -1,0 +1,20 @@
+<configure
+  xmlns="http://namespaces.zope.org/zope"
+  xmlns:zcml="http://namespaces.zope.org/zcml"
+  i18n_domain="collective.ifttt">
+
+  <configure zcml:condition="installed collective.easyform">
+
+      <utility
+        name="collective.ifttt.easyform.IFTTTTrigger"
+        component=".easyform.IFTTTAction"
+        />
+
+      <utility
+        name="collective.ifttt.easyform.IFTTTTrigger"
+        component=".easyform.IFTTTHandler"
+        />
+
+  </configure>
+
+</configure>

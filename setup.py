@@ -4,6 +4,7 @@
 from setuptools import find_packages
 from setuptools import setup
 
+
 long_description = '\n\n'.join([
     open('README.rst').read(),
     open('CONTRIBUTORS.rst').read(),
@@ -48,6 +49,7 @@ setup(
     extras_require={
         'test': [
             'plone.app.testing',
+            'collective.easyform',
             # Plone KGS does not use this version, because it would break
             # Remove if your package shall be part of coredev.
             # plone_coredev tests as of 2016-04-01.

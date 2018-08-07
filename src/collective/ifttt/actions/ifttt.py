@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
+from collective.ifttt import _
 from collective.ifttt.interfaces import IRequestsLibrary
 from OFS.SimpleItem import SimpleItem
 from plone import api
-from plone.app.contentrules import PloneMessageFactory as _
 from plone.app.contentrules.actions import ActionAddForm
 from plone.app.contentrules.actions import ActionEditForm
 from plone.app.contentrules.browser.formhelper import ContentRuleFormWrapper

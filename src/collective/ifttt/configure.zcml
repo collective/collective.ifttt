@@ -15,6 +15,10 @@
 
   <include file="permissions.zcml" />
 
+  <!-- IFTTT adapter for easyform -->
+
+  <include file="easyform.zcml" />
+
   <include package=".browser" />
 
   <include package=".actions" />

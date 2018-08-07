@@ -13,6 +13,7 @@ from zope.component import adapter
 from zope.interface import implementer
 from zope.interface import Interface
 
+import collective.easyform
 import collective.ifttt
 import json
 import logging
@@ -26,10 +27,12 @@ class CollectiveIftttLayer(PloneSandboxLayer):
         # Load any other ZCML that is required for your tests.
         # The z3c.autoinclude feature is disabled in the Plone fixture base
         # layer.
+        self.loadZCML(package=collective.easyform)
         self.loadZCML(package=collective.ifttt)
         self.loadZCML(package=collective.ifttt, name='testing.zcml')
 
     def setUpPloneSite(self, portal):
+        applyProfile(portal, 'collective.easyform:default')
         applyProfile(portal, 'collective.ifttt:default')
         # noinspection PyProtectedMember
         portal.portal_setup._profile_upgrade_versions[
