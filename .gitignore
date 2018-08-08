@@ -41,3 +41,4 @@ Pipfile
 docs/_build/
 selenium-screenshot*.png
 docs/_screenshots*
+.pypirc
