@@ -13,7 +13,7 @@ long_description = '\n\n'.join([
 
 setup(
     name='collective.ifttt',
-    version='1.0a1',
+    version='1.0a',
     description=
     "This addon is developed to make use of IFTTT webhook with Plone",
     long_description=long_description,
