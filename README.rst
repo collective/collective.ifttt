@@ -18,12 +18,12 @@ collective.ifttt is a Plone addon which enables any Plone site to play in the IF
 Examples
 --------
 
-Below are a few examples of using IFTTT with Plone sites.
+Below are a few examples of using IFTTT with Plone sites:
 
- - If a news item is published, then tweet about it or post it on Facebook.
- - If an event is published, then add it to my calendar.
- - If new users sign up for an event, then add them to a Slack channel.
- - If content changes, then record who edited it in a Google spreadsheet.
+- If a news item is published, then tweet about it or post it on Facebook.
+- If an event is published, then add it to my calendar.
+- If new users sign up for an event, then add them to a Slack channel.
+- If content changes, then record who edited it in a Google spreadsheet.
 
 Documentation
 -------------
