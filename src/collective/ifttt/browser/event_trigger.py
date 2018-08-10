@@ -42,7 +42,7 @@ class EventTriggerSchema(Interface):
             u'Select certain workflow transitions which should be restricted'
             u' to this event'
         ),
-        required=False,
+        required=True,
         missing_value=None,
         default=(),
         value_type=schema.Choice(
