@@ -1,25 +1,24 @@
-Trigger IFTTT Content Rule Action
-=================================
+Content Rule Action "Trigger IFTTT"
+===================================
 
 `Plone Content Rules <https://docs.plone.org/working-with-content/managing-content/contentrules.html>`_
 are a powerful mechanism to automate dealing with content using `conditions` and `actions`.
-It will automatically perform an action when certain events (known as “triggers”) takes place under desired condition.
+A content rule will automatically perform actions when certain Plone events (known as content rule “triggers”) 
+take place and the defined conditions are met.
 
-**Collective.ifttt** contains a new content rule action, `IFTTT Trigger`,
-that posts an event to the IFTTT web service when a content rule's conditions are satisfied.
-
-Content rules with the `IFTTT Trigger` is used to implement the IFTTT triggers,
-which is a powerful mechanism to automate dealing with 3rd party web services
-that collective.ifttt provides (Content Trigger, Event Trigger, etc.)
-
-You can create your own custom IFTTT trigger event by combining the `IFTTT Trigger` content rule action with
-your own conditions
+Collective.ifttt contains a new content rule action, `IFTTT Trigger`,
+that posts an event to the IFTTT web service when a content rule is triggered and its 
+conditions are satisfied. Content rules with this action are used to implement the folder-level
+triggers that collective.ifttt provides (Content Trigger, Event Trigger, etc.) If
+the functionality provided by these out-of-the-box triggers does not meet your needs, you
+can create your own content rule with the `IFTTT Trigger` action and your own conditions.
 
 Creating and Defining Content Rules
 -----------------------------------
 
-Following the instructions given on the Plone documentation `link <https://docs.plone.org/working-with-content/managing-content/contentrules.html#creating-and-defining-content-rules>`_.
-Create a content rule as follows and assign it to a folder on your site (or at the site root):
+`Plone's documentation <https://docs.plone.org/working-with-content/managing-content/contentrules.html#creating-and-defining-content-rules>`_ provides instructions for creating content rules. Here is a simple example of
+a content rule to send an IFTTT trigger when a news item is modified.
+The resulting rule can be assigned to any folder on your site or to the site root.
 
 - Triggering event: Object modified
 - Condition: Content type equals News Item
@@ -27,63 +26,25 @@ Create a content rule as follows and assign it to a folder on your site (or at t
 
 .. image:: _static/images/Trigger_IFTTT_Action/select_action.png
 
-- From the “Add IFTTT Trigger” page, fill out the form:
-- For the “IFTTT event name” enter: the IFTTT event which you want to trigger.
-- Choose the 3rd payload from available options (values of which
-  will be dynamically fetched from the content which trigger this action) :
+- Fill out the form:
 
-  - description - Description/Summary of content
-  - username - Username of Editor
-  - start - Event Start Date/Time
+  - For “IFTTT event name” enter the IFTTT event which you want to trigger.
+    Note that the event name will be used in the URL sent to the IFTTT webservice,
+    so it must be a URL-friendly name (no spaces or special characters)
+  - Choose the 3rd payload from the options provided - description, username, or 
+    event start time (which will only be used if the content triggering the action
+    is an event).
+    
 - Click the “Save” button.
 
 .. image:: _static/images/Trigger_IFTTT_Action/configure_action.png
 
-Data sent to IFTTT applet
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Data Sent to IFTTT
+------------------
 
-In the data sent to IFTTT, following payload (values) will be dynamically included
-(for which content on the site this content rule triggers):
+The event sent to IFTTT will contain the following 3 payload data items 
+from the content object that triggered the content rule:
 
 - Title
-- absolute_url
-- Chosen 3rd Payload
-
-Working example of IFTTT Trigger
---------------------------------
-
-Now that following the `Plone Content Rule <https://docs.plone.org/working-with-content/managing-content/contentrules.html#creating-and-defining-content-rules>`_
-we can see `IFTTT Trigger` in action.
-
-For example, below we will create a new `news item` and further update it's content
-to trigger IFTTT ``send_email`` applet.
-
-Create news item
-^^^^^^^^^^^^^^^^
-- Select Add new - news item
-
-.. image:: _static/images/Trigger_IFTTT_Action/new_news_item.png
-
-- Fill in form for new news. And click save.
-
-.. image:: _static/images/Trigger_IFTTT_Action/fill_new_news_item.png
-
-Update news item
-^^^^^^^^^^^^^^^^
-
-- Select Edit for news item.
-
-.. image:: _static/images/Trigger_IFTTT_Action/edit_new_news_item.png
-
-- Update news item. And click save.
-
-.. image:: _static/images/Trigger_IFTTT_Action/update_new_news_item.png
-
-Triggered the IFTTT Applet
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. image:: _static/images/Trigger_IFTTT_Action/IFTTT_trigger.png
-
-
-
-
+- URL
+- The 3rd payload chosen on the form
