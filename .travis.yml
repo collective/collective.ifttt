@@ -25,7 +25,8 @@ before_script:
   - firefox -v
 script:
   - bin/code-analysis
-  - bin/test -vvv --all
+  - bin/test -v
+  - bin/test -v --all -t robot
 after_success:
   - bin/createcoverage
   - bin/pip install coverage

@@ -6,6 +6,8 @@ from plone.app.contentrules import api as rules_api
 from plone.contentrules.engine.interfaces import IRuleStorage
 from plone.contentrules.rule.interfaces import IRuleAction
 from plone.contentrules.rule.interfaces import IRuleCondition
+from Products.statusmessages import STATUSMESSAGEKEY
+from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.interface import alsoProvides
@@ -68,7 +70,11 @@ class Rules(object):
         })
         addview.form_instance.add(content)
 
-    def configure_rule(self, data):
+        # clear status messages from pipeline
+        annotations = IAnnotations(self.request)
+        annotations[STATUSMESSAGEKEY] = None
+
+      def configure_rule(self, data):
         '''
         Add trigger and action conditions to newly created content rule
         '''
