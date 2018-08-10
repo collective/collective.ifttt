@@ -29,7 +29,7 @@ class EventTriggerSchema(Interface):
     ifttt_event_name = schema.TextLine(
         title=_(u'IFTTT event name'),
         description=_(
-            u'Give the name of IFTTT event which you want to trigger'
+            u'Give the name of the IFTTT event which you want to trigger'
         ),
         required=True,
         constraint=validate_ifttt_event_name,
@@ -39,8 +39,7 @@ class EventTriggerSchema(Interface):
     workflow_transitions = schema.Tuple(
         title=_(u'Workflow Transitions'),
         description=_(
-            u'Select certain workflow transitions which should be restricted'
-            u' to this event'
+            u'Select the workflow transitions to restrict this event to'
         ),
         required=True,
         missing_value=None,
