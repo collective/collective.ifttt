@@ -4,6 +4,8 @@ from collective.ifttt import _
 from collective.ifttt.actions.ifttt import PAYLOAD_DESCRIPTION
 from collective.ifttt.utils import Rules
 from plone import api
+from plone.app.z3cform.widget import SelectFieldWidget
+from plone.autoform import directives as forms
 from plone.autoform.form import AutoExtensibleForm
 from Products.CMFCore.interfaces._events import IActionSucceededEvent
 from z3c.form import button
@@ -31,6 +33,7 @@ class ContentTriggerSchema(Interface):
         required=True,
     )
 
+    forms.widget('content_types', SelectFieldWidget)
     content_types = schema.Tuple(
         title=_(u'Content Types'),
         description=_(
@@ -45,6 +48,7 @@ class ContentTriggerSchema(Interface):
         )
     )
 
+    forms.widget('workflow_transitions', SelectFieldWidget)
     workflow_transitions = schema.Tuple(
         title=_(u'Workflow Transitions'),
         description=_(

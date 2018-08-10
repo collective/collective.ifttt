@@ -4,6 +4,8 @@ from collective.ifttt import _
 from collective.ifttt.actions.ifttt import PAYLOAD_USERNAME
 from collective.ifttt.utils import Rules
 from plone import api
+from plone.app.z3cform.widget import SelectFieldWidget
+from plone.autoform import directives as forms
 from plone.autoform.form import AutoExtensibleForm
 from z3c.form import button
 from z3c.form import form
@@ -31,6 +33,7 @@ class UserTriggerSchema(Interface):
         required=True,
     )
 
+    forms.widget('content_types', SelectFieldWidget)
     content_types = schema.Tuple(
         title=_(u'Content Types'),
         description=_(
