@@ -54,7 +54,7 @@ Scenario: As a site administrator I can configure IFTTT Trigger on modified news
     And I configure new content rule form
     And I configure trigger condition
     When I configure IFTTT trigger action
-    Then I see 'test_ifttt_applet with context title,url' on success
+    Then I see '"test_ifttt_applet" with context title, url' on success
 
 
 # Already checked on test_controlpanel
@@ -117,7 +117,7 @@ I configure IFTTT trigger action
    input 'test_ifttt_applet' into 'form-widgets-ifttt_event_name' textinput
    select 'description' into 'form-widgets-payload_option' selectbox
    press '#form-buttons-save' into 'css=.pattern-modal-buttons' clickoverlaybutton
-   check 'context title,url' on pagecontent
+   check 'context title, url' on pagecontent
 
 I fill secret key
   Goto  ${PLONE_URL}/@@collectiveifttt-controlpanel

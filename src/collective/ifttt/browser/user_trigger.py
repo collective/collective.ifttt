@@ -3,6 +3,7 @@
 from collective.ifttt import _
 from collective.ifttt.actions.ifttt import PAYLOAD_USERNAME
 from collective.ifttt.utils import Rules
+from collective.ifttt.utils import validate_ifttt_event_name
 from plone import api
 from plone.autoform.form import AutoExtensibleForm
 from z3c.form import button
@@ -26,18 +27,20 @@ class UserTriggerSchema(Interface):
     ifttt_event_name = schema.TextLine(
         title=_(u'IFTTT event name'),
         description=_(
-            u'Give the name of IFTTT event which you want to trigger'
+            u'Give the name of the IFTTT event which you want to trigger. '
+            u'This will be part of the IFTTT webhook URL so should '
+            u'not contain'
+            u' white space or special characters - for '
+            u'example mysite_modified.'
         ),
         required=True,
+        constraint=validate_ifttt_event_name,
     )
 
     content_types = schema.Tuple(
         title=_(u'Content Types'),
-        description=_(
-            u'Select certain content types which should be restricted '
-            u'to this event'
-        ),
-        required=False,
+        description=_(u'Select the content types to restrict this event to'),
+        required=True,
         missing_value=None,
         default=(),
         value_type=schema.Choice(
@@ -53,7 +56,7 @@ class UserTrigger(AutoExtensibleForm, form.Form):
 
     schema = UserTriggerSchema
     ignoreContext = True
-    form_name = 'user_content_trigger'
+    form_name = 'user_trigger'
 
     label = _(u'Add new Content and User Trigger')
     description = _(
@@ -91,7 +94,7 @@ class UserTrigger(AutoExtensibleForm, form.Form):
 
             rule = Rules(self.context, self.request)
 
-            rule.add_rule(data)
+            rule.add_rule(data, self.form_name)
 
             rule.configure_rule(data)
 

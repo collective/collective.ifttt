@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective.ifttt import _
 from collective.ifttt.interfaces import IRequestsLibrary
+from collective.ifttt.utils import validate_ifttt_event_name
 from OFS.SimpleItem import SimpleItem
 from plone import api
 from plone.app.contentrules.actions import ActionAddForm
@@ -44,9 +45,14 @@ class IIftttTriggerAction(Interface):
     ifttt_event_name = schema.TextLine(
         title=_(u'IFTTT event name'),
         description=_(
-            u'Give the name of IFTTT event which you want to trigger'
+            u'Give the name of the IFTTT event which you want to trigger. '
+            u'This will be part of the IFTTT webhook URL so should '
+            u'not contain'
+            u' white space or special characters - for '
+            u'example mysite_modified.'
         ),
         required=True,
+        constraint=validate_ifttt_event_name,
     )
 
     payload_option = schema.Choice(
@@ -74,8 +80,8 @@ class IftttTriggerAction(SimpleItem):
     @property
     def summary(self):
         return _(
-            u'Trigger IFTTT action ${ifttt_event_name} with context title,'
-            u'url and ${payload_option}',
+            u'Trigger IFTTT event "${ifttt_event_name}" '
+            u'with context title, url and ${payload_option}',
             mapping=dict(
                 ifttt_event_name=self.ifttt_event_name,
                 payload_option=self.payload_option,

@@ -25,6 +25,7 @@ class TestRules(unittest.TestCase):
         self.context = self.layer['portal']
         self.request = self.layer['request']
         self.rules = Rules(self.context, self.request)
+        self.test_trigger_type = 'content_trigger'
 
     def get_testData(self):
         test_data = {
@@ -39,11 +40,14 @@ class TestRules(unittest.TestCase):
 
     def test_add(self):
 
-        self.rules.add_rule(self.get_testData())
+        self.rules.add_rule(self.get_testData(), self.test_trigger_type)
         storage = getUtility(IRuleStorage)
         self.assertEqual(1, len(storage.values()))
         self.assertEqual(
-            _(u'${title}_Trigger_${ifttt_event_name}'),
+            _(
+                u'IFTTT ${trigger_type} for "${ifttt_event_name}" '
+                u'on content_types ${content_types} at ${path}'
+            ),
             storage.values()[0].title
         )
         self.assertEqual(True, storage.values()[0].enabled)
@@ -53,7 +57,7 @@ class TestRules(unittest.TestCase):
 
     def test_configuration(self):
 
-        self.rules.add_rule(self.get_testData())
+        self.rules.add_rule(self.get_testData(), self.test_trigger_type)
         self.rules.configure_rule(self.get_testData())
         storage = getUtility(IRuleStorage)
         self.assertEqual(6, len(storage.values()[0].conditions))
@@ -84,7 +88,7 @@ class TestRules(unittest.TestCase):
 
     def test_assigning(self):
 
-        self.rules.add_rule(self.get_testData())
+        self.rules.add_rule(self.get_testData(), self.test_trigger_type)
         self.rules.configure_rule(self.get_testData())
         self.rules.apply_rule()
         rule = IRuleAssignmentManager(self.context)
