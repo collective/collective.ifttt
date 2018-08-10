@@ -8,7 +8,7 @@ creation of IFTTT applets to, for example, email, tweet, or Facebook
 post about the content.
 
 **Note**: For the trigger to work, an IFTTT secret key must be configured 
-for the site as discribed at :ref:`configure_ifttt_secret_key`.
+for the site as described at :ref:`configure_ifttt_secret_key`.
 
 1. Traverse to the desired folder.
 
