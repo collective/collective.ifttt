@@ -1,5 +1,7 @@
 language: python
 sudo: false
+addons:
+  firefox: "61.0"
 cache:
   pip: true
   directories:
@@ -18,9 +20,9 @@ install:
   - tar -xzf geckodriver-v0.21.0-linux64.tar.gz -C bin
   - export PATH=$(pwd)/bin:$PATH
 before_script:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
-- firefox -v
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - firefox -v
 script:
   - bin/code-analysis
   - bin/test -vvv --all
