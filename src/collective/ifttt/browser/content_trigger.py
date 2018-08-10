@@ -5,8 +5,6 @@ from collective.ifttt.actions.ifttt import PAYLOAD_DESCRIPTION
 from collective.ifttt.utils import Rules
 from collective.ifttt.utils import validate_ifttt_event_name
 from plone import api
-from plone.app.z3cform.widget import SelectFieldWidget
-from plone.autoform import directives as forms
 from plone.autoform.form import AutoExtensibleForm
 from Products.CMFCore.interfaces._events import IActionSucceededEvent
 from z3c.form import button
@@ -39,7 +37,6 @@ class ContentTriggerSchema(Interface):
         constraint=validate_ifttt_event_name,
     )
 
-    forms.widget('content_types', SelectFieldWidget)
     content_types = schema.Tuple(
         title=_(u'Content Types'),
         description=_(u'Select the content types to restrict this event to'),
@@ -51,7 +48,6 @@ class ContentTriggerSchema(Interface):
         )
     )
 
-    forms.widget('workflow_transitions', SelectFieldWidget)
     workflow_transitions = schema.Tuple(
         title=_(u'Workflow Transitions'),
         description=_(
