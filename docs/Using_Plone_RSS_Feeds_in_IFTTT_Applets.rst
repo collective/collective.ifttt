@@ -2,54 +2,53 @@ Using Plone RSS Feeds in IFTTT Applets
 ======================================
 
 To learn how to create an IFTTT applet using an
-RSS feed, follow the demonstration below.
-
-This applet will add a new row
-on Google Spreadsheet each time an RSS Feed get publishes.
-However, one may teak this configuration based on user requirement.
+RSS feed, follow the example below.
+This applet will add a new row to a 
+Google Spreadsheet each time an item is published on an RSS feed.
+You can change this configuration to suit your own requirements.
 
 -------------------
 
-- Signup at `free IFTTT account <https://ifttt.com/join?utm_medium=Help&utm_source=Applets&utm_campaign=Questions_About_Applets>`_.
+- Signup for a `free IFTTT account <https://ifttt.com/join>`_.
 
-- Navigate to your Username in the upper right corner
+- Navigate to your username in the upper right corner.
 
-- Select **New Applet** from the dropdown menu
+- Select **New Applet** from the dropdown menu.
 
-- Click the blue 'this' text
+- Click the blue 'this' text.
 
-- Search ``rss`` in search box. And select ``RSS Feed``
+- Search for ``rss`` and select ``RSS Feed``.
 
 .. image:: _static/images/plone_rss_applet/search_rss.png
 
-- Choose `New feed item`
+- Choose `New feed item` as the trigger.
 
-- Fill RSS feed url in the given space. And click `Create Trigger`
+- Fill in the RSS feed URL in the given space. Click `Create Trigger`.
 
 .. image:: _static/images/plone_rss_applet/fill_rss_url.png
 
-- Click the blue 'that' text
+- Click the blue 'that' text.
 
-- Choose `Google Sheets` as Action Service
+- Search for ``google`` and choose `Google Sheets` as the Action Service.
 
 .. image:: _static/images/plone_rss_applet/choose_google_sheets.png
 
--  Choose `Add row to spreadsheet`
+-  Choose `Add row to spreadsheet` as the action.
 
-- Configure the form based on required tweaks and hit `Create Action`
+- Configure the form as you wish and click `Create Action`.
 
 .. image:: _static/images/plone_rss_applet/configure_action.png
 
-- Click `Finish`
+- Click `Finish`.
 
 .. image:: _static/images/plone_rss_applet/finish.png
 
-Hurrah!! We successfully created our IFTTT Applet.
+This creates a new IFTTT Applet.
 
 .. image:: _static/images/plone_rss_applet/successfull_creation.png
 
-Now Every time an RSS get publishes, it will automatically be added as a new row
-to our Google Spreadsheet.
+Now every time an item is published on the RSS feed, it will automatically be added as a new row
+to the Google Spreadsheet.
 
 .. image:: _static/images/plone_rss_applet/google_spreadsheet.png
 
