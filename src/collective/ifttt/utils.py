@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from collective.ifttt import _
 from interfaces import IFTTTMarker
 from plone import api
@@ -74,7 +75,7 @@ class Rules(object):
         annotations = IAnnotations(self.request)
         annotations[STATUSMESSAGEKEY] = None
 
-      def configure_rule(self, data):
+    def configure_rule(self, data):
         '''
         Add trigger and action conditions to newly created content rule
         '''
