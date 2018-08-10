@@ -9,6 +9,11 @@ add new events to a calendar.
 **Note**: For the trigger to work, an IFTTT secret key must be configured 
 for the site as described at :ref:`configure_ifttt_secret_key`.
 
+Add Event Trigger
+-----------------
+
+Follow the steps given below to add an Event Trigger to any folder.
+
 1. Traverse to the desired folder.
 
 2. From the IFTTT menu select ``Add IFTTT Event Trigger``.
