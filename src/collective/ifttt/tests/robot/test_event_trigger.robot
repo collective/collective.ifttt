@@ -94,13 +94,21 @@ I trigger the '${action}' action menu item
     Click link  id=plone-contentmenu-ifttttriggers-${action}
 
 I fill Content Trigger form
-   input 'test_event' into 'form-widgets-ifttt_event_name' textinput
-   select 'show' into 'form-widgets-workflow_transitions-from' selectbox
-   press 'from2toButton' clickbutton
-   select 'submit' into 'form-widgets-workflow_transitions-from' selectbox
-   press 'from2toButton' clickbutton
-   press 'form.buttons.add' clickbutton
+    input 'test_event' into 'form-widgets-ifttt_event_name' textinput
 
+    # Wait that select2 widget has been initialized
+    Wait until page contains element  css=#formfield-form-widgets-workflow_transitions .select2-choices
+
+    # Activate the widget to open its list of available options
+    Click element  css=#formfield-form-widgets-workflow_transitions .select2-choices
+
+    # Wait that the widget options list is open and first item is auto-selected
+    Wait until page contains element  css=.select2-input.select2-focused
+
+    # Type value and enter to the box to get the value selected
+    Input text  css=.select2-input.select2-focused  Approve // Publish [publish]\n
+
+    press 'form.buttons.add' clickbutton
 # --- THEN -------------------------------------------------------------------
 
 I see '${sucess_message}' on success

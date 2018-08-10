@@ -74,7 +74,7 @@ class Rules(object):
         annotations = IAnnotations(self.request)
         annotations[STATUSMESSAGEKEY] = None
 
-    def configure_rule(self, data):
+      def configure_rule(self, data):
         '''
         Add trigger and action conditions to newly created content rule
         '''
