@@ -23,7 +23,7 @@ before_script:
 - firefox -v
 script:
   - bin/code-analysis
-  - bin/test --all
+  - bin/test -vvv --all
 after_success:
   - bin/createcoverage
   - bin/pip install coverage
