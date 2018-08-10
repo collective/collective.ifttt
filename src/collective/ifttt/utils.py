@@ -38,8 +38,8 @@ class Rules(object):
         )
 
         rule_description = _(
-            u'This rule is created to trigger ${ifttt_event_name} '
-            u'on ${title} folder',
+            u'This rule triggers an IFTTT event '
+            u'"${ifttt_event_name}" on the ${title} folder',
             mapping=dict(
                 ifttt_event_name=data.get('ifttt_event_name'),
                 title=self.context.Title().decode('utf-8', 'ignore'),
@@ -61,16 +61,6 @@ class Rules(object):
             'event': data.get('event')
         })
         addview.form_instance.add(content)
-
-    def delete_rule(self):
-        '''
-        Delete rule
-        '''
-
-        # rule_id = self.request['rule-id']
-        # storage = getUtility(IRuleStorage)
-        # del storage[rule_id]
-        # return 'ok'
 
     def configure_rule(self, data):
         '''

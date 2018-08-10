@@ -47,6 +47,8 @@ class IIftttTriggerAction(Interface):
             u'Give the name of IFTTT event which you want to trigger'
         ),
         required=True,
+        # BUG - add one word contraint to this and to all ifttt_triggers
+        # constraints=validate_ifttt_event,
     )
 
     payload_option = schema.Choice(
@@ -74,8 +76,8 @@ class IftttTriggerAction(SimpleItem):
     @property
     def summary(self):
         return _(
-            u'Trigger IFTTT action ${ifttt_event_name} with context title,'
-            u'url and ${payload_option}',
+            u'Trigger IFTTT event "${ifttt_event_name}" '
+            u'with context title, url and ${payload_option}',
             mapping=dict(
                 ifttt_event_name=self.ifttt_event_name,
                 payload_option=self.payload_option,
