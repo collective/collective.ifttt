@@ -45,7 +45,7 @@ class IIftttTriggerAction(Interface):
     ifttt_event_name = schema.TextLine(
         title=_(u'IFTTT event name'),
         description=_(
-            u'Give the name of IFTTT event which you want to trigger'
+            u'Give the name of the IFTTT event which you want to trigger'
         ),
         required=True,
         constraint=validate_ifttt_event_name,
