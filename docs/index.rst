@@ -17,8 +17,10 @@ Contents
 
 This documentation will teach you how to use collective.ifttt to create IFTTT applets for Plone sites.
 We'll start with setting up a Plone RSS feed, which can be used on IFTTT without doing anything special.
-In the sections after that you will learn how to set up your IFTTT secret key and create IFTTT triggers,
-so you can create more customized applets.
+In the sections after that you will learn how to set up your IFTTT secret key and create IFTTT triggers 
+for content and forms, so you can create more customized applets. Finally, we explain how this add-on
+uses Plone content rules under the hood. For those who are familiar with them, we show how to get even 
+more flexibility by creating a content rule with an IFTTT action.
 
 
 .. toctree::
@@ -33,7 +35,7 @@ so you can create more customized applets.
    user_trigger
    event_trigger
    manage_trigger
-   Trigger_IFTTT_Action
    IFTTT_Easyform_Action
    IFTTT_Trigger_and_Applet
+   Trigger_IFTTT_Action
 
