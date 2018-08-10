@@ -56,7 +56,7 @@ class UserTrigger(AutoExtensibleForm, form.Form):
 
     schema = UserTriggerSchema
     ignoreContext = True
-    form_name = 'user_content_trigger'
+    form_name = 'user_trigger'
 
     label = _(u'Add new Content and User Trigger')
     description = _(
@@ -94,7 +94,7 @@ class UserTrigger(AutoExtensibleForm, form.Form):
 
             rule = Rules(self.context, self.request)
 
-            rule.add_rule(data)
+            rule.add_rule(data, self.form_name)
 
             rule.configure_rule(data)
 

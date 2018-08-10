@@ -56,7 +56,7 @@ class EventTrigger(AutoExtensibleForm, form.Form):
 
     schema = EventTriggerSchema
     ignoreContext = True
-    form_name = 'event_content_trigger'
+    form_name = 'event_trigger'
 
     label = _(u'Add new Event trigger')
     description = _(
@@ -100,7 +100,7 @@ class EventTrigger(AutoExtensibleForm, form.Form):
 
             rule = Rules(self.context, self.request)
 
-            rule.add_rule(data)
+            rule.add_rule(data, self.form_name)
 
             rule.configure_rule(data)
 

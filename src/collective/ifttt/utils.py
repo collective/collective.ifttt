@@ -22,18 +22,21 @@ class Rules(object):
         ifttt_event_name, content_types, workflow_transitions  and payload
         '''
 
-    def add_rule(self, data):
+    def add_rule(self, data, trigger_type):
         '''
         Create new rule
         require data related to field values to create new rule
         '''
 
-        # REDFINE ME
         rule_name = _(
-            u'${title}_Trigger_${ifttt_event_name}',
+            u'IFTTT ${trigger_type} for "${ifttt_event_name}" on '
+            u'content_types ${content_types} at ${path}',
             mapping=dict(
+                trigger_type=trigger_type,
                 ifttt_event_name=data.get('ifttt_event_name'),
+                content_types=(', ').join(data.get('content_types')),
                 title=self.context.Title().decode('utf-8', 'ignore'),
+                path=self.context.absolute_url_path(),
             )
         )
 

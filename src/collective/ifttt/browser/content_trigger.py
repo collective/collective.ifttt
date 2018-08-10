@@ -71,7 +71,7 @@ class ContentTrigger(AutoExtensibleForm, form.Form):
 
     schema = ContentTriggerSchema
     ignoreContext = True
-    form_name = 'add_ifttt_rule'
+    form_name = 'content_trigger'
 
     label = _(u'Add new Content Trigger')
     description = _(
@@ -113,7 +113,7 @@ class ContentTrigger(AutoExtensibleForm, form.Form):
 
             rule = Rules(self.context, self.request)
 
-            rule.add_rule(data)
+            rule.add_rule(data, self.form_name)
 
             rule.configure_rule(data)
 
