@@ -26,8 +26,12 @@ class IIFTTT(IAction):
     ifttt_event_name = schema.TextLine(
         title=_(u'IFTTT event name'),
         description=_(
-            u'Give the name of IFTTT event which you want to trigger '
-            u'upon the successfull submission of easyform'
+            u'Give the name of the IFTTT event which you want to trigger. '
+            u'Upon the successfull submission of easyform '
+            u'This will be part of the IFTTT webhook URL so should '
+            u'not contain'
+            u' white space or special characters - for '
+            u'example mysite_modified.'
         ),
         required=True,
     )
