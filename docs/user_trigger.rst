@@ -10,6 +10,11 @@ log the edit information to Slack or a Google spreadsheet.
 **Note**: For the trigger to work, an IFTTT secret key must be configured 
 for the site as described at :ref:`configure_ifttt_secret_key`.
 
+Add User Trigger
+----------------
+
+Follow the steps given below to add a User Trigger to any folder.
+
 1. Traverse to the desired folder.
 
 2. From the IFTTT menu select ``Add IFTTT User Trigger``.
