@@ -13,10 +13,15 @@ you can create a collection content item for that purpose.
 You can choose what `content types` to aggregate and filter by fields such as `labels, dates, location or language`.
 Collections are language aware so this works correctly on multilingual sites.
 
-Once you have an RSS feed you can use it on IFTTT without doing anything special. (No secret key, no IFTTT trigger needed.)
+Once you have an RSS feed you can use it on IFTTT without doing anything special. No secret key, no IFTTT trigger,
+you don't even need to install collective.ifttt.
 
-Below are the steps to create an example RSS Feed on a Plone site. You can tweak the configuration
+Below are the steps to create an example RSS feed on a Plone 5 site. You can tweak the configuration
 to meet your requirements and make different kinds of RSS feeds given the flexibility of collections.
+
+If you are using Plone 4, the Site Setup instructions given below are similar. 
+`See this page <https://www2.le.ac.uk/webcentre/plone/build/advanced/creating-an-rss-feed-from-plone-content-syndication>`_ 
+for instructons on how to enable RSS on a folder or collection.
 
 Enabling Syndication
 --------------------
@@ -65,7 +70,7 @@ Add a new collection.
 
 *Step 3*
 
-Configure your collection. The configuration explained below will aggregate all available published content.
+Configure your collection. The configuration given below will aggregate all available published content.
 This can be tweaked to suit your own requirements.
 
  1. Update ``Title`` to "Plone Site - RSS feed" or any other suitable name.
@@ -106,7 +111,7 @@ This is an optional step - many sites choose not to show these feed links becaus
 
 .. image:: _static/images/Enable_Rss_Feed/creating_collection/Enable_feed_icon.png
 
-**Now your RSS feed is ready to be used in an IFTTT applet. You can test it by copy-pasting the RSS URL
-into an RSS Reader, like feeder.co or Mozilla Reader.**
+Now your RSS feed is ready to be used in an IFTTT applet. You can test it by copy-pasting the RSS URL
+into an RSS Reader, like feeder.co or Mozilla Reader.
 
 
