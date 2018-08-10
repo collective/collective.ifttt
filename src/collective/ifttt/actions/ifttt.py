@@ -129,7 +129,9 @@ class IftttTriggerActionExecutor(object):
                 because their start date & time should dynamically adapt to the
                 next occurrence.
                 '''
-                payload['value1'] = IEventAccessor(self.context).start
+                # add exception handling for surprising data
+                payload['value1'] = IEventAccessor(self.event.object
+                                                   ).start.isoformat()
             except TypeError:
                 '''
                 when the context does implement or have
@@ -143,7 +145,6 @@ class IftttTriggerActionExecutor(object):
                                 default=requests)
         logger.info('Calling Post request to IFTTT')
         try:
-            # Bug payloads are not filtered by IFTTT
             req.post(ifttt_trigger_url, data=payload, timeout=self.timeout)
 
             # show this logging message to Plone user as notification
