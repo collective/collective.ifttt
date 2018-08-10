@@ -45,7 +45,11 @@ class IIftttTriggerAction(Interface):
     ifttt_event_name = schema.TextLine(
         title=_(u'IFTTT event name'),
         description=_(
-            u'Give the name of the IFTTT event which you want to trigger'
+            u'Give the name of the IFTTT event which you want to trigger. '
+            u'This will be part of the IFTTT webhook URL so should '
+            u'not contain'
+            u' white space or special characters - for '
+            u'example mysite_modified.'
         ),
         required=True,
         constraint=validate_ifttt_event_name,
