@@ -42,7 +42,7 @@ class UserTriggerSchema(Interface):
             u'Select certain content types which should be restricted '
             u'to this event'
         ),
-        required=False,
+        required=True,
         missing_value=None,
         default=(),
         value_type=schema.Choice(
