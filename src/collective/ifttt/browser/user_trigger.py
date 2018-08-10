@@ -5,8 +5,6 @@ from collective.ifttt.actions.ifttt import PAYLOAD_USERNAME
 from collective.ifttt.utils import Rules
 from collective.ifttt.utils import validate_ifttt_event_name
 from plone import api
-from plone.app.z3cform.widget import SelectFieldWidget
-from plone.autoform import directives as forms
 from plone.autoform.form import AutoExtensibleForm
 from z3c.form import button
 from z3c.form import form
@@ -39,7 +37,6 @@ class UserTriggerSchema(Interface):
         constraint=validate_ifttt_event_name,
     )
 
-    forms.widget('content_types', SelectFieldWidget)
     content_types = schema.Tuple(
         title=_(u'Content Types'),
         description=_(u'Select the content types to restrict this event to'),
