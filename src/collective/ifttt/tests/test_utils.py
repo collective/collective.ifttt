@@ -44,7 +44,10 @@ class TestRules(unittest.TestCase):
         storage = getUtility(IRuleStorage)
         self.assertEqual(1, len(storage.values()))
         self.assertEqual(
-            _(u'${title}_Trigger_${ifttt_event_name}'),
+            _(
+                u'IFTTT ${trigger_type} for "${ifttt_event_name}" '
+                u'on content_types ${content_types} at ${path}'
+            ),
             storage.values()[0].title
         )
         self.assertEqual(True, storage.values()[0].enabled)
