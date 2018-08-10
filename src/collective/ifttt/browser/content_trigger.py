@@ -3,6 +3,7 @@
 from collective.ifttt import _
 from collective.ifttt.actions.ifttt import PAYLOAD_DESCRIPTION
 from collective.ifttt.utils import Rules
+from collective.ifttt.utils import validate_ifttt_event_name
 from plone import api
 from plone.app.z3cform.widget import SelectFieldWidget
 from plone.autoform import directives as forms
@@ -31,6 +32,7 @@ class ContentTriggerSchema(Interface):
             u'Give the name of IFTTT event which you want to trigger'
         ),
         required=True,
+        constraint=validate_ifttt_event_name,
     )
 
     forms.widget('content_types', SelectFieldWidget)

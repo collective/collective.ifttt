@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective.ifttt import _
 from collective.ifttt.interfaces import IRequestsLibrary
+from collective.ifttt.utils import validate_ifttt_event_name
 from OFS.SimpleItem import SimpleItem
 from plone import api
 from plone.app.contentrules.actions import ActionAddForm
@@ -47,8 +48,7 @@ class IIftttTriggerAction(Interface):
             u'Give the name of IFTTT event which you want to trigger'
         ),
         required=True,
-        # BUG - add one word contraint to this and to all ifttt_triggers
-        # constraints=validate_ifttt_event,
+        constraint=validate_ifttt_event_name,
     )
 
     payload_option = schema.Choice(

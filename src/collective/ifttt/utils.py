@@ -9,6 +9,9 @@ from plone.contentrules.rule.interfaces import IRuleCondition
 from zope.component import getMultiAdapter
 from zope.component import getUtility
 from zope.interface import alsoProvides
+from zope.interface import Invalid
+
+import re
 
 
 class Rules(object):
@@ -158,3 +161,16 @@ class Rules(object):
 
         # imprints IFTTT marker on rules
         alsoProvides(self.rule, IFTTTMarker)
+
+
+def validate_ifttt_event_name(value):
+    """ checks naming convention for ifttt_event_name """
+    if re.match(r'^[a-zA-Z_]+$', value) is not None:
+        return True
+    else:
+        raise Invalid(
+            _(
+                u'Event name can only contain letters '
+                u'from a to z, A to Z and underscores (e.g. Event_namE)'
+            )
+        )
