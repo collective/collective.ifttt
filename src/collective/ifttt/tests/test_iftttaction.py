@@ -13,16 +13,17 @@ from plone.contentrules.rule.interfaces import IExecutable
 from plone.contentrules.rule.interfaces import IRuleAction
 from zope.component import getMultiAdapter
 from zope.component import getUtility
+from zope.component.interfaces import IObjectEvent
 from zope.interface import implementer
-from zope.interface import Interface
 from zope.testing.loggingsupport import InstalledHandler
 
 import unittest
 
 
-@implementer(Interface)
+@implementer(IObjectEvent)
 class DummyEvent(object):
-    pass
+    def __init__(self, object):
+        self.object = object
 
 
 class IftttTests(unittest.TestCase):
@@ -96,7 +97,8 @@ class IftttTests(unittest.TestCase):
             handler = InstalledHandler('collective.ifttt.requests')
 
             element.payload_option = payload_option[i]
-            ex = getMultiAdapter((context, element, DummyEvent()), IExecutable)
+            ex = getMultiAdapter((context, element, DummyEvent(self.folder)),
+                                 IExecutable)
             self.assertTrue(ex())
             messages = [record.getMessage() for record in handler.records]
             self.assertGreater(len(messages), 0)

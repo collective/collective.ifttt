@@ -132,7 +132,7 @@ class IftttTriggerActionExecutor(object):
                 # add exception handling for surprising data
                 payload['value1'] = IEventAccessor(self.event.object
                                                    ).start.isoformat()
-            except TypeError:
+            except TypeError or AttributeError:
                 '''
                 when the context does implement or have
                 registered adapter for IEventAccessor interface/contract
