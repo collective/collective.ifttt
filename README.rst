@@ -8,7 +8,9 @@
     :target: https://coveralls.io/github/collective/collective.ifttt
 .. image:: https://readthedocs.org/projects/collectiveifttt/badge/?version=latest
     :target: https://collectiveifttt.readthedocs.io/en/latest/?badge=latest
-
+.. image:: https://badge.fury.io/py/collective.ifttt.svg
+    :target: https://badge.fury.io/py/collective.ifttt
+    :alt: Latest PyPI version
 ================
 collective.ifttt
 ================
