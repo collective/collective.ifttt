@@ -77,10 +77,12 @@ class IFTTTTrigger(Action):
             return False
 
         payload = {}
-
+        count = 1
         # get fields data as payload data
         for i in self.payload_fields:
-            payload[i] = fields.get(i)
+            key = 'value' + str(count)
+            payload[key] = fields.get(i)
+            count += 1
 
         # IFTTTActionExecutor
         timeout = 120

@@ -112,13 +112,13 @@ class IftttTriggerActionExecutor(object):
         secret_key = api.portal.get_registry_record('ifttt.ifttt_secret_key')
         ifttt_trigger_url = 'https://maker.ifttt.com/trigger/' + \
                             ifttt_event_name + '/with/key/' + secret_key
-        payload = {'title': title, 'url': url}
+        payload = {'value3': title, 'value2': url}
 
         # define 3rd payload as chosen by user
         if payload_option == PAYLOAD_DESCRIPTION:
-            payload[payload_option] = self.context.description
+            payload['value1'] = self.context.description
         elif payload_option == PAYLOAD_USERNAME:
-            payload[payload_option] = api.user.get_current().getId()
+            payload['value1'] = api.user.get_current().getId()
         elif payload_option == PAYLOAD_START:
             try:
                 '''
@@ -129,23 +129,23 @@ class IftttTriggerActionExecutor(object):
                 because their start date & time should dynamically adapt to the
                 next occurrence.
                 '''
-                payload[payload_option] = IEventAccessor(self.context).start
-            except TypeError:
+                # add exception handling for surprising data
+                payload['value1'] = IEventAccessor(self.event.object
+                                                   ).start.isoformat()
+            except TypeError or AttributeError:
                 '''
                 when the context does implement or have
                 registered adapter for IEventAccessor interface/contract
                 '''
-                payload[payload_option] = None
+                payload['value1'] = None
         '''we expect default behaviour here until
         indirection interface is needed to call IFTTT'''
-        r = queryMultiAdapter((self.element, getRequest()),
-                              IRequestsLibrary,
-                              default=requests)
-
+        req = queryMultiAdapter((self.element, getRequest()),
+                                IRequestsLibrary,
+                                default=requests)
         logger.info('Calling Post request to IFTTT')
         try:
-
-            r.post(ifttt_trigger_url, data=payload, timeout=self.timeout)
+            req.post(ifttt_trigger_url, data=payload, timeout=self.timeout)
 
             # show this logging message to Plone user as notification
             api.portal.show_message(
