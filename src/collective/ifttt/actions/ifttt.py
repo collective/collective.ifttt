@@ -112,13 +112,13 @@ class IftttTriggerActionExecutor(object):
         secret_key = api.portal.get_registry_record('ifttt.ifttt_secret_key')
         ifttt_trigger_url = 'https://maker.ifttt.com/trigger/' + \
                             ifttt_event_name + '/with/key/' + secret_key
-        payload = {'value3': title, 'value2': url}
+        payload = {'value1': title, 'value2': url}
 
         # define 3rd payload as chosen by user
         if payload_option == PAYLOAD_DESCRIPTION:
-            payload['value1'] = self.context.description
+            payload['value3'] = self.context.description
         elif payload_option == PAYLOAD_USERNAME:
-            payload['value1'] = api.user.get_current().getId()
+            payload['value3'] = api.user.get_current().getId()
         elif payload_option == PAYLOAD_START:
             try:
                 '''
@@ -130,14 +130,14 @@ class IftttTriggerActionExecutor(object):
                 next occurrence.
                 '''
                 # add exception handling for surprising data
-                payload['value1'] = IEventAccessor(self.event.object
+                payload['value3'] = IEventAccessor(self.event.object
                                                    ).start.isoformat()
             except TypeError or AttributeError:
                 '''
                 when the context does implement or have
                 registered adapter for IEventAccessor interface/contract
                 '''
-                payload['value1'] = None
+                payload['value3'] = None
         '''we expect default behaviour here until
         indirection interface is needed to call IFTTT'''
         req = queryMultiAdapter((self.element, getRequest()),

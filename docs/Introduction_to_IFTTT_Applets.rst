@@ -1,3 +1,5 @@
+.. _Introduction_to_IFTTT_Applets:
+
 Introduction to IFTTT Applets
 =============================
 
