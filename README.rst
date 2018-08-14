@@ -11,6 +11,7 @@
 .. image:: https://badge.fury.io/py/collective.ifttt.svg
     :target: https://badge.fury.io/py/collective.ifttt
     :alt: Latest PyPI version
+    
 ================
 collective.ifttt
 ================
