@@ -2,10 +2,11 @@ Changelog
 =========
 
 
-1.0.1 (unreleased)
+1.0.1 (2018-08-14)
 ------------------
 
-- Nothing changed yet.
+- Bug fixes.
+  [Shriyanshagro]
 
 
 1.0 (2018-08-08)
