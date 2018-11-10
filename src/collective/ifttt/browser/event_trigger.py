@@ -9,6 +9,7 @@ from plone.app.z3cform.widget import SelectFieldWidget
 from plone.autoform import directives as forms
 from plone.autoform.form import AutoExtensibleForm
 from Products.CMFCore.interfaces._events import IActionSucceededEvent
+from Products.CMFPlone.utils import safe_unicode
 from z3c.form import button
 from z3c.form import form
 from zope import schema
@@ -119,7 +120,7 @@ class EventTrigger(AutoExtensibleForm, form.Form):
                     u'${ifttt_event_name} to ${title}',
                     mapping=dict(
                         ifttt_event_name=data.get('ifttt_event_name'),
-                        title=self.context.Title().decode('utf-8', 'ignore'),
+                        title=safe_unicode(self.context.Title()),
                     ),
                 ),
                 request=getRequest(),

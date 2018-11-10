@@ -10,6 +10,7 @@ from plone.app.contentrules.browser.formhelper import ContentRuleFormWrapper
 from plone.contentrules.rule.interfaces import IExecutable
 from plone.contentrules.rule.interfaces import IRuleElementData
 from plone.event.interfaces import IEventAccessor
+from Products.CMFPlone.utils import safe_unicode
 from zope import schema
 from zope.component import adapter
 from zope.component import queryMultiAdapter
@@ -107,7 +108,7 @@ class IftttTriggerActionExecutor(object):
     def __call__(self, *args, **kwargs):
         ifttt_event_name = self.element.ifttt_event_name
         payload_option = self.element.payload_option
-        title = self.context.Title().decode('utf-8', 'ignore')
+        title = safe_unicode(self.context.Title())
         url = self.context.absolute_url()
         secret_key = api.portal.get_registry_record('ifttt.ifttt_secret_key')
         ifttt_trigger_url = 'https://maker.ifttt.com/trigger/' + \
