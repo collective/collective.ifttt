@@ -56,22 +56,20 @@ class IftttTests(unittest.TestCase):
 
         addview.form_instance.update()
 
-        payload_option = payload_options.by_value.keys()
-
-        for i in range(len(payload_option)):
+        for index, option in enumerate(payload_options):
 
             content = addview.form_instance.create(
                 data={
                     'ifttt_event_name': 'ifttt_applet',
-                    'payload_option': payload_option[i],
+                    'payload_option': option,
                 }
             )
             addview.form_instance.add(content)
 
-            e = rule.actions[i]
+            e = rule.actions[index]
             self.assertTrue(isinstance(e, IftttTriggerAction))
             self.assertEqual('ifttt_applet', e.ifttt_event_name)
-            self.assertEqual(payload_option[i], e.payload_option)
+            self.assertEqual(option, e.payload_option)
 
     def test_EditFormView(self):
         element = getUtility(IRuleAction, name='plone.actions.Ifttt')
@@ -90,13 +88,12 @@ class IftttTests(unittest.TestCase):
             value=u'secret',
         )
         element.ifttt_event_name = 'ifttt_applet'
-        payload_option = payload_options.by_value.keys()
 
-        for i in range(len(payload_option)):
+        for option in payload_options:
             # inspect logs
             handler = InstalledHandler('collective.ifttt.requests')
 
-            element.payload_option = payload_option[i]
+            element.payload_option = option.value
             ex = getMultiAdapter((context, element, DummyEvent(self.folder)),
                                  IExecutable)
             self.assertTrue(ex())
