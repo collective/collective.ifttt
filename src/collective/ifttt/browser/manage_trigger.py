@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from collective.ifttt import _
+from collective.ifttt.browser.views import availableTriggers
 from plone import api
 from plone.autoform import directives as forms
 from plone.autoform.form import AutoExtensibleForm
 from plone.contentrules.engine.interfaces import IRuleStorage
-from views import availableTriggers
 from z3c.form import button
 from z3c.form import form
 from z3c.form.browser.checkbox import CheckBoxFieldWidget

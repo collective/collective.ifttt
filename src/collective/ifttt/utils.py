@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from collective.ifttt import _
-from interfaces import IFTTTMarker
+from collective.ifttt.interfaces import IFTTTMarker
 from plone import api
 from plone.app.contentrules import api as rules_api
 from plone.contentrules.engine.interfaces import IRuleStorage
