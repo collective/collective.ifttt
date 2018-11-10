@@ -5,7 +5,7 @@ from plone import api
 from plone.app import testing
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
-from StringIO import StringIO
+from six import StringIO
 from zope.testing.loggingsupport import InstalledHandler
 from ZPublisher.HTTPRequest import HTTPRequest
 from ZPublisher.HTTPResponse import HTTPResponse

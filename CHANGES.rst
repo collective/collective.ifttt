@@ -5,7 +5,8 @@ Changelog
 1.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add Support for Python 3.
+  [pbauer, staeff, Shriyanshagro]
 
 
 1.0.2 (2018-08-14)

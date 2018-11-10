@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from collective.ifttt import _
-from interfaces import IFTTTMarker
+from collective.ifttt.interfaces import IFTTTMarker
 from plone import api
 from plone.app.contentrules import api as rules_api
 from plone.contentrules.engine.interfaces import IRuleStorage
 from plone.contentrules.rule.interfaces import IRuleAction
 from plone.contentrules.rule.interfaces import IRuleCondition
+from Products.CMFPlone.utils import safe_unicode
 from Products.statusmessages import STATUSMESSAGEKEY
 from zope.annotation.interfaces import IAnnotations
 from zope.component import getMultiAdapter
@@ -41,7 +42,7 @@ class Rules(object):
                 trigger_type=trigger_type,
                 ifttt_event_name=data.get('ifttt_event_name'),
                 content_types=(', ').join(data.get('content_types')),
-                title=self.context.Title().decode('utf-8', 'ignore'),
+                title=self.context.Title(),
                 path=self.context.absolute_url_path(),
             )
         )
@@ -51,7 +52,7 @@ class Rules(object):
             u'"${ifttt_event_name}" on the ${title} folder',
             mapping=dict(
                 ifttt_event_name=data.get('ifttt_event_name'),
-                title=self.context.Title().decode('utf-8', 'ignore'),
+                title=safe_unicode(self.context.Title()),
             )
         )
 
