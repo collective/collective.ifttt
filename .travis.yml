@@ -10,7 +10,15 @@ matrix:
     - python: "3.6"
       env: TOXENV=docs,lint-py36
     - python: "2.7"
+      env: TOXENV=py27-Plone43
+    - python: "2.7"
+      env: TOXENV=py27-Plone50
+    - python: "2.7"
       env: TOXENV=py27-Plone51
+    - python: "2.7"
+      env: TOXENV=py27-Plone52
+    - python: "3.6"
+      env: TOXENV=py36-Plone52
   allow_failures:
     - python: "3.6"
       env: TOXENV=py36-Plone52
