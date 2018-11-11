@@ -44,7 +44,6 @@ before_script:
 
 script:
   - travis_retry tox
-  - bin/test -v --all -t robot
 
 after_success:
   - coverage combine
