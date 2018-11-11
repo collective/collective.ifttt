@@ -15,6 +15,7 @@ lib/
 local/
 parts/
 src/*
+/.tox/
 test.plone_addon/
 var/
 # files
