@@ -19,9 +19,9 @@ matrix:
       env: TOXENV=py27-Plone52
     - python: "3.6"
       env: TOXENV=py36-Plone52
-  allow_failures:
-    - python: "3.6"
-      env: TOXENV=py36-Plone52
+#  allow_failures:
+#    - python: "3.6"
+#      env: TOXENV=py36-Plone52
 
 cache:
   pip: true
