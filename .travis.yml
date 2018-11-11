@@ -2,34 +2,49 @@ language: python
 sudo: false
 addons:
   firefox: "61.0"
+
+matrix:
+  include:
+    - python: "2.7"
+      env: TOXENV=docs,lint-py27,code-analysis
+    - python: "3.6"
+      env: TOXENV=docs,lint-py36
+    - python: "2.7"
+      env: TOXENV=py27-Plone51
+  allow_failures:
+    - python: "3.6"
+      env: TOXENV=py36-Plone52
+
 cache:
   pip: true
   directories:
-  - eggs
-  - downloads
-python:
-  - "2.7"
-matrix:
-  fast_finish: true
+    - eggs
+    - $HOME/buildout-cache
+
+before_install:
+    - mkdir -p $HOME/buildout-cache/{downloads,eggs,extends}
+    - mkdir $HOME/.buildout
+    - echo "[buildout]" > $HOME/.buildout/default.cfg
+    - echo "download-cache = $HOME/buildout-cache/downloads" >> $HOME/.buildout/default.cfg
+    - echo "eggs-directory = $HOME/buildout-cache/eggs" >> $HOME/.buildout/default.cfg
+    - echo "extends-cache = $HOME/buildout-cache/extends" >> $HOME/.buildout/default.cfg
+    - echo "abi-tag-eggs = true" >> $HOME/.buildout/default.cfg
+
 install:
-  - virtualenv -p `which python` .
-  - bin/pip install -r requirements.txt
-  - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True annotate
-  - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True
+  - travis_retry pip install -U setuptools pip tox coveralls coverage
   - wget https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-linux64.tar.gz
   - tar -xzf geckodriver-v0.21.0-linux64.tar.gz -C bin
   - export PATH=$(pwd)/bin:$PATH
+
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - firefox -v
+
 script:
-  - bin/code-analysis
-  - bin/test -v
+  - travis_retry tox
   - bin/test -v --all -t robot
+
 after_success:
-  - bin/createcoverage
-  - bin/pip install coverage
-  - bin/python -m coverage.pickle2json
-  - pip install coveralls
+  - coverage combine
   - coveralls
