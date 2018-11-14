@@ -5,6 +5,9 @@ Changelog
 1.0.3 (unreleased)
 ------------------
 
+- update docs, screenshots for configuring secret key
+  [tkimnguyen]
+
 - Add Support for Python 3.
   [pbauer, staeff, Shriyanshagro]
 

@@ -12,15 +12,15 @@ Obtaining an IFTTT Secret Key
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Go to `ifttt.com <https://ifttt.com/discover>`_ and sign up for an account.
-2. At the top click on ‘Search’ and find ‘Maker’. (Update: this is now named 'Webhook'.)
+2. At the top click on ‘Search’ and find ‘Webhooks’. Click on 'Services'.
 
 .. image:: _static/images/configure_ifttt_channel/secret_key/search_maker.png
 
-3. Click the ‘Connect’ button to create a Maker (Webhook) channel.
+3. Click on the ‘Webhooks’ service to create it.
 
 .. image:: _static/images/configure_ifttt_channel/secret_key/settings_maker.png
 
-4. Click on the gear icon (Settings) on the top-right of the Maker (Webhook) channel to view your key.
+4. Click on the gear icon (Settings) on the top-right of the Webhooks service to view your key.
 
 .. image:: _static/images/configure_ifttt_channel/secret_key/obtain_key.png
 
