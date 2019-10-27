@@ -44,3 +44,4 @@ selenium-screenshot*.png
 docs/_screenshots*
 .pypirc
 /coverage.xml
+/_build/
